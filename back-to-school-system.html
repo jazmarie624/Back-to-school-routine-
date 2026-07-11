@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Back to School System — Jazmin Aguayo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E1B1A;
+    --soft:#6B625E;
+    --paper:#FFFDFB;
+    --hair:#8A6508;
+    --wine:#4A2233;
+    --champagne:#E8CDA8;
+
+    --k1:#1F5FA8; /* Juliusz  — blue */
+    --k2:#C2185B; /* Jaliyah  — berry */
+    --k3:#6A3FA0; /* Jazelli  — violet */
+    --k4:#D2691E; /* Jeovane  — tangerine */
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{max-width:840px;margin:0 auto;padding:56px 28px 96px}
+
+  /* ---------- masthead ---------- */
+  header{position:relative;padding:44px 30px 38px;text-align:center;margin-bottom:64px}
+  header::before,header::after{
+    content:"";position:absolute;width:46px;height:46px;
+    border:1.5px solid var(--hair);
+  }
+  header::before{top:0;left:0;border-right:0;border-bottom:0}
+  header::after{bottom:0;right:0;border-left:0;border-top:0}
+
+  .eyebrow{
+    font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--hair);font-weight:600;
+  }
+  header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:clamp(38px,7vw,62px);
+    line-height:1.06;margin:14px 0 10px;color:var(--wine);
+  }
+  header p{color:var(--soft);font-size:15px;max-width:44ch;margin:0 auto}
+  .sparkle{color:var(--hair)}
+
+  /* ---------- the color spine ---------- */
+  .spine{
+    display:flex;gap:10px;justify-content:center;margin:34px 0 0;flex-wrap:wrap;
+  }
+  .chip{
+    display:flex;align-items:center;gap:9px;
+    border:1px solid #EDE7E1;border-radius:999px;
+    padding:7px 16px 7px 9px;font-size:14px;font-weight:500;background:#fff;
+  }
+  .dot{width:15px;height:15px;border-radius:50%;flex:none}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:74px}
+  .num{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:15px;color:var(--hair);letter-spacing:.06em;
+  }
+  h2{
+    font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:clamp(28px,4.6vw,40px);color:var(--wine);
+    line-height:1.15;margin:2px 0 6px;
+  }
+  .lede{color:var(--soft);font-size:15.5px;max-width:60ch;margin-bottom:30px}
+  .rule{height:1px;background:var(--hair);opacity:.5;margin:0 0 26px;max-width:70px}
+
+  h3{
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;color:var(--ink);margin:34px 0 14px;
+  }
+
+  /* ---------- timeline ---------- */
+  .step{
+    display:grid;grid-template-columns:88px 1fr;gap:22px;
+    padding:18px 0;border-bottom:1px solid #F0EBE5;align-items:start;
+  }
+  .step:last-child{border-bottom:0}
+  .clock{
+    font-family:'Cormorant Garamond',serif;font-size:23px;
+    color:var(--wine);line-height:1.3;padding-top:1px;
+  }
+  .clock small{display:block;font-family:'Inter';font-size:10.5px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--hair);font-weight:600;margin-top:3px}
+  .step strong{display:block;font-weight:600;font-size:17.5px;margin-bottom:3px}
+  .step p{color:var(--soft);font-size:15px}
+  .who{
+    display:inline-block;font-size:11.5px;font-weight:600;
+    padding:2px 10px;border-radius:999px;color:#fff;margin-right:5px;
+    letter-spacing:.02em;vertical-align:1.5px;
+  }
+  .who.mom{background:var(--wine)}
+  .who.all{background:var(--hair)}
+  .who.big{background:var(--k1)}
+
+  /* ---------- diagram ---------- */
+  .wall{
+    border:1.5px solid var(--hair);border-radius:3px;
+    padding:26px 22px;background:#fff;
+  }
+  .hooks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .hook{text-align:center}
+  .hook .bar{height:7px;border-radius:4px;margin-bottom:12px}
+  .hook .label{font-weight:600;font-size:14.5px;margin-bottom:8px}
+  .hook ul{list-style:none;font-size:13px;color:var(--soft);line-height:2}
+  .shelf{
+    margin-top:24px;border-top:1px dashed #DCD4CC;padding-top:18px;
+    font-size:14px;color:var(--soft);text-align:center;
+  }
+  .shelf b{color:var(--ink);font-weight:600}
+
+  /* ---------- callout ---------- */
+  .rule-box{
+    background:#FBF7F1;border-left:3px solid var(--hair);
+    padding:20px 24px;margin:28px 0;
+  }
+  .rule-box p{font-size:15.5px}
+  .rule-box b{color:var(--wine)}
+
+  /* ---------- lists ---------- */
+  ul.plain{list-style:none;margin:8px 0}
+  ul.plain li{
+    padding:9px 0 9px 26px;position:relative;
+    border-bottom:1px solid #F4F0EA;font-size:15.5px;
+  }
+  ul.plain li:last-child{border-bottom:0}
+  ul.plain li::before{
+    content:"";position:absolute;left:4px;top:19px;
+    width:6px;height:6px;background:var(--hair);transform:rotate(45deg);
+  }
+
+  /* ---------- shopping ---------- */
+  .store{margin-bottom:40px}
+  .store-name{
+    font-family:'Cormorant Garamond',serif;font-size:25px;color:var(--wine);
+    display:flex;align-items:baseline;gap:12px;margin-bottom:4px;
+  }
+  .store-name span{
+    font-family:'Inter';font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--hair);font-weight:600;
+  }
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}
+  th{
+    text-align:left;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--hair);font-weight:700;padding:0 8px 10px 0;border-bottom:1px solid var(--hair);
+  }
+  td{padding:12px 8px 12px 0;border-bottom:1px solid #F2EDE7;vertical-align:middle}
+  td:first-child{width:26px}
+  .box{
+    display:block;width:16px;height:16px;border:1.4px solid #C4BBB2;border-radius:2px;
+  }
+  .fill{border-bottom:1px solid #D8D0C7;min-width:70px;display:inline-block;height:1.1em}
+  .kidname{font-weight:600}
+  .kidname::before{
+    content:"";display:inline-block;width:9px;height:9px;border-radius:50%;
+    margin-right:8px;background:var(--dotc,#ccc);
+  }
+
+  /* ---------- two clocks ---------- */
+  .clocks{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:6px}
+  .plan{border:1px solid #E9E2DA;border-radius:3px;padding:24px 22px;background:#fff;position:relative}
+  .plan-tag{
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;color:var(--hair);
+  }
+  .plan-title{
+    font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--wine);
+    line-height:1.15;margin:4px 0 10px;
+  }
+  .plan-note{font-size:14px;color:var(--soft);margin-bottom:16px}
+  .clocktable{width:100%;border-collapse:collapse;font-size:14.5px}
+  .clocktable td{padding:9px 0;border-bottom:1px solid #F4F0EA;vertical-align:top}
+  .clocktable tr:last-child td{border-bottom:0}
+  .clocktable td.t{
+    width:58px;font-family:'Cormorant Garamond',serif;font-size:18px;
+    color:var(--wine);padding-right:14px;white-space:nowrap;
+  }
+  .verdict{
+    margin-top:16px;padding-top:14px;border-top:1px solid var(--hair);
+    font-size:13.5px;color:var(--soft);
+  }
+  .verdict b{color:var(--wine)}
+  @media (max-width:700px){.clocks{grid-template-columns:1fr}}
+
+  /* ---------- sticky notes ---------- */
+  .sticky{
+    position:relative;max-width:355px;margin:26px 0 30px auto;
+    background:#FBF3E4;
+    padding:20px 22px 20px;
+    box-shadow:0 3px 10px rgba(74,34,51,.10), 0 1px 2px rgba(74,34,51,.06);
+    transform:rotate(-1.1deg);
+    font-size:14.5px;line-height:1.65;color:#3A2A28;
+    border-radius:1px;
+  }
+  .sticky:nth-of-type(even){transform:rotate(1deg);background:#F7EFE9}
+  .sticky::before{
+    content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    width:66px;height:19px;background:rgba(232,205,168,.72);
+    border:1px solid rgba(138,101,8,.28);
+  }
+  .sticky .tag{
+    display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+    font-weight:700;color:var(--hair);margin-bottom:7px;
+  }
+  .sticky b{color:var(--wine)}
+  .sticky.left{margin:26px auto 30px 0;transform:rotate(1.2deg)}
+
+  @media (max-width:640px){
+    .sticky,.sticky.left{max-width:100%;margin:22px 0}
+  }
+  @media print{
+    .sticky{box-shadow:none;border:1px solid var(--hair);transform:none;page-break-inside:avoid}
+    .sticky.left{transform:none}
+  }
+
+  footer{
+    text-align:center;padding-top:40px;border-top:1px solid var(--hair);
+    color:var(--soft);font-size:13px;
+  }
+  footer .brand{
+    font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--wine);
+    letter-spacing:.04em;
+  }
+
+  @media print{
+    body{font-size:11.5pt}
+    .sheet{padding:0}
+    section{page-break-inside:avoid;margin-bottom:44px}
+    .step{page-break-inside:avoid}
+  }
+  @media (max-width:640px){
+    .step{grid-template-columns:66px 1fr;gap:14px}
+    .clock{font-size:19px}
+    .hooks{grid-template-columns:repeat(2,1fr);gap:20px}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <div class="eyebrow">J Empire &middot; Household Systems</div>
+  <h1>The Back&nbsp;to&nbsp;School<br>Command Center</h1>
+  <p><span class="sparkle">✦</span> Four kids, one door, zero screaming. <span class="sparkle">✦</span></p>
+
+  <div class="spine">
+    <div class="chip"><span class="dot" style="background:var(--k1)"></span>Juliusz</div>
+    <div class="chip"><span class="dot" style="background:var(--k2)"></span>Jaliyah</div>
+    <div class="chip"><span class="dot" style="background:var(--k3)"></span>Jazelli</div>
+    <div class="chip"><span class="dot" style="background:var(--k4)"></span>Jeovane</div>
+  </div>
+</header>
+
+<!-- ========== 1 ========== -->
+<section>
+  <div class="num">One</div>
+  <h2>The Color Rule</h2>
+  <div class="rule"></div>
+  <p class="lede">Before any routine works, every kid needs a color. Not a label — a color. Jeovane can't read his name yet, but he knows orange is his.</p>
+
+  <p style="font-size:15.5px;color:var(--soft);margin-bottom:8px">One color per child, applied to:</p>
+  <ul class="plain">
+    <li>Water bottle (same bottle model, four colors)</li>
+    <li>Hook + shoe bin at the door</li>
+    <li>Bath towel + toothbrush + rinse cup</li>
+    <li>Breakfast bowl, cup, and cereal container</li>
+    <li>A strip of colored tape on the backpack tag</li>
+  </ul>
+
+  <div class="rule-box">
+    
+  <div class="sticky">
+    <span class="tag">Tip of the day</span>
+    Let them <b>pick their own color</b> at the family meeting, oldest first. Kids follow rules they helped invent. A color someone chose is a color they defend.
+  </div>
+
+  <p><b>Why it matters:</b> color kills the two biggest morning time-thieves — <i>"where is mine"</i> and <i>"that's not mine."</i> Nobody has to ask you. They can see it from across the room.</p>
+  </div>
+</section>
+
+<!-- ========== 2 ========== -->
+<section>
+  <div class="num">Two</div>
+  <h2>The Drop Zone</h2>
+  <div class="rule"></div>
+  <p class="lede">The single biggest fix in your apartment — and it needs zero holes in the wall. Nothing school-related goes past the front door, because whatever goes into a bedroom has to be hunted for at 6:40 a.m. You're renting, so we build this out of <b>furniture, not drilled hooks</b>.</p>
+
+  <div class="wall">
+    <div class="hooks">
+      <div class="hook">
+        <div class="bar" style="background:var(--k1)"></div>
+        <div class="label">Juliusz</div>
+        <ul><li>Backpack cube</li><li>Bottle in cube</li><li>Shoe bin below</li></ul>
+      </div>
+      <div class="hook">
+        <div class="bar" style="background:var(--k2)"></div>
+        <div class="label">Jaliyah</div>
+        <ul><li>Backpack cube</li><li>Bottle in cube</li><li>Shoe bin below</li></ul>
+      </div>
+      <div class="hook">
+        <div class="bar" style="background:var(--k3)"></div>
+        <div class="label">Jazelli</div>
+        <ul><li>Backpack cube</li><li>Bottle in cube</li><li>Shoe bin below</li></ul>
+      </div>
+      <div class="hook">
+        <div class="bar" style="background:var(--k4)"></div>
+        <div class="label">Jeovane</div>
+        <ul><li>Backpack cube</li><li>Bottle in cube</li><li>Shoe bin below</li></ul>
+      </div>
+    </div>
+    <div class="shelf">
+      <b>On top of the cube shelf:</b> one shallow tray — the Paper Catch. Everything already handled lands here, and nothing else.
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <p><b>The renter's launch pad — a cube shelf, not a wall of hooks.</b> One 4-cube or 8-cube storage unit stood by the front door. Each kid gets a cube: backpack goes in, water bottle drops in beside it. A shoe bin sits on the floor under each cube. It's freestanding furniture — no drilling, no lost deposit — and it doubles as a bench and a little room divider. This one piece replaces the entire hook wall.</p>
+  </div>
+
+  <div class="rule-box">
+    <p><b>Touch every paper once.</b> Permission slip? Sign it standing there and put it straight back in the folder. Event flyer? Put the date in your phone right then and drop the paper in the tray. Nothing goes into the tray as a to-do — it goes in <i>after</i> it's done. Dump the tray every Sunday.</p>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">Don't forget</span>
+    Families lose roughly <b>twelve minutes every single morning</b> just hunting for misplaced things. Shoes, one glove, the water bottle. The cube shelf is not decoration — it's twelve minutes back.
+  </div>
+
+  <h3>The no-drill build — three renter options</h3>
+  <ul class="plain">
+    <li><b>Best: a cube storage shelf.</b> A 4-cube (one row) or 8-cube (two rows) unit. One cube per kid at a height they can reach — little ones on the bottom row, big ones on top. Backpack and bottle live in the cube, shoes in a bin underneath. Freestanding, holds real weight, no wall damage.</li>
+    <li><b>For jackets: a freestanding coat tree</b> or a <b>hall tree with a bench.</b> Stands in the corner by the door, holds coats and bags, and the bench lid or lower shelf swallows shoes. Zero holes.</li>
+    <li><b>Over-the-door hook rack.</b> Hangs over the top of your entry closet door or a bedroom door — no drilling at all. Great for jackets, lunch bags, and lanyards. <b>Not for loaded backpacks</b> — those are heavier than these racks like to hold, and a bag that slides off at 6:45 is worse than no rack.</li>
+  </ul>
+
+  <div class="rule-box">
+    <p><b>About Command adhesive hooks.</b> They're perfect for light things — jackets, towels, a lanyard, an empty tote. They are <i>not</i> reliable for a full backpack with books, a water bottle, and lunch inside; that routinely beats their weight rating and the hook peels off the wall, often taking a strip of paint with it. Use adhesive hooks for the light stuff and cubbies for the bags. That's the split that saves your deposit.</p>
+  </div>
+
+  <h3>Setup notes</h3>
+  <ul class="plain">
+    <li><b>Reach test:</b> Jeovane must get his own backpack and shoes without calling you. Put the little two on the bottom cubes, big two up top.</li>
+    <li><b>Shoe bins</b> sit open-top on the floor under each cube, no lid. A lid is one step too many.</li>
+    <li><b>Bottles</b> ride in the cube next to the backpack, or in one narrow shared bin on top of the shelf. They never travel to bedrooms.</li>
+    <li><b>Anchor it if it's tall.</b> An 8-cube unit near climbing little ones should be strapped to the wall with a furniture anchor — that's a tiny screw, landlord-approved safety, not a real hole. Or keep to the low 4-cube and skip it.</li>
+  </ul>
+
+  <div class="sticky left">
+    <span class="tag">Small thing, big deal</span>
+    <b>No lids on the shoe bins.</b> A lid is one extra step, and one extra step is the difference between a four-year-old doing it himself and a four-year-old calling for you.
+  </div>
+
+  <div class="rule-box">
+    <p><b>Hallway drill:</b> shoes off → shoe bin. Backpack → cube. Bottle → cube. Papers → Paper Catch. All four things happen in the first ninety seconds, before anybody sits down. Practice it three times the week before school starts, like a fire drill.</p>
+  </div>
+</section>
+
+<!-- ========== 3 ========== -->
+<section>
+  <div class="num">Three</div>
+  <h2>The Evening Run</h2>
+  <div class="rule"></div>
+  <p class="lede">Mornings are won the night before. You walk in around 5:15 — that's a short evening, so every step has a job and nothing runs long. If you do only one thing on this sheet, do this.</p>
+
+  <div class="step">
+    <div class="clock">5:15<small>Arrive</small></div>
+    <div>
+      <strong><span class="who all">All</span>The 90-second drop</strong>
+      <p>Home from aftercare and daycare. Shoes, backpack, bottle, papers — straight to the wall. No snacks, no TV, no bathroom until the wall is done.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">5:20<small>Empty</small></div>
+    <div>
+      <strong><span class="who all">All</span>Lunchboxes to the sink</strong>
+      <p>Every kid empties their own into the trash and puts the container in the sink. Yes, even Jeovane. Especially Jeovane.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">5:30<small>Land</small></div>
+    <div>
+      <strong><span class="who all">All</span>Twenty minutes to decompress</strong>
+      <p>Snack, floor, noise, nothing required. They held it together all day and through aftercare. Skip this and you pay for it at bedtime. You are not on duty either — sit down.</p>
+    </div>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">Remember</span>
+    The 5:30 decompress isn't wasted time — it's the <b>price of a calm bedtime</b>. Kids who never get to come down at 5:30 come apart at 8:30.
+  </div>
+
+  <div class="step">
+    <div class="clock">5:50<small>Dinner</small></div>
+    <div>
+      <strong><span class="who all">All</span>Eat</strong>
+      <p>Sunday-prepped or thirty minutes, no more. Nobody leaves the table until their plate is in the sink — the same rule as breakfast, so it only has to be learned once.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">6:30<small>Reset</small></div>
+    <div>
+      <strong><span class="who all">All</span>The 15-minute reset</strong>
+      <p>Set a timer. Backpacks re-packed and hung. Bottles rinsed. Folders signed and back in the bag. Any homework goes here, in this window, not later. Timer ends — the day is closed.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:00<small>Hair</small></div>
+    <div>
+      <strong><span class="who mom">Mom</span>Girls' hair — done at night, not morning</strong>
+      <p>Jaliyah and Jazelli, back to back, fifteen minutes each on the couch while the boys read. Detangle, moisturize, set the style that carries into tomorrow. Whatever you do now, you do <b>not</b> do at 6:50 a.m.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:30<small>Bath</small></div>
+    <div>
+      <strong><span class="who all">Little two</span>Jazelli and Jeovane shower first</strong>
+      <p>The ones who need you go while you still have energy. Six-minute timer on the shelf — when it beeps, water off. Towels back on their own colored hook, not the rod.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:55<small>Bath</small></div>
+    <div>
+      <strong><span class="who big">Big two</span>Juliusz and Jaliyah, unsupervised</strong>
+      <p>Same timer. Everybody bathes at <b>night</b> — that's twenty minutes of bathroom traffic deleted from your morning. This is the single most common fix in one-bathroom houses.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">8:15<small>Set</small></div>
+    <div>
+      <strong><span class="who mom">Mom</span>Uniform check, bonnets on</strong>
+      <p>Tomorrow's slot has a full outfit in it — shirt, bottoms, socks, underwear, together, with the bow on top. If a slot is short you know now, not at 6:45 a.m. Both girls put their own bonnet on; Jazelli can learn this in a week.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">8:30<small>Down</small></div>
+    <div>
+      <strong><span class="who all">All</span>Lights out</strong>
+      <p>Breakfast table is set, bottles are dry, bags are on hooks, clothes are laid out, hair is done. There is nothing left to do in the morning but move.</p>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <p><b>Three hours and fifteen minutes, door to lights out.</b> That's what you actually have. It only fits because dinner was cooked Sunday and the reset is on a timer. The night you skip the reset is the morning you lose twenty-five minutes.</p>
+  </div>
+
+  <h3>Football nights &mdash; Monday, Tuesday, Thursday</h3>
+  <p style="font-size:15.5px;color:var(--soft);margin-bottom:8px">Three nights a week the evening run happens without you in the building. The system doesn't change — <b>who runs it</b> changes. That only works if the day was front-loaded.</p>
+
+  <table class="clocktable" style="margin-top:10px">
+    <tr><td class="t">Sun</td><td>Meal prep three dinners that reheat. Football nights eat what's already cooked, never what has to be made.</td></tr>
+    <tr><td class="t">4:15</td><td><b>Early pickup.</b> All four, an hour ahead of a normal day. This one move is what buys the whole evening.</td></tr>
+    <tr><td class="t">4:30</td><td>Home. The 90-second drop, exactly the same. Wall first, always.</td></tr>
+    <tr><td class="t">4:45</td><td>Juliusz eats first, alone if he has to. He is not playing two hours of football on a granola bar. The other three snack.</td></tr>
+    <tr><td class="t">5:00</td><td>The 15-minute reset happens <b>before</b> you leave, not after you get back. Bags packed, bottles rinsed, outfits pulled. This is the change that makes the whole night work.</td></tr>
+    <tr><td class="t">5:15</td><td>Girls' hair — or skip tonight and double it tomorrow. Never at 9 p.m.</td></tr>
+    <tr><td class="t">5:30</td><td>You and Juliusz leave. Dinner is in the fridge with a note on it. iPads charged.</td></tr>
+    <tr><td class="t">6:00</td><td>Jaylani serves dinner. Little three at the table.</td></tr>
+    <tr><td class="t">6:45</td><td>Jaylani starts baths — little two first, six-minute timer, same as any night.</td></tr>
+    <tr><td class="t">7:30</td><td>Teeth, bonnets, lights out for Jeovane and Jazelli.</td></tr>
+    <tr><td class="t">8:00</td><td>You and Juliusz walk in. He showers, you check the wall. That's it. The night is already closed.</td></tr>
+  </table>
+
+  <div class="rule-box">
+    <p><b>The early pickup is the whole trick.</b> Not the meal prep, not Jaylani — the hour. Getting them at 4:15 instead of 5:15 is what gives Juliusz dinner, gives you the reset, and gives Jaylani a house that's already handled. If you can only protect one thing on football days, protect the pickup time.</p>
+  </div>
+
+  <div class="rule-box">
+    <p><b>Make it a real job, not a favor.</b> Sit down with Jaylani before the season starts and name the scope out loud: three nights, dinner served, baths, teeth, bed. Nothing more. Pay her or trade her something she actually wants. A defined job with an end time is something a fourteen-year-old can be proud of; being the unpaid backup parent whenever you're not home is something she'll come to resent — and she should. When football season ends, the job ends.</p>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">Tip of the day</span>
+    Write Jaylani's three nights on the calendar <b>with an end date</b> — the last day of football season. A job that ends is a job worth doing. An open-ended one is a burden.
+  </div>
+
+  <div class="rule-box">
+    <p><b>What makes her night easy.</b> Dinner already cooked. Bags already packed. iPads already charged. Bath order written on the wall. If she has to make a decision, you didn't prep enough — she's babysitting, not running your household. And keep mornings entirely off her plate. She has her own school day.</p>
+  </div>
+</section>
+<section>
+  <div class="num">Four</div>
+  <h2>The Morning Run</h2>
+  <div class="rule"></div>
+  <p class="lede">Adjust the clock to your bus and bell times — the sequence is what matters. Everybody dresses <i>before</i> they eat, so a spilled cup never costs you a uniform.</p>
+
+  <div class="step">
+    <div class="clock">6:15<small>Mom</small></div>
+    <div>
+      <strong><span class="who mom">Mom</span>You, first, alone</strong>
+      <p>Twenty minutes before any kid is awake. Energy drink or a tall glass of ice water, dressed, phone glanced at once. Do not skip this — a rushed mother makes rushed children.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">6:35<small>Wake</small></div>
+    <div>
+      <strong><span class="who all">Little two</span>Wake Jazelli and Jeovane first</strong>
+      <p>The ones who need help go first, while you're free. You are not running back and forth. Big-family rule: little ones first, because older kids can manage themselves <i>and</i> handle waiting.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">6:45<small>Wake</small></div>
+    <div>
+      <strong><span class="who big">Big two</span>Juliusz and Jaliyah, ten minutes behind</strong>
+      <p>By the time they're up, the little two are already dressed and out of the bathroom. Nobody stands in the hallway waiting on anybody.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">6:50<small>Dress</small></div>
+    <div>
+      <strong><span class="who all">All</span>Grab your day, get dressed</strong>
+      <p>Each kid pulls their own slot from the uniform closet. Everything is already there. No choosing, no negotiating, no "where are my socks."</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:00<small>Eat</small></div>
+    <div>
+      <strong><span class="who all">All</span>Breakfast — self-serve</strong>
+      <p>They open the drawer, take a container, pour from the small pitcher. You are not a short-order cook. You are sitting with your ice water, signing a folder.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:15<small>Bath</small></div>
+    <div>
+      <strong><span class="who all">All</span>Teeth, face — no showers</strong>
+      <p>Colored cup, colored toothbrush, two minutes. Same age order: little two, then big two.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:22<small>Hair</small></div>
+    <div>
+      <strong><span class="who all">Girls</span>Hair — refresh only, never restyle</strong>
+      <p>Bonnet off, spritz, smooth the edges, add the bow or the clips. Five minutes for both girls combined. The style was <i>done last night</i> — this morning you are only finishing it. If you are ever picking up a comb at 7:20, something broke in last night's routine.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="clock">7:30<small>Go</small></div>
+    <div>
+      <strong><span class="who all">All</span>The wall, in reverse</strong>
+      <p>Bottle from the bin (filled last night, in the fridge). Backpack off the hook. Shoes from the bin. Out the door. Nothing to find, because nothing was ever lost.</p>
+    </div>
+  </div>
+
+  
+  <div class="sticky left">
+    <span class="tag">Don't forget</span>
+    Everybody dresses <b>before</b> they eat. A spilled cup at 7:05 costs you a napkin. The same cup, in the same shirt, at 7:25 costs you a uniform and ten minutes.
+  </div>
+
+  <div class="rule-box">
+    <p><b>The one house rule that carries all of this:</b> nobody eats until they're dressed, and nobody leaves the table until their bowl is in the sink. Two sentences. Say them the same way every day for two weeks and you'll never have to say them again.</p>
+  </div>
+</section>
+
+<!-- ========== 5 ========== -->
+<section>
+  <div class="num">Five</div>
+  <h2>The Two Clocks</h2>
+  <div class="rule"></div>
+  <p class="lede">Everything above, laid against your two real options. Both assume the evening run happened — bags on hooks, bottles filled, outfits in slots, girls' hair set, table already laid. If any of that didn't happen last night, add fifteen minutes and neither clock works.</p>
+
+  <div class="clocks">
+
+    <div class="plan">
+      <div class="plan-tag">Plan A</div>
+      <div class="plan-title">The 7:30 Daycare Bus</div>
+      <p class="plan-note">Leave the apartment at <b>7:15.</b> Fifteen minutes of buffer, because the bus does not wait. This is the calmer clock — and the one I'd pick.</p>
+      <table class="clocktable">
+        <tr><td class="t">6:00</td><td>You. Alone. Drink, dressed, face on. Nobody is awake.</td></tr>
+        <tr><td class="t">6:20</td><td>Wake Jazelli and Jeovane. Lights on, curtains open.</td></tr>
+        <tr><td class="t">6:30</td><td>Wake Juliusz and Jaliyah.</td></tr>
+        <tr><td class="t">6:35</td><td>All four dressed — one grab from the uniform slot.</td></tr>
+        <tr><td class="t">6:45</td><td><b>Breakfast.</b> Table was set last night. Self-serve.</td></tr>
+        <tr><td class="t">7:00</td><td>Bowls to the sink. Teeth and face — little two, then big two.</td></tr>
+        <tr><td class="t">7:07</td><td>Hair refresh. Bonnets off, spritz, edges, bows.</td></tr>
+        <tr><td class="t">7:12</td><td>The wall in reverse — bottle, backpack, shoes.</td></tr>
+        <tr><td class="t">7:15</td><td><b>Out the door.</b></td></tr>
+        <tr><td class="t">7:30</td><td>Bus.</td></tr>
+      </table>
+      <div class="verdict">Total awake-to-door: <b>75 minutes.</b> You get 20 of them to yourself.</div>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tag">Plan B</div>
+      <div class="plan-title">The 8:00 Drop-Off Line</div>
+      <p class="plan-note">Leave the apartment at <b>7:35.</b> The line stacks up — you want to be in it by 7:45, not 7:58. Twenty extra minutes of sleep, twenty fewer minutes of margin.</p>
+      <table class="clocktable">
+        <tr><td class="t">6:15</td><td>You. Alone. Same twenty minutes — do not surrender these.</td></tr>
+        <tr><td class="t">6:35</td><td>Wake Jazelli and Jeovane.</td></tr>
+        <tr><td class="t">6:45</td><td>Wake Juliusz and Jaliyah.</td></tr>
+        <tr><td class="t">6:50</td><td>All four dressed.</td></tr>
+        <tr><td class="t">7:00</td><td><b>Breakfast.</b></td></tr>
+        <tr><td class="t">7:15</td><td>Bowls to the sink. Teeth and face.</td></tr>
+        <tr><td class="t">7:22</td><td>Hair refresh.</td></tr>
+        <tr><td class="t">7:28</td><td>The wall in reverse.</td></tr>
+        <tr><td class="t">7:35</td><td><b>Out the door.</b></td></tr>
+        <tr><td class="t">7:45</td><td>In the drop-off line.</td></tr>
+        <tr><td class="t">8:00</td><td>Cutoff.</td></tr>
+      </table>
+      <div class="verdict">Total awake-to-door: <b>80 minutes.</b> Zero slack if anyone melts down.</div>
+    </div>
+
+  </div>
+
+  <div class="rule-box">
+    <p><b>Which one?</b> Plan A. Not because the morning is shorter — it isn't — but because the bus is a <i>hard external deadline</i> that isn't you. Nobody argues with a bus. When you're the only clock in the house, every step is negotiable, and four kids know it. Keep Plan B in your pocket for the mornings that fall apart.</p>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">The real reason</span>
+    <b>Take the bus.</b> Not because it's faster — it's about the same. Because a bus is a hard deadline that <i>isn't you</i>. When you're the only clock in the house, every step is negotiable, and four kids figure that out fast.
+  </div>
+
+  <h3>Your twenty minutes &mdash; the non-negotiable</h3>
+  <p style="font-size:15.5px;color:var(--soft);margin-bottom:8px">Both clocks open with you alone. This is not a luxury and it is not the first thing to cut. A rushed mother makes rushed children, and you are the only person in the house who can't be handed off to somebody else.</p>
+  <table class="clocktable" style="margin-top:10px">
+    <tr><td class="t">:00</td><td>Energy drink, or ice water poured the second you're up. Phone face-down. Nobody is awake.</td></tr>
+    <tr><td class="t">:03</td><td>Hair up. Blow-dried last night, so this is a ponytail and thirty seconds.</td></tr>
+    <tr><td class="t">:06</td><td>Dressed in what you're driving in. Work clothes are in the bag, not on your body.</td></tr>
+    <tr><td class="t">:12</td><td>Sit down. Drink it sitting, not standing at the counter. Look at today on your phone once.</td></tr>
+    <tr><td class="t">:18</td><td>Purse, bag, keys, drink — all four onto the launch pad with the kids' stuff.</td></tr>
+    <tr><td class="t">:20</td><td>Wake the little two.</td></tr>
+  </table>
+
+  <div class="rule-box">
+    <p><b>Your night-before kit.</b> Hair blow-dried. Change of clothes packed and zipped. Purse loaded. Keys and badge in a little dish on top of the cube shelf. Ice tray full, drink in the fridge. You get a cube too — you are the fifth kid on the launch pad, and the same rule applies: nothing you need in the morning sleeps in your bedroom.</p>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">For you, not them</span>
+    Your twenty minutes is the <b>first thing you'll be tempted to cut</b> and the last thing you should. You're the only person in this house who can't be handed off to somebody else.
+  </div>
+
+  <h3>What breakfast actually looks like &mdash; 15 minutes</h3>
+  <table class="clocktable" style="margin-top:10px">
+    <tr><td class="t">:00</td><td>Kids open the low drawer. Grab a bowl and their colored cereal container, or take a boiled egg and cheese from the fridge bin. Two options, no third.</td></tr>
+    <tr><td class="t">:01</td><td>Juliusz pours from the small pitcher for Jeovane. He does not ask you.</td></tr>
+    <tr><td class="t">:02</td><td>Everyone sits. Placemats are already down — assigned seats, no argument.</td></tr>
+    <tr><td class="t">:03</td><td><b>You sit down too.</b> This is the ten minutes you talk to them.</td></tr>
+    <tr><td class="t">:12</td><td>"Bowls to the sink." Each kid carries their own. Jeovane included.</td></tr>
+    <tr><td class="t">:14</td><td>Somebody spilled. Paper towels are within his reach. He wipes it.</td></tr>
+    <tr><td class="t">:15</td><td>Table clear. Move to the bathroom.</td></tr>
+  </table>
+
+  <div class="rule-box">
+    <p><b>Two rules protect the whole clock:</b> nobody eats until they're dressed, and nobody leaves the table until their bowl is in the sink. Everything else on this sheet is furniture. These two are the engine.</p>
+  </div>
+
+  <h3>The 90-second bailout</h3>
+  <p style="font-size:15.5px;color:var(--soft);margin-bottom:8px">For the morning that goes sideways — a fever, a lost shoe, a four-year-old on the floor. Do not try to run the whole clock. Run this:</p>
+  <ul class="plain">
+    <li>Dressed. Shoes on. That's it — hair goes in a scrunchie in the car.</li>
+    <li>Grab the breakfast basket bars. They eat in the car. Nobody died from this.</li>
+    <li>Bottles and backpacks are already at the wall. You lose no time here — <b>this is exactly what the wall is for.</b></li>
+    <li>Take Plan B's clock. You built in the extra option for a reason.</li>
+  </ul>
+</section>
+
+<!-- ========== 6 ========== -->
+<section>
+  <div class="num">Six</div>
+  <h2>The Breakfast Station</h2>
+  <div class="rule"></div>
+  <p class="lede">Your goal is a nine-year-old who can feed a four-year-old without asking you a single question. Two of your kids do cereal and milk. Two don't. So you run <i>two tracks</i>, not four menus — and both tracks are stocked once, on Sunday.</p>
+
+  <div class="rule-box">
+    <p><b>Two choices, never more.</b> Not per kid — per morning. "Waffles or pancake muffins." A four-year-old given an open question takes six minutes to answer it. Given two options, he answers in four seconds. Picky kids get pickier the more you offer.</p>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">Tip of the day</span>
+    Worried about the chocolate granola bars? Pair one with a <b>cheese stick</b>. Cheese raises the pH in the mouth and helps buffer the sugar. And breakfast already comes <i>before</i> teeth in this routine — that's the part that matters most.
+  </div>
+
+  <h3>Track one &mdash; the milk kids</h3>
+  <ul class="plain">
+    <li>Their colored cereal container, portioned Sunday. Bowl, spoon, small pitcher.</li>
+    <li>They pour their own. The pitcher holds one day's worth, so a spill costs a cup, not a gallon.</li>
+  </ul>
+
+  <h3>Track two &mdash; Juliusz and Jaliyah</h3>
+  <p style="font-size:15px;color:var(--soft);margin:-6px 0 10px">No milk. Nothing that needs a bowl. Everything here is eaten with one hand.</p>
+  <ul class="plain">
+    <li><b>Pancake mini-muffins</b> — the ones they used to love. Bring them back. Recipe below.</li>
+    <li><b>Toaster waffles</b> with a slice of muenster melted on top while it's hot.</li>
+    <li><b>Frozen French toast sticks</b> — toaster, ninety seconds.</li>
+    <li><b>Breakfast quesadilla</b> — tortilla, egg, shredded mozzarella. Made Sunday, wrapped in foil, reheated.</li>
+    <li><b>Turkey and provolone roll-ups</b> — three of them, cold, straight from their container.</li>
+    <li><b>Green apple slices + shredded mozzarella.</b></li>
+    <li><b>Egg muffins</b> — eggs, mozzarella, diced ham, baked in a muffin tin. A dozen lasts the week.</li>
+    <li><b>Empanadas or pastelitos</b> from the Latin market. Buy a dozen, freeze, reheat. They will eat these.</li>
+    <li><b>Cinnamon-sugar toast</b> — the toaster is already at their height.</li>
+    <li><b>Dry cereal in a cup.</b> Cereal without milk is a real breakfast. Nobody has to be talked into it.</li>
+  </ul>
+
+  
+  <div class="sticky">
+    <span class="tag">Permission slip</span>
+    <b>Dry cereal in a cup is a real breakfast.</b> So is cold turkey and provolone. Nothing has to look like a commercial. It has to get eaten and it has to be fast.
+  </div>
+
+  <h3>The pancake mini-muffins</h3>
+  <p style="font-size:15px;color:var(--soft);margin:-6px 0 10px">Your own recipe, and the single best thing on this page. Batch fifty on a Sunday, freeze in bags of five.</p>
+  <ul class="plain">
+    <li>Pancake mix, made a touch thicker than for the griddle.</li>
+    <li>Fold in chocolate chips and confetti sprinkles. A splash of syrup in the batter.</li>
+    <li>Mini cupcake liners, mini muffin tin. 350°F, about 11–13 minutes.</li>
+    <li>Cool completely, freeze flat in bags of five per kid. Microwave 20 seconds, or eat them straight from the bag in the car.</li>
+    <li>Swap in shredded mozzarella and diced ham for a savory batch. Same tin, same Sunday.</li>
+  </ul>
+
+  
+  <div class="sticky left">
+    <span class="tag">Don't forget</span>
+    The muffins work <b>frozen, in the car</b>. That's not a failure of the morning — that's the muffin doing its job. Keep a bag of five in the freezer labeled <i>bad mornings</i>.
+  </div>
+
+  <div class="rule-box">
+    <p><b>On the granola bars.</b> Your routine already handles this. The problem with a chocolate bar isn't the sugar — it's stickiness sitting on teeth for hours. But breakfast comes <i>before</i> teeth in this sequence. They eat at 6:45, they brush at 7:15. That's exactly the right order. Keep the bars for car mornings and bus days, pair one with a cheese stick, and stop worrying about it.</p>
+  </div>
+
+  <h3>The drawer</h3>
+  <ul class="plain">
+    <li>One low cabinet or deep drawer, cleared out entirely for breakfast.</li>
+    <li>Cereal containers, one per milk kid, pre-portioned Sunday.</li>
+    <li>A grab basket: granola bars, fruit cups, bagged muffins.</li>
+    <li>Bowls, cups, plates, spoons live here too — never in an upper cabinet.</li>
+  </ul>
+
+  <h3>The fridge bin</h3>
+  <ul class="plain">
+    <li>One clear bin on the <b>bottom shelf</b>, at the little ones' eye level.</li>
+    <li><b>One colored container per kid</b>, loaded Sunday with their own week. They pull from theirs. You stop being asked.</li>
+    <li>The small milk pitcher — filled each night, not the gallon jug.</li>
+    <li>Boiled eggs, cheese sticks, green apple slices in water, deli turkey.</li>
+    <li>The four water bottles, filled last night.</li>
+  </ul>
+
+  <h3>The table</h3>
+  <ul class="plain">
+    <li>Set four places <b>the night before.</b> Plate or bowl, cup, spoon, napkin, colored placemat.</li>
+    <li>Placemats in each kid's color double as assigned seats. No seat arguments, ever.</li>
+    <li>A tray in the middle for the milk pitcher, so nobody reaches across.</li>
+    <li>A small trash bin and paper towels within a four-year-old's reach. He will spill. He should wipe it.</li>
+  </ul>
+
+  <h3>Sunday prep, forty minutes</h3>
+  <ul class="plain">
+    <li>Bake the pancake muffins and the egg muffins. Same oven, back to back.</li>
+    <li>Build six quesadillas, wrap in foil, freeze.</li>
+    <li>Boil a dozen eggs. Slice apples. Roll the turkey and provolone.</li>
+    <li>Load each kid's colored fridge container with their week.</li>
+    <li>Portion the cereal for the two who take milk.</li>
+    <li>Load the uniform closet. Run the bottles through the dishwasher.</li>
+  </ul>
+</section>
+
+<!-- ========== 6 ========== -->
+<section>
+  <div class="num">Seven</div>
+  <h2>The Uniform Closet</h2>
+  <div class="rule"></div>
+  <p class="lede">Small is fine. Small is actually better — you only need vertical space, not floor space.</p>
+
+  <ul class="plain">
+    <li><b>Hanging fabric cubbies</b> — one column per kid, five shelves each, hung from the closet rod. That's Monday through Friday, visible at a glance.</li>
+    <li><b>Or an over-the-door shoe organizer</b> — twenty pockets, four rows of five. Cheaper, and the little ones can reach the bottom rows.</li>
+    <li>Each slot holds the <b>complete outfit</b>: shirt, bottoms, socks and underwear folded inside the shirt. One grab, fully dressed.</li>
+    <li>Label the columns with the kid's color, not their name. Faster to find at 6:45 a.m.</li>
+    <li>Keep a small bin on the floor of the closet for the <b>"almost too small"</b> pile. When it's full, it goes.</li>
+  </ul>
+</section>
+
+<!-- ========== 7 ========== -->
+<section>
+  <div class="num">Eight</div>
+  <h2>The Shared Bathroom</h2>
+  <div class="rule"></div>
+  <p class="lede">Communal on the big stuff, personal on the small stuff. That's the whole rule.</p>
+
+  <h3>Shared &mdash; one of each, big bottles</h3>
+  <ul class="plain">
+    <li>Body wash, shampoo, conditioner. A three-chamber wall dispenser in the shower means nothing gets knocked over, dumped out, or fought over.</li>
+    <li>One hand soap pump at the sink. One tube of toothpaste, standing up in a cup.</li>
+    <li>Refill from a bulk bottle stored under the sink or in your closet. Monthly, not weekly.</li>
+  </ul>
+
+  
+  <div class="sticky">
+    <span class="tag">Small thing, big deal</span>
+    <b>Adhesive hooks, not a towel rod.</b> Four kids and one rod means four wet towels in one lump by Tuesday. Four peel-and-stick hooks at kid height — towels are light, so these hold fine and leave no holes.
+  </div>
+
+  <h3>Personal &mdash; one per color</h3>
+  <ul class="plain">
+    <li>Toothbrush, rinse cup, towel, washcloth, hairbrush.</li>
+    <li>Four adhesive (peel-and-stick) hooks at kid height for towels — a rod means four towels in one wet lump, and towels are light enough that stick-on hooks hold them.</li>
+    <li>A step stool that lives permanently under the sink for Jeovane.</li>
+    <li>One caddy per kid on a shelf: hair ties, lotion, deodorant when the time comes.</li>
+  </ul>
+
+  <div class="rule-box">
+    <p><b>Sunday bathroom check:</b> thirty seconds. Toothpaste, soap, toilet paper, clean towels on four hooks. Do it while the cereal is portioning.</p>
+  </div>
+</section>
+
+<!-- ========== 8 ========== -->
+<section>
+  <div class="num">Nine</div>
+  <h2>The Hair Station</h2>
+  <div class="rule"></div>
+  <p class="lede">Two girls, one comb, one exhausted mother, six minutes to the bus. That is how mornings die. Hair is an <i>evening</i> job — every single time.</p>
+
+  <h3>The Sunday wash</h3>
+  <ul class="plain">
+    <li>Wash and deep condition both girls on Sunday, not on a school night. One after the other, same hour.</li>
+    <li>Detangle with conditioner still in, from the ends up. Never dry, never from the roots.</li>
+    <li>Set a style that lasts <b>the whole week</b>. Braids, twists, or two-strand — whatever holds five days without being redone.</li>
+    <li>This one hour on Sunday buys back about two hours across the week.</li>
+  </ul>
+
+  
+  <div class="sticky">
+    <span class="tag">The math</span>
+    One hour on Sunday buys back <b>about two hours across the week</b>. Wash day is never a school night. Ever.
+  </div>
+
+  <h3>School-night maintenance &mdash; 15 minutes each</h3>
+  <ul class="plain">
+    <li>Light spritz of water and leave-in. Smooth. Re-tie anything that slipped.</li>
+    <li>Braid or bun for the night so tomorrow's style is already halfway there.</li>
+    <li>Bonnet on. Satin pillowcase as backup for the night the bonnet comes off.</li>
+    <li>Lay tomorrow's accessories on top of tomorrow's uniform slot — bows with the outfit, so nobody hunts.</li>
+  </ul>
+
+  <h3>The morning &mdash; five minutes total, both girls</h3>
+  <ul class="plain">
+    <li>Bonnet off, spritz, smooth edges, clip in the accessory. Done.</li>
+    <li>Same style, same order, every school day. Wednesday is not a negotiation.</li>
+    <li>Save the elaborate styles for Saturday, when there is no clock.</li>
+  </ul>
+
+  
+  <div class="sticky left">
+    <span class="tag">Buy triple</span>
+    Elastics, ballies, and bonnets vanish. Buy <b>three times</b> what seems reasonable, and always buy a <i>spare bonnet</i> — the spare is the one you'll actually be using by October.
+  </div>
+
+  <h3>The caddy</h3>
+  <ul class="plain">
+    <li>One lidded caddy per girl, in her color, on a shelf she can reach.</li>
+    <li>Inside: her brush, her comb, her ties, her clips, her edge brush. <b>Nobody borrows.</b> Shared hair tools are how a five-minute morning becomes fifteen.</li>
+    <li>A small hanging pouch or over-door organizer for bows and headbands, sorted by color so they can grab their own.</li>
+    <li>Everything lives in the bathroom or the closet. Not in a bedroom, not in a drawer in the kitchen, not in the car.</li>
+  </ul>
+
+  <div class="rule-box">
+    <p><b>Let Jaliyah start doing her own.</b> At her age she can spritz, part, and put in her own ponytail. Teach it once in September and by October she's doing Jazelli's clips too. That's one less pair of hands you need in the morning.</p>
+  </div>
+</section>
+
+<!-- ========== 9 ========== -->
+<section>
+  <div class="num">Ten</div>
+  <h2>The Shopping List</h2>
+  <div class="rule"></div>
+  <p class="lede">Split by store, by what each one actually does best. Fill in the sizes before you go — the blanks are there so this sheet works next year too.</p>
+
+  <div class="store">
+    <div class="store-name">Walmart <span>Clothing &middot; Shoes &middot; Organization</span></div>
+    <table>
+      <thead><tr><th></th><th>Item</th><th>Size / Note</th></tr></thead>
+      <tbody>
+        <tr><td><span class="box"></span></td><td><span class="kidname" style="--dotc:var(--k1)">Juliusz</span> — socks (10pk), underwear (2×), sneakers</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td><span class="kidname" style="--dotc:var(--k2)">Jaliyah</span> — socks (10pk), underwear (2×), sneakers</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td><span class="kidname" style="--dotc:var(--k3)">Jazelli</span> — socks (10pk), underwear (2×), sneakers</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td><span class="kidname" style="--dotc:var(--k4)">Jeovane</span> — socks (10pk), underwear (2×), sneakers</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td><b>Cube storage shelf</b> — 4-cube or 8-cube (the launch pad)</td><td>No drilling</td></tr>
+        <tr><td><span class="box"></span></td><td>Cube fabric bins &times; 4 — one per color (optional)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Furniture anchor strap (if you buy the tall 8-cube)</td><td>Safety</td></tr>
+        <tr><td><span class="box"></span></td><td>Freestanding coat tree OR over-door hook rack — jackets</td><td>No drilling</td></tr>
+        <tr><td><span class="box"></span></td><td>Open shoe bins &times; 4 (one per color)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Shallow tray — the Paper Catch (sits on the shelf)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Hanging closet cubbies &times; 4 (or over-door organizer)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Water bottles &times; 4 — same model, four colors</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Towels &times; 8, washcloths &times; 8 — by color</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Toothbrushes &times; 4, rinse cups &times; 4 — by color</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Peel-and-stick towel hooks &times; 4 + bathroom step stool</td><td>No drilling</td></tr>
+        <tr><td><span class="box"></span></td><td>Heavy-duty adhesive hooks — jackets/lanyards only</td><td>Not backpacks</td></tr>
+        <tr><td><span class="box"></span></td><td>3-chamber shower dispenser</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Small light milk pitcher</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Wipeable placemats &times; 4 — by color</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Colored electrical tape (backpack tags)</td><td><span class="fill"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="sticky">
+    <span class="tag">Don't forget</span>
+    Check every granola bar and snack label for <b>"may contain"</b> — school snack donations are where peanut slips through. Send in a box of safe snacks for the classroom stash yourself.
+  </div>
+
+  <div class="store">
+    <div class="store-name">Hair Supplies <span>Walmart &middot; Beauty Supply &middot; Latin Market</span></div>
+    <table>
+      <thead><tr><th></th><th>Item</th><th>For</th></tr></thead>
+      <tbody>
+        <tr><td><span class="box"></span></td><td>Lidded caddy &times; 2 — one berry, one violet</td><td>Both girls</td></tr>
+        <tr><td><span class="box"></span></td><td>Wide-tooth detangling comb &times; 2</td><td>One each, no sharing</td></tr>
+        <tr><td><span class="box"></span></td><td>Detangling brush &times; 2</td><td>One each</td></tr>
+        <tr><td><span class="box"></span></td><td>Rat-tail comb (parting)</td><td>Mom</td></tr>
+        <tr><td><span class="box"></span></td><td>Edge brush &times; 2</td><td>One each</td></tr>
+        <tr><td><span class="box"></span></td><td>Spray bottle &times; 2 — water + leave-in</td><td>Refill weekly</td></tr>
+        <tr><td><span class="box"></span></td><td>Leave-in conditioner + deep conditioner</td><td>Sunday wash</td></tr>
+        <tr><td><span class="box"></span></td><td>Hair oil or moisturizing cream</td><td>Nightly</td></tr>
+        <tr><td><span class="box"></span></td><td>Edge control / styling gel</td><td>Mornings</td></tr>
+        <tr><td><span class="box"></span></td><td>Satin bonnets &times; 2 + one spare</td><td>The spare always disappears</td></tr>
+        <tr><td><span class="box"></span></td><td>Satin pillowcases &times; 2</td><td>Bonnet backup</td></tr>
+        <tr><td><span class="box"></span></td><td>Elastics — snag-free, large multipack</td><td>Buy triple what you think</td></tr>
+        <tr><td><span class="box"></span></td><td>Ballies / bubble ties, assorted colors</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Snap clips + bobby pins</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Bows — uniform colors only, 5+ pairs</td><td>Check dress code</td></tr>
+        <tr><td><span class="box"></span></td><td>Headbands &times; 4</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Scrunchies (bus-day backup)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Over-door pouch organizer — bows &amp; bands</td><td>Sorted by color</td></tr>
+        <tr><td><span class="box"></span></td><td>Small mirror at kid height</td><td>So they can learn</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="store">
+    <div class="store-name">Sam's Club <span>Bulk &middot; Refills &middot; Lunchbox Volume</span></div>
+    <table>
+      <thead><tr><th></th><th>Item</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><span class="box"></span></td><td>Body wash — bulk refill jug</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Shampoo + conditioner — bulk refill</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Toothpaste multipack</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Hand soap refill</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Granola bars — <b>peanut-free only</b></td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Cheese sticks / string cheese</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Muffins (freeze half)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Sandwich + snack bags, paper towels</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Stackable cereal containers &times; 4</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Toilet paper, laundry detergent</td><td><span class="fill"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="store">
+    <div class="store-name">Aldi <span>Weekly Fresh &middot; Breakfast &middot; Lunch</span></div>
+    <table>
+      <thead><tr><th></th><th>Item</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><span class="box"></span></td><td>Cereal &times; 2 boxes — <b>milk kids only</b></td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Milk, eggs, bread</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Pancake mix &times; 2 (mini-muffin batch)</td><td>Big box</td></tr>
+        <tr><td><span class="box"></span></td><td>Chocolate chips, confetti sprinkles, syrup</td><td>For the muffins</td></tr>
+        <tr><td><span class="box"></span></td><td>Mini muffin tin + mini cupcake liners</td><td>Once, not weekly</td></tr>
+        <tr><td><span class="box"></span></td><td>Frozen waffles, French toast sticks</td><td>Toaster track</td></tr>
+        <tr><td><span class="box"></span></td><td>Flour tortillas (breakfast quesadillas)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Diced ham (egg muffins)</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Green apples</td><td>Green only</td></tr>
+        <tr><td><span class="box"></span></td><td>Grapes, clementines</td><td>No bananas</td></tr>
+        <tr><td><span class="box"></span></td><td>Provolone / muenster slices, shredded mozzarella</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Deli turkey — breakfast roll-ups <i>and</i> lunches</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Baby carrots, cucumbers</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Fruit cups, applesauce pouches</td><td><span class="fill"></span></td></tr>
+        <tr><td><span class="box"></span></td><td>Empanadas / pastelitos — <i>Latin market</i></td><td>Freeze a dozen</td></tr>
+        <tr><td><span class="box"></span></td><td>Freezer bags + foil</td><td>Sunday batching</td></tr>
+        <tr><td><span class="box"></span></td><td>Three reheatable dinners — football nights</td><td>Mon / Tue / Thu</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-box">
+    <p><b>Allergy note for the school forms:</b> Juliusz, Jaliyah, Jazelli, and Jeovane each need a peanut-free lunch environment on file if that applies to them. Check every granola bar and snack label for "may contain" — school snack donations are the usual slip.</p>
+  </div>
+</section>
+
+<!-- ========== 9 ========== -->
+<section>
+  <div class="num">Eleven</div>
+  <h2>The Family Meeting</h2>
+  <div class="rule"></div>
+  <p class="lede">Hold this one or two nights before the first day of school. Twenty minutes at the kitchen table. This is not you announcing rules — it's the four of them helping build the system, because kids follow rules they helped invent.</p>
+
+  
+  <div class="sticky">
+    <span class="tag">Tip of the day</span>
+    Ask <b>"what makes our mornings crazy?"</b> and then be quiet. Write down what they say. They will name things you stopped noticing years ago.
+  </div>
+
+  <h3>The agenda</h3>
+  <ul class="plain">
+    <li><b>Pick your color.</b> Let them choose, oldest first. This is the fun part and it's also the buy-in. Once Jeovane has picked orange, orange is his forever and nobody argues about the towel.</li>
+    <li><b>Ask the question, don't answer it.</b> "What makes our mornings crazy?" Write down what they say. They will name things you haven't noticed.</li>
+    <li><b>Walk the launch pad together.</b> Show them the cubes, the shoe bins, the tray. Let them decide who gets which cube.</li>
+    <li><b>Name the jobs.</b> Who fills the bottles? Who checks the wall? Who wipes the bathroom counter? Let them volunteer before you assign.</li>
+    <li><b>Agree on the bathroom order out loud.</b> Little two, then big two. Six-minute shower timer. Say it so no one can claim later they didn't know.</li>
+    <li><b>Set the two house rules together.</b> Nobody eats until they're dressed. Nobody leaves the table until their bowl is in the sink.</li>
+    <li><b>Write it on one page</b> and tape it above the hooks. Draw pictures next to each step so Jeovane can follow it without reading.</li>
+  </ul>
+
+  <div class="rule-box">
+    <p><b>Do it again in October.</b> A ten-minute check-in once the school year is real. Ask what's not working. Change one thing. That's it. A system that never gets revised is a system everyone quietly abandons.</p>
+  </div>
+</section>
+
+<!-- ========== 10 ========== -->
+<section>
+  <div class="num">Twelve</div>
+  <h2>The First Two Weeks</h2>
+  <div class="rule"></div>
+  <p class="lede">Systems fail in week one because everyone is tired and you're the only one who knows the plan. Here's how to hand it over.</p>
+
+  <ul class="plain">
+    <li><b>Week before school:</b> build the wall. Walk them through the drop drill three times. Make it a game with a timer.</li>
+    <li><b>Days 1–3:</b> you narrate every step out loud. "Bottle in the bin. Backpack on the hook." Don't do it for them.</li>
+    <li><b>Days 4–7:</b> you only name the step they missed. One word. "Bottle."</li>
+    <li><b>Week two:</b> you say nothing. Juliusz becomes the checker — he walks the wall and reports what's missing. Nine-year-olds love this job.</li>
+    <li><b>Ongoing:</b> Sunday is the reset. Twenty minutes, and the week runs itself.</li>
+  </ul>
+
+  
+  <div class="sticky">
+    <span class="tag">Remember</span>
+    Give Juliusz the job of <b>walking the wall</b> and reporting what's missing. Nine-year-olds love being the checker. It's also how the system survives without you narrating it.
+  </div>
+
+  <div class="rule-box">
+    <p><b>When it falls apart</b> — and it will, around week three — don't rebuild everything. Pick the one step that broke and fix only that. Usually it's the fifteen-minute evening reset. Usually it's because nobody set the timer.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">J Empire <span class="sparkle">✦</span></div>
+  <p style="margin-top:6px">Prepared for Jazmin Aguayo &middot; School Year 2026–2027</p>
+</footer>
+
+</div>
+<!-- ============ HIGHLIGHTER + NOTEBOOK ============ -->
+<div id="hlDock">
+  <button id="hlPen"   class="hlbtn" title="Highlighter — select text to save it">✎<span>Highlight</span></button>
+  <button id="hlBook"  class="hlbtn" title="Open notebook">✦<span>Notebook</span><em id="hlCount" data-n="0">0</em></button>
+</div>
+
+<div id="hlPanel">
+  <div id="hlHead">
+    <div>
+      <div class="hlEy">J Empire</div>
+      <h3>My Notebook</h3>
+    </div>
+    <button id="hlClose">×</button>
+  </div>
+  <div id="hlList"></div>
+  <div id="hlFoot">
+    <button id="hlPrint">Print notebook</button>
+    <button id="hlClear">Clear all</button>
+  </div>
+</div>
+<div id="hlScrim"></div>
+
+<style>
+  mark.hl{background:linear-gradient(180deg,transparent 8%,#F6E27A 8% 82%,transparent 82%);
+    padding:0 1px;border-radius:1px;cursor:pointer;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  mark.hl:hover{background:linear-gradient(180deg,transparent 8%,#F0C94A 8% 82%,transparent 82%)}
+
+  #hlDock{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:50}
+  .hlbtn{position:relative;display:flex;align-items:center;gap:8px;
+    background:var(--wine);color:#fff;border:0;border-radius:999px;
+    padding:12px 18px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+    letter-spacing:.02em;cursor:pointer;box-shadow:0 4px 14px rgba(74,34,51,.32);
+    transition:transform .12s ease,background .15s ease}
+  .hlbtn span{display:inline}
+  .hlbtn:hover{transform:translateY(-1px)}
+  .hlbtn.on{background:var(--hair);box-shadow:0 0 0 3px rgba(246,226,122,.5),0 4px 14px rgba(74,34,51,.32)}
+  #hlCount{background:var(--champagne);color:var(--wine);border-radius:999px;
+    font-style:normal;font-size:11px;font-weight:700;min-width:18px;text-align:center;padding:1px 6px}
+  #hlCount[data-n="0"]{display:none}
+
+  body.penon{cursor:crosshair}
+  body.penon p,body.penon li,body.penon td,body.penon .lede,body.penon .step{cursor:crosshair}
+
+  #hlScrim{position:fixed;inset:0;background:rgba(30,27,26,.34);opacity:0;visibility:hidden;
+    transition:.22s;z-index:60}
+  #hlScrim.show{opacity:1;visibility:visible}
+  #hlPanel{position:fixed;top:0;right:0;height:100%;width:min(390px,90vw);background:var(--paper);
+    z-index:70;transform:translateX(102%);transition:transform .26s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(74,34,51,.18)}
+  #hlPanel.show{transform:translateX(0)}
+  #hlHead{display:flex;justify-content:space-between;align-items:flex-start;
+    padding:26px 24px 18px;border-bottom:1px solid var(--hair)}
+  .hlEy{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--hair);font-weight:700}
+  #hlHead h3{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--wine);font-weight:600;margin-top:2px}
+  #hlClose{background:0;border:0;font-size:30px;line-height:1;color:var(--soft);cursor:pointer}
+  #hlList{flex:1;overflow-y:auto;padding:14px 18px}
+  .hlItem{position:relative;background:#FBF3E4;padding:14px 40px 14px 15px;margin-bottom:11px;
+    border-radius:2px;font-size:14px;line-height:1.6;color:#3A2A28;
+    box-shadow:0 1px 3px rgba(74,34,51,.08);cursor:pointer;transition:box-shadow .2s}
+  .hlItem:nth-child(even){background:#F7EFE9}
+  .hlItem .src{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--hair);font-weight:700;margin-bottom:5px}
+  .hlItem .x{position:absolute;top:9px;right:9px;width:22px;height:22px;border:0;border-radius:50%;
+    background:rgba(74,34,51,.08);color:var(--wine);font-size:15px;line-height:22px;cursor:pointer;padding:0}
+  .hlItem .x:hover{background:rgba(74,34,51,.18)}
+  .hlEmpty{text-align:center;color:var(--soft);font-size:14px;padding:50px 24px;line-height:1.7}
+  .hlEmpty b{color:var(--wine)}
+  #hlFoot{display:flex;gap:10px;padding:16px 18px;border-top:1px solid #ECE4DA}
+  #hlFoot button{flex:1;padding:11px;border:1px solid var(--hair);background:0;color:var(--wine);
+    border-radius:3px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer}
+  #hlFoot #hlClear{border-color:#D8C4C4;color:#9A5B5B}
+  #hlFoot button:hover{background:#FBF7F1}
+
+  @media print{#hlDock,#hlPanel,#hlScrim{display:none!important}}
+</style>
+
+<script>
+(function(){
+  var KEY='jempire_b2s_highlights';
+  var pen=false;
+  var penBtn=document.getElementById('hlPen'),
+      bookBtn=document.getElementById('hlBook'),
+      panel=document.getElementById('hlPanel'),
+      scrim=document.getElementById('hlScrim'),
+      list=document.getElementById('hlList'),
+      countEl=document.getElementById('hlCount');
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
+  function save(a){try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}}
+
+  function sectionOf(node){
+    var el = node.nodeType===3 ? node.parentElement : node;
+    while(el && el!==document.body){
+      if(el.tagName==='SECTION'){
+        var h=el.querySelector('h2'); return h?h.textContent.trim():'Note';
+      }
+      el=el.parentElement;
+    }
+    return 'Note';
+  }
+
+  function refresh(){
+    var data=load();
+    countEl.textContent=data.length;
+    countEl.setAttribute('data-n',data.length);
+    if(!data.length){
+      list.innerHTML='<div class="hlEmpty">Nothing saved yet.<br><br>Tap <b>Highlight</b>, then select any sentence on the page to clip it here.</div>';
+      return;
+    }
+    list.innerHTML='';
+    data.forEach(function(it){
+      var d=document.createElement('div');
+      d.className='hlItem';
+      d.innerHTML='<span class="src">'+it.src+'</span>'+it.text+
+                  '<button class="x" data-id="'+it.id+'" title="Remove">×</button>';
+      d.addEventListener('click',function(e){
+        if(e.target.classList.contains('x'))return;
+        var m=document.querySelector('mark.hl[data-id="'+it.id+'"]');
+        if(m){closePanel();m.scrollIntoView({behavior:'smooth',block:'center'});
+          var old=m.style.background;
+          m.style.transition='background .2s';m.style.background='#F0C94A';
+          setTimeout(function(){m.style.background=old},900);}
+      });
+      d.querySelector('.x').addEventListener('click',function(ev){ev.stopPropagation();remove(it.id)});
+      list.appendChild(d);
+    });
+  }
+
+  function remove(id){
+    save(load().filter(function(x){return x.id!=id}));
+    var m=document.querySelector('mark.hl[data-id="'+id+'"]');
+    if(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);}
+    refresh();
+  }
+
+  function addHighlight(range){
+    var text=range.toString().trim();
+    if(text.length<2)return;
+    var id=Date.now()+''+Math.floor(Math.random()*999);
+    var src=sectionOf(range.startContainer);
+    var mark=document.createElement('mark');
+    mark.className='hl';mark.setAttribute('data-id',id);
+    try{range.surroundContents(mark);}
+    catch(e){
+      var frag=range.extractContents();mark.appendChild(frag);range.insertNode(mark);
+    }
+    mark.addEventListener('click',function(ev){
+      if(pen)return; ev.stopPropagation();
+      openPanel();
+      var el=document.querySelector('.hlItem .x[data-id="'+id+'"]');
+      if(el){var card=el.closest('.hlItem');card.style.boxShadow='0 0 0 2px var(--hair)';
+        card.scrollIntoView({block:'center'});setTimeout(function(){card.style.boxShadow=''},1100);}
+    });
+    var data=load();
+    data.push({id:id,text:text.replace(/</g,'&lt;'),src:src});
+    save(data);refresh();
+    window.getSelection().removeAllRanges();
+  }
+
+  document.addEventListener('mouseup',handleSel);
+  document.addEventListener('touchend',function(){setTimeout(handleSel,10)});
+  document.addEventListener('selectionchange',function(){
+    // iPad/Pencil sometimes finalizes a selection without a clean mouseup
+    clearTimeout(window._hlT);
+    window._hlT=setTimeout(function(){ if(pen) handleSel(); },400);
+  });
+  function handleSel(){
+    if(!pen)return;
+    var sel=window.getSelection();
+    if(!sel||sel.isCollapsed||!sel.rangeCount)return;
+    var r=sel.getRangeAt(0);
+    if(r.toString().trim().length<2)return;
+    if(panel.contains(r.startContainer)||document.getElementById('hlDock').contains(r.startContainer))return;
+    addHighlight(r);
+  }
+
+  penBtn.addEventListener('click',function(){
+    pen=!pen;
+    penBtn.classList.toggle('on',pen);
+    document.body.classList.toggle('penon',pen);
+    penBtn.querySelector('span').textContent=pen?'Highlighting…':'Highlight';
+  });
+
+  function openPanel(){panel.classList.add('show');scrim.classList.add('show');refresh();}
+  function closePanel(){panel.classList.remove('show');scrim.classList.remove('show');}
+  bookBtn.addEventListener('click',openPanel);
+  document.getElementById('hlClose').addEventListener('click',closePanel);
+  scrim.addEventListener('click',closePanel);
+
+  document.getElementById('hlClear').addEventListener('click',function(){
+    if(!load().length)return;
+    if(!confirm('Remove all highlights from this page?'))return;
+    document.querySelectorAll('mark.hl').forEach(function(m){
+      m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});
+    save([]);refresh();
+  });
+
+  document.getElementById('hlPrint').addEventListener('click',function(){
+    var data=load();
+    if(!data.length){alert('Nothing highlighted yet.');return;}
+    var w=window.open('','_blank');
+    var rows=data.map(function(it){
+      return '<div class="n"><span>'+it.src+'</span><p>'+it.text+'</p></div>';
+    }).join('');
+    w.document.write('<html><head><title>My Notebook — Jazmin Aguayo</title><style>'+
+      'body{font-family:Georgia,serif;max-width:640px;margin:40px auto;padding:0 24px;color:#1E1B1A}'+
+      'h1{font-size:30px;color:#4A2233;border-bottom:2px solid #8A6508;padding-bottom:10px}'+
+      '.n{margin:18px 0;padding:14px 16px;background:#FBF3E4;border-left:3px solid #8A6508}'+
+      '.n span{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A6508;font-weight:bold;margin-bottom:6px}'+
+      '.n p{margin:0;font-size:15px;line-height:1.6}</style></head><body>'+
+      '<h1>My Notebook ✦</h1>'+rows+'</body></html>');
+    w.document.close();setTimeout(function(){w.print()},250);
+  });
+
+  refresh();
+})();
+</script>
+</body>
+</html>
