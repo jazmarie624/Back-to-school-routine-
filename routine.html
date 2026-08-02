@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Routine — Back to School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#FFF2F7;--petal:#F7C3DC;--rose:#E8639E;
+  --plum:#3F1C30;--plum-soft:#6E4059;
+  --gold:#B8901C;--gold-lt:#EBD08A;--cream:#FFFBF6;
+  --warn:#C4384F;--ok:#3F8A64;
+  --shadow:0 10px 30px rgba(115,40,80,.13);--radius:20px;
+  --fs:1;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--plum);
+  font-size:calc(17px * var(--fs));
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#FFE7F3 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#F3E6FF 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#FFF0E2 0%,transparent 60%),
+    var(--blush);
+  min-height:100vh;padding-bottom:80px}
+@keyframes sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){header::before{animation:none}.sparkle{display:none}*{transition:none!important}}
+
+header{position:relative;overflow:hidden;padding:26px 20px 20px;text-align:center;border-bottom:1px solid rgba(184,144,28,.3)}
+header::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(255,212,233,.85),rgba(245,217,255,.7),rgba(255,233,207,.8),rgba(255,212,233,.85));
+  background-size:200% 100%;animation:sweep 12s linear infinite}
+header>*{position:relative;z-index:1}
+.sparkle{position:absolute;z-index:1;font-size:11px;color:#fff;text-shadow:0 0 8px #F7C3DC;animation:twinkle 3.4s ease-in-out infinite}
+.crown{font-size:calc(24px * var(--fs));letter-spacing:.14em;color:var(--gold)}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:calc(clamp(30px,8vw,44px) * var(--fs));margin:2px 0 4px;letter-spacing:-.02em;line-height:1.05}
+.tag{font-family:'Pinyon Script',cursive;font-size:calc(21px * var(--fs));color:var(--rose);margin:0}
+
+/* text size control */
+.fsbar{display:flex;justify-content:center;gap:7px;padding:11px 12px;background:rgba(255,247,251,.9);border-bottom:1px solid rgba(184,144,28,.22)}
+.fsbar span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--plum-soft);align-self:center;margin-right:3px}
+.fsbtn{border:1.5px solid var(--petal);background:#fff;color:var(--plum);font-family:'Fraunces',serif;
+  font-weight:700;border-radius:11px;cursor:pointer;padding:7px 15px;line-height:1}
+.fsbtn[aria-pressed="true"]{background:var(--plum);color:#FFE9F3;border-color:var(--plum)}
+.fsbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.fs1{font-size:14px}.fs2{font-size:17px}.fs3{font-size:21px}
+
+nav{position:sticky;top:0;z-index:30;display:flex;gap:6px;padding:10px 12px;
+  background:rgba(255,247,251,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(184,144,28,.25);overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav .grp{flex:0 0 auto;display:flex;gap:6px;align-items:center}
+nav .glbl{font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding:0 4px 0 8px;white-space:nowrap}
+nav .grp:first-child .glbl{padding-left:0}
+.tab{flex:0 0 auto;font-weight:600;font-size:calc(13.5px * var(--fs));padding:10px 15px;font-family:'Inter';
+  border:1px solid rgba(232,99,158,.32);border-radius:999px;background:#fff;color:var(--plum-soft);cursor:pointer;transition:.18s;white-space:nowrap}
+.tab[aria-selected="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(232,99,158,.35)}
+.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.shell{max-width:1240px;margin:0 auto;padding:18px 16px 0}
+aside{display:none}
+.panel{display:none}
+.panel.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{background:var(--cream);border:1px solid rgba(184,144,28,.32);border-radius:var(--radius);
+  padding:17px;margin-bottom:16px;box-shadow:var(--shadow)}
+.eyebrow{font-size:calc(11px * var(--fs));font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+h2{font-family:'Fraunces',serif;font-size:calc(23px * var(--fs));margin:0 0 8px;font-weight:700;line-height:1.15}
+h3{font-family:'Fraunces',serif;font-size:calc(17.5px * var(--fs));margin:0 0 7px;font-weight:600}
+p.note{font-size:calc(14.5px * var(--fs));line-height:1.6;color:var(--plum-soft);margin:0 0 11px}
+p.note:last-child{margin-bottom:0}
+p.note strong{color:var(--plum);font-weight:700}
+.lead{font-size:calc(15.5px * var(--fs));line-height:1.6;color:var(--plum);font-weight:500;margin:0 0 12px}
+
+.flag{background:linear-gradient(135deg,#FFF0F5,#FFE6EF);border:1.5px solid var(--rose);
+  border-radius:14px;padding:13px 15px;font-size:calc(14px * var(--fs));line-height:1.55;margin-bottom:16px;font-weight:500}
+.flag.warn{background:linear-gradient(135deg,#FFF0F2,#FFE4E8);border-color:var(--warn)}
+.flag.warn strong{color:var(--warn)}
+.flag.gold{background:linear-gradient(135deg,#FFFBF0,#FFF4DC);border-color:var(--gold)}
+
+/* clock */
+.clock{border:1.5px solid rgba(184,144,28,.3);border-radius:16px;overflow:hidden;background:#fff;margin-top:10px}
+.tick{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(232,99,158,.15);align-items:flex-start}
+.tick:last-child{border-bottom:none}
+.tick:nth-child(odd){background:#FFFCFD}
+.tm{flex:0 0 58px;font-family:'Fraunces',serif;font-weight:700;font-size:calc(15px * var(--fs));color:var(--rose);line-height:1.3}
+.tk{flex:1;min-width:0}
+.tk b{display:block;font-size:calc(14.5px * var(--fs));font-weight:700;line-height:1.35}
+.tk span{display:block;font-size:calc(13px * var(--fs));color:var(--plum-soft);line-height:1.55;margin-top:3px}
+.who{display:inline-block;font-size:calc(9.5px * var(--fs));font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;background:#FBEAF2;border:1px solid var(--petal);color:var(--plum-soft);margin-top:5px}
+.tick.hot{background:linear-gradient(135deg,#FFF3F6,#FFE8EE)}
+.tick.hot .tm{color:var(--warn)}
+
+/* track picker */
+.tracks{display:grid;gap:11px}
+.track{border:2px solid rgba(232,99,158,.3);border-radius:17px;padding:15px;background:#fff;cursor:pointer;transition:.18s;text-align:left;font-family:'Inter';width:100%}
+.track:hover{border-color:var(--gold)}
+.track[aria-pressed="true"]{border-color:var(--gold);background:linear-gradient(135deg,#FFF9FC,#FFF2F8);box-shadow:0 8px 22px rgba(232,99,158,.2)}
+.track .q{font-size:calc(11px * var(--fs));font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--gold)}
+.track .n{font-family:'Fraunces',serif;font-size:calc(19px * var(--fs));font-weight:700;margin:4px 0 5px;color:var(--plum)}
+.track .d{font-size:calc(13.5px * var(--fs));color:var(--plum-soft);line-height:1.55}
+.track .stops{margin-top:8px;font-size:calc(12.5px * var(--fs));font-weight:700;color:var(--rose)}
+
+ul.tips{margin:8px 0 0;padding-left:20px}
+ul.tips li{font-size:calc(14px * var(--fs));line-height:1.7;color:var(--plum-soft);margin-bottom:5px}
+ul.tips li strong{color:var(--plum);font-weight:700}
+ul.tips li:last-child{margin-bottom:0}
+
+.step{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.step:last-child{margin-bottom:0}
+.num{flex:0 0 28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#F58FC0);
+  color:#fff;font-weight:800;font-size:calc(12.5px * var(--fs));display:flex;align-items:center;justify-content:center}
+.step p{margin:0;font-size:calc(14px * var(--fs));line-height:1.6;color:var(--plum-soft)}
+.step p strong{color:var(--plum);font-weight:700}
+
+/* packing grid */
+.pack{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.pk{border:1.5px solid rgba(232,99,158,.25);border-radius:13px;padding:11px 12px;background:#fff;
+  font-size:calc(13.5px * var(--fs));font-weight:600;line-height:1.35;cursor:pointer;transition:.15s;display:flex;gap:9px;align-items:center}
+.pk .bx{width:20px;height:20px;flex:0 0 20px;border-radius:6px;border:2px solid var(--petal);
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+.pk.on{border-color:var(--ok);background:#F0F9F4}
+.pk.on .bx{background:var(--ok);border-color:var(--ok)}
+.pk.on span{text-decoration:line-through;color:#8FAF9E}
+.pk.crit{border-color:var(--warn);background:#FFF4F6}
+.pk.crit.on{border-color:var(--ok);background:#F0F9F4}
+.pk.crit .bx{border-color:var(--warn)}
+.pk:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.kidcard{border-left:5px solid var(--rose);background:#fff;border-radius:0 15px 15px 0;padding:13px 16px;margin-bottom:11px}
+.kidcard:nth-of-type(2){border-left-color:var(--gold)}
+.kidcard:nth-of-type(3){border-left-color:#8B6BB1}
+.kidcard:nth-of-type(4){border-left-color:#4E9E77}
+.kidcard h3{margin-bottom:5px}
+.kidcard .age{font-size:calc(11px * var(--fs));font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--plum-soft)}
+
+.zone{border:1.5px solid rgba(184,144,28,.3);border-radius:15px;padding:14px;background:#fff;margin-bottom:11px}
+.zone .zl{font-size:calc(10.5px * var(--fs));font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+.zone h3{margin:3px 0 6px}
+
+footer{text-align:center;padding:24px 16px 12px;font-family:'Pinyon Script',cursive;font-size:calc(20px * var(--fs));color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--plum);color:#FFE9F3;
+  padding:12px 22px;border-radius:999px;font-size:13px;font-weight:600;z-index:60;opacity:0;transition:.3s;
+  pointer-events:none;box-shadow:0 8px 24px rgba(63,28,48,.35)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- iPad: side rail ---------- */
+@media (min-width:900px){
+  body{font-size:calc(19px * var(--fs))}
+  header{padding:40px 24px 30px}
+  nav{display:none}
+  .shell{display:grid;grid-template-columns:262px 1fr;gap:30px;padding:28px 30px 0;align-items:start}
+  aside{display:block;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto;
+    background:var(--cream);border:1px solid rgba(184,144,28,.3);border-radius:22px;padding:16px 13px;box-shadow:var(--shadow)}
+  aside::-webkit-scrollbar{width:5px}
+  aside::-webkit-scrollbar-thumb{background:var(--petal);border-radius:5px}
+  .rgrp{margin-bottom:16px}
+  .rgrp:last-child{margin-bottom:0}
+  .rlbl{font-size:calc(10.5px * var(--fs));font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--gold);padding:0 10px 7px;display:block}
+  .rtab{display:block;width:100%;text-align:left;font-family:'Inter';font-weight:600;
+    font-size:calc(14.5px * var(--fs));padding:10px 13px;border:none;background:transparent;
+    color:var(--plum-soft);border-radius:11px;cursor:pointer;transition:.15s;margin-bottom:2px;line-height:1.3}
+  .rtab:hover{background:#FFF0F6;color:var(--plum)}
+  .rtab[aria-selected="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;font-weight:700;box-shadow:0 4px 14px rgba(232,99,158,.3)}
+  .rtab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .card{padding:26px;border-radius:26px;margin-bottom:20px}
+  .tracks{grid-template-columns:repeat(3,1fr)}
+  .pack{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .tm{flex-basis:74px}
+  .tick{padding:15px 18px}
+  .fsbar{padding:13px}
+  .fsbtn{padding:9px 19px}
+}
+@media (min-width:1280px){ .shell{grid-template-columns:288px 1fr;gap:38px} }
+
+/* ---------- Deep mode ---------- */
+body.deep{
+  --blush:#2C1A24;--petal:#613E4F;--rose:#EE7BAE;
+  --plum:#FBE9F2;--plum-soft:#D8B7C7;
+  --gold:#E3C273;--gold-lt:#8E7238;--cream:#392631;
+  --win:#63C093;--win-lt:#2C4239;
+  --good:#63C093;--low:#E3C273;--out:#F0708C;
+  --need:#C98BA8;--ordered:#E3C273;--have:#63C093;
+  --warn:#F58098;--ok:#63C093;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#402334 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#33254A 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#40302A 0%,transparent 60%),
+    #2C1A24;
+}
+body.deep header::before{background:linear-gradient(100deg,rgba(92,46,70,.92),rgba(72,52,92,.82),rgba(97,72,46,.86),rgba(92,46,70,.92));background-size:200% 100%}
+body.deep nav,body.deep .fsbar{background:rgba(44,26,36,.95)}
+body.deep .block,body.deep .kid,body.deep .tab,body.deep .fsbtn,body.deep .btn.ghost,
+body.deep .sz,body.deep .zone,body.deep .shelf,body.deep .rot,body.deep .clock,
+body.deep .track,body.deep .kidcard,body.deep .jlink,body.deep .pitem,body.deep .pk,
+body.deep .cell,body.deep select,body.deep td,body.deep .itools button,body.deep .tools button,
+body.deep .box,body.deep .bx,body.deep .add{background:#3D2833}
+body.deep .tick:nth-child(odd){background:#412C38}
+body.deep .cell.win{background:#2C4239}
+body.deep .pk.on{background:#2C4239}
+body.deep .item.done .box,body.deep .pk.on .bx,body.deep .itm.done .box{background:var(--rose);border-color:var(--rose)}
+body.deep .slot,body.deep .recipe,body.deep .jump,body.deep .hero,body.deep .countdown,
+body.deep .tray,body.deep .buy,body.deep .win-row{background:var(--cream)}
+body.deep .flag{background:linear-gradient(135deg,#40272F,#4C2C3C)}
+body.deep .flag.gold{background:linear-gradient(135deg,#3C3222,#4A3D26)}
+body.deep .flag.warn{background:linear-gradient(135deg,#432630,#522E3A)}
+body.deep .tab[aria-selected="true"],body.deep .rtab[aria-selected="true"],
+body.deep .kid[aria-pressed="true"],body.deep .fsbtn[aria-pressed="true"],
+body.deep .track[aria-pressed="true"]{color:#2C1A24}
+body.deep .kid[aria-pressed="true"]{background:var(--rose)}
+body.deep .block[aria-pressed="true"],body.deep .block[aria-pressed="true"] span{color:#2C1A24}
+body.deep .toast{background:#150C11;color:#FBE9F2}
+body.deep .empty-state,body.deep .na{color:var(--plum-soft)}
+
+
+/* ---------- Toolbar ---------- */
+.chrome{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;
+  padding:11px 12px;background:rgba(255,247,251,.9);border-bottom:1px solid rgba(184,144,28,.22)}
+.chrome .lb{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--plum-soft)}
+.cbtn{border:1.5px solid var(--petal);background:#fff;color:var(--plum);font-family:'Fraunces',serif;
+  font-weight:700;border-radius:11px;cursor:pointer;padding:7px 15px;line-height:1}
+.cbtn.mode{font-family:'Inter';font-size:12.5px;font-weight:700;padding:8px 15px}
+.cbtn[aria-pressed="true"]{background:var(--plum);color:var(--cream);border-color:var(--plum)}
+.cbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.cA{font-size:13px}.cB{font-size:16px}.cC{font-size:20px}
+@media print{.chrome,nav,.fsbar,aside{display:none!important}}
+
+
+
+/* deep mode — catch the remaining light panels */
+body.deep .unknown,body.deep .sz.colr,body.deep .fld.crit,body.deep .shelf.star,
+body.deep td.filled,body.deep td.locked,body.deep .slot.full,body.deep .recipe,
+body.deep .track[aria-pressed="true"],body.deep .pk.crit,body.deep .note,
+body.deep .win-lt,body.deep .lnk,body.deep .jlink,body.deep .tile,
+body.deep .tick.hot,body.deep .who,body.deep .qin,body.deep .pin input,
+body.deep .fld,body.deep .fld input,body.deep .fld textarea,
+body.deep .sname,body.deep .ptxt,body.deep .iname,body.deep .sz input{
+  background-color:#3D2833;color:var(--plum)}
+body.deep .pk.crit.on,body.deep .cell.win{background-color:#2C4239}
+body.deep .bar{background:#4A3140}
+body.deep .tile,body.deep .lnk,body.deep .jlink,body.deep .note{border-color:#61404F}
+body.deep .who{border-color:#6E4A5C}
+body.deep .tick.hot .tm{color:#F58098}
+body.deep .fld.crit{border-color:#F58098}
+body.deep .fld.crit label{color:#F58098}
+body.deep .pk.crit{border-color:#F58098}
+body.deep input::placeholder,body.deep textarea::placeholder{color:#9A7788}
+body.deep .empty-state,body.deep .na,body.deep .hint,body.deep .iunit{color:#C9A6B7}
+body.deep .stamp.est{color:#E3C273}
+body.deep .prow{border-bottom-color:#543746}
+body.deep .tick{border-color:#7E5A6C}
+
+</style>
+</head>
+<body>
+
+<header>
+  <span class="sparkle" style="top:16px;left:8%">✦</span>
+  <span class="sparkle" style="top:56px;left:21%;animation-delay:.7s">✧</span>
+  <span class="sparkle" style="top:24px;right:13%;animation-delay:1.3s">✦</span>
+  <span class="sparkle" style="top:70px;right:25%;animation-delay:2.1s">✧</span>
+  <span class="sparkle" style="bottom:14px;left:46%;animation-delay:1.6s">✦</span>
+  <div class="crown">♛</div>
+  <h1>The Routine</h1>
+  <p class="tag">four kids, one door, zero screaming</p>
+</header>
+
+<div class="fsbar">
+  <span>Text</span>
+  <button class="fsbtn fs1" data-fs="1" aria-pressed="false">A</button>
+  <button class="fsbtn fs2" data-fs="1.15" aria-pressed="true">A</button>
+  <button class="fsbtn fs3" data-fs="1.32" aria-pressed="false">A</button>
+  <button class="cbtn mode" id="modeBtn">&#9789; Deep</button>
+  
+</div>
+
+<nav id="topnav" role="tablist"></nav>
+
+<div class="shell">
+  <aside><div id="rail"></div></aside>
+  <div id="content">
+
+<!-- ============ THE DAY ============ -->
+<section class="panel on" id="p-decide">
+  <div class="card">
+    <p class="eyebrow">6:15 a.m. · the first decision</p>
+    <h2>Which morning are you running?</h2>
+    <p class="lead">You don't have one morning. You have three, and you pick before anyone's awake. Two questions decide it: <strong>am I behind</strong>, and <strong>do I need to be at work early</strong>.</p>
+    <div class="tracks">
+      <button class="track" data-go="p-morning-a" aria-pressed="false">
+        <div class="q">Normal day</div>
+        <div class="n">Track A</div>
+        <div class="d">You drive both stops. Jeovane first, then the three at elementary.</div>
+        <div class="stops">2 stops · out the door 7:35</div>
+      </button>
+      <button class="track" data-go="p-morning-b" aria-pressed="false">
+        <div class="q">Running behind</div>
+        <div class="n">Track B</div>
+        <div class="d">Flip the order. Elementary first because the bell doesn't wait, Jeovane second because you've got until 9:00.</div>
+        <div class="stops">2 stops · reversed</div>
+      </button>
+      <button class="track" data-go="p-morning-c" aria-pressed="false">
+        <div class="q">Work early</div>
+        <div class="n">Track C</div>
+        <div class="d">All four to the daycare by 7:30. They keep Jeovane and run the other three to elementary on their transportation.</div>
+        <div class="stops">1 stop · hard 7:30</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="flag gold">
+    <strong>An honest opinion:</strong> you called Track C the backup, but it's the easiest morning you have. One stop instead of two, and a hard 7:30 deadline that <em>isn't you</em>. The original system says it plainly — nobody argues with a bus, and nobody argues with the daycare van either. When you're the only clock in the house, every step is negotiable and four kids know it. Consider making C the default and A the fallback.
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">The two deadlines that actually matter</p>
+    <h2>Know your walls</h2>
+    <p class="note"><strong>Elementary — in the building by 8:07.</strong> 8:10 is the absolute latest before the bell. This is the hard one. Everything upstream of it is built to protect this number.</p>
+    <p class="note"><strong>Jeovane — anytime before 9:00.</strong> Real slack. This is why he moves to second position the moment you're behind.</p>
+    <p class="note"><strong>Track C — all four at daycare by 7:30.</strong> Miss it and their transportation leaves without your three, and you're driving to elementary anyway with less time than Track A would have given you. This deadline is unforgiving in a way the others aren't.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Afternoon — every day, all three tracks</p>
+    <h2>One pickup, one place</h2>
+    <p class="note">Daycare collects the three from elementary into aftercare. So no matter which morning you ran, the afternoon is identical: <strong>one stop, all four kids, around 5:15.</strong></p>
+    <p class="note">This is the single best piece of logistics in your whole week and it's worth protecting. It's also what makes the football pickup possible — you're pulling all four from one building at 4:15 instead of chasing two.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-you20">
+  <div class="card">
+    <p class="eyebrow">The non-negotiable</p>
+    <h2>Your twenty minutes</h2>
+    <p class="lead">Every track opens with you alone. This is not a luxury and it is not the first thing to cut — it's the first thing you'll be <em>tempted</em> to cut and the last thing you should. A rushed mother makes rushed children, and you're the only person in this house who can't be handed off to somebody else.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">:00</div><div class="tk"><b>Drink, poured immediately</b><span>Energy drink or ice water. Phone face-down. Nobody is awake.</span></div></div>
+      <div class="tick"><div class="tm">:03</div><div class="tk"><b>Hair up</b><span>Blow-dried last night, so this is a ponytail and thirty seconds.</span></div></div>
+      <div class="tick"><div class="tm">:06</div><div class="tk"><b>Dressed in what you're driving in</b><span>Work clothes are in the bag, not on your body.</span></div></div>
+      <div class="tick"><div class="tm">:12</div><div class="tk"><b>Sit down</b><span>Drink it sitting, not standing at the counter. Look at today once.</span></div></div>
+      <div class="tick"><div class="tm">:18</div><div class="tk"><b>Purse, bag, keys, drink → launch pad</b><span>You're the fifth kid on the cube shelf. Nothing you need in the morning sleeps in your bedroom.</span></div></div>
+      <div class="tick"><div class="tm">:20</div><div class="tk"><b>Wake the little two</b></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Your night-before kit</p>
+    <ul class="tips">
+      <li>Hair blow-dried</li>
+      <li>Change of clothes packed and zipped</li>
+      <li>Purse loaded</li>
+      <li>Keys and badge in a dish on top of the cube shelf</li>
+      <li>Ice tray full, drink in the fridge</li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" id="p-morning-a">
+  <div class="card">
+    <p class="eyebrow">Track A · normal day · 2 stops</p>
+    <h2>The standard morning</h2>
+    <p class="lead">Everybody dresses <strong>before</strong> they eat. A spilled cup at 7:05 costs a napkin. The same cup at 7:25 costs a uniform and ten minutes.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">6:15</div><div class="tk"><b>You, alone</b><span>Twenty minutes. Do not surrender these.</span><span class="who">Mom</span></div></div>
+      <div class="tick"><div class="tm">6:35</div><div class="tk"><b>Wake Jazelli and Jeovane</b><span>The ones who need help go first, while you're free. Lights on, curtains open.</span><span class="who">Little two</span></div></div>
+      <div class="tick"><div class="tm">6:45</div><div class="tk"><b>Wake Juliusz and Jaliyah</b><span>Ten minutes behind, so nobody stands in the hallway waiting.</span><span class="who">Big two</span></div></div>
+      <div class="tick"><div class="tm">6:50</div><div class="tk"><b>Everyone dressed</b><span>One grab from the uniform slot. No choosing, no negotiating, no "where are my socks."</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:00</div><div class="tk"><b>Breakfast — self-serve</b><span>Table was set last night. You're sitting with your drink, signing a folder.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:15</div><div class="tk"><b>Bowls to the sink · teeth and face</b><span>No showers. Colored cup, colored toothbrush, two minutes. Little two, then big two.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:22</div><div class="tk"><b>Hair — refresh only</b><span>Bonnet off, spritz, smooth edges, clip. Five minutes for both girls combined. The style was set last night.</span><span class="who">Girls</span></div></div>
+      <div class="tick"><div class="tm">7:30</div><div class="tk"><b>The wall in reverse</b><span>Bottle from the cube. Backpack off the shelf. Shoes from the bin. Nothing to find, because nothing was lost.</span><span class="who">All</span></div></div>
+      <div class="tick hot"><div class="tm">7:35</div><div class="tk"><b>Out the door</b></div></div>
+      <div class="tick"><div class="tm">7:45</div><div class="tk"><b>Jeovane → daycare</b><span>Drop him first while there's no pressure on the clock.</span></div></div>
+      <div class="tick hot"><div class="tm">8:00</div><div class="tk"><b>The three → elementary</b><span>In the building by 8:07. This is the wall.</span></div></div>
+    </div>
+  </div>
+  <div class="flag"><strong>The two rules that carry everything:</strong> nobody eats until they're dressed, and nobody leaves the table until their bowl is in the sink. Say them the same way every day for two weeks and you'll never have to say them again.</div>
+</section>
+
+<section class="panel" id="p-morning-b">
+  <div class="card">
+    <p class="eyebrow">Track B · running behind · 2 stops, reversed</p>
+    <h2>When you're already late</h2>
+    <p class="lead">Same house, same sequence — you just flip the drops. Elementary has the hard bell. Jeovane has an hour of slack. So the tight deadline goes first and the loose one absorbs the delay.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">6:25</div><div class="tk"><b>You, compressed</b><span>Ten minutes instead of twenty. Drink in hand, dressed, moving.</span><span class="who">Mom</span></div></div>
+      <div class="tick"><div class="tm">6:40</div><div class="tk"><b>Wake everyone at once</b><span>No staggering today. Lights on in both rooms.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">6:50</div><div class="tk"><b>Dressed</b><span>Uniform slots. This is where the night-before prep pays for itself.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:05</div><div class="tk"><b>Breakfast — grab track only</b><span>Pancake muffins, bars, cereal cups. Nothing that needs a bowl and a pitcher.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:20</div><div class="tk"><b>Teeth · hair in a scrunchie</b><span>Skip the edges. A ponytail is a hairstyle.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:30</div><div class="tk"><b>The wall in reverse</b><span>Ninety seconds. This never changes, no matter how late you are.</span><span class="who">All</span></div></div>
+      <div class="tick hot"><div class="tm">7:40</div><div class="tk"><b>Out the door</b></div></div>
+      <div class="tick hot"><div class="tm">7:55</div><div class="tk"><b>The three → elementary FIRST</b><span>Hard bell at 8:07. They go first, always, on a late morning.</span></div></div>
+      <div class="tick"><div class="tm">8:15</div><div class="tk"><b>Jeovane → daycare</b><span>You have until 9:00. Breathe here.</span></div></div>
+    </div>
+  </div>
+  <div class="flag warn"><strong>The tell that you're on Track B:</strong> if nobody's dressed by 6:55, you're on Track B whether you've admitted it or not. Call it early and switch — deciding at 7:20 is how you end up at 8:12.</div>
+</section>
+
+<section class="panel" id="p-morning-c">
+  <div class="card">
+    <p class="eyebrow">Track C · work early · 1 stop</p>
+    <h2>All four to daycare</h2>
+    <p class="lead">Everyone goes to the daycare by 7:30. They keep Jeovane and run the other three over to elementary on their own transportation. You drop once and you're gone.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">6:00</div><div class="tk"><b>You, alone</b><span>Same twenty minutes, fifteen minutes earlier. Still not optional.</span><span class="who">Mom</span></div></div>
+      <div class="tick"><div class="tm">6:20</div><div class="tk"><b>Wake Jazelli and Jeovane</b><span class="who">Little two</span></div></div>
+      <div class="tick"><div class="tm">6:30</div><div class="tk"><b>Wake Juliusz and Jaliyah</b><span class="who">Big two</span></div></div>
+      <div class="tick"><div class="tm">6:35</div><div class="tk"><b>All four dressed</b><span>One grab from the slot.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">6:45</div><div class="tk"><b>Breakfast</b><span>Self-serve. You get to sit for ten minutes even on this track.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:00</div><div class="tk"><b>Bowls to the sink · teeth</b><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:07</div><div class="tk"><b>Hair refresh</b><span class="who">Girls</span></div></div>
+      <div class="tick"><div class="tm">7:12</div><div class="tk"><b>The wall in reverse</b><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:15</div><div class="tk"><b>Out the door</b></div></div>
+      <div class="tick hot"><div class="tm">7:30</div><div class="tk"><b>All four → daycare</b><span>Handed off. Their transportation takes the three to elementary. You're free.</span></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Why this one works</p>
+    <p class="note">Awake to door is 75 minutes and you still get twenty of them to yourself. But the real gain isn't time — it's that the deadline belongs to <strong>someone else</strong>. On Tracks A and B you are the clock, and four kids know a negotiable clock when they see one. On Track C the van leaves at 7:30 with or without you, and that argument ends before it starts.</p>
+    <p class="note"><strong>Confirm the cutoff.</strong> Ask the daycare exactly what time their transportation pulls out and whether 7:30 is the drop deadline or the departure time. Those are usually not the same number, and the difference is the whole margin.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-breakfast">
+  <div class="card">
+    <p class="eyebrow">15 minutes</p>
+    <h2>Breakfast</h2>
+    <p class="lead">The goal is a nine-year-old who can feed a four-year-old without asking you a single question. Two tracks, not five menus — and <strong>two choices per morning</strong>, not per kid.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">:00</div><div class="tk"><b>They open the low drawer</b><span>Bowl and their colored cereal container, or a boiled egg and cheese from the fridge bin. Two options, no third.</span></div></div>
+      <div class="tick"><div class="tm">:01</div><div class="tk"><b>Juliusz pours for Jeovane</b><span>He does not ask you.</span></div></div>
+      <div class="tick"><div class="tm">:02</div><div class="tk"><b>Everyone sits</b><span>Placemats already down — assigned seats, no argument.</span></div></div>
+      <div class="tick"><div class="tm">:03</div><div class="tk"><b>You sit down too</b><span>This is the ten minutes you talk to them.</span></div></div>
+      <div class="tick"><div class="tm">:12</div><div class="tk"><b>"Bowls to the sink"</b><span>Each kid carries their own. Jeovane included.</span></div></div>
+      <div class="tick"><div class="tm">:14</div><div class="tk"><b>Somebody spilled</b><span>Paper towels are within his reach. He wipes it.</span></div></div>
+      <div class="tick"><div class="tm">:15</div><div class="tk"><b>Table clear → bathroom</b></div></div>
+    </div>
+  </div>
+  <div class="flag">Full food lists, the pancake muffin recipe and the console bins live on <strong>The Pantry</strong>. This page is the clock; that page is the contents.</div>
+</section>
+
+<section class="panel" id="p-afterschool">
+  <div class="card">
+    <p class="eyebrow">Around 5:15</p>
+    <h2>Walking in the door</h2>
+    <p class="lead">One pickup, all four, from the daycare. Then the first ninety seconds at the door never change — no snacks, no TV, no bathroom until the wall is done.</p>
+    <div class="clock">
+      <div class="tick hot"><div class="tm">5:15</div><div class="tk"><b>The 90-second drop</b><span>Shoes → bin. Backpack → cube. Bottle → cube. Papers → tray. Before anybody sits down.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">5:20</div><div class="tk"><b>Lunchboxes to the sink</b><span>Every kid empties their own into the trash and puts the container in the sink. Yes, even Jeovane. Especially Jeovane.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">5:30</div><div class="tk"><b>Twenty minutes to decompress</b><span>Snack from the bins, floor, noise, nothing required. They held it together all day and through aftercare. You are not on duty either — sit down.</span><span class="who">All</span></div></div>
+    </div>
+  </div>
+  <div class="flag gold"><strong>The 5:30 decompress isn't wasted time</strong> — it's the price of a calm bedtime. Kids who never get to come down at 5:30 come apart at 8:30.</div>
+  <div class="card">
+    <p class="eyebrow">Touch every paper once</p>
+    <p class="note">Permission slip? Sign it standing there and put it straight back in the folder. Event flyer? Date into your phone right then, paper into the tray. <strong>Nothing goes into the tray as a to-do</strong> — it goes in after it's done. Dump the tray every Sunday.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-evening">
+  <div class="card">
+    <p class="eyebrow">5:15 to 8:30 · three hours</p>
+    <h2>The evening run</h2>
+    <p class="lead">Mornings are won the night before. It only fits because dinner was cooked Sunday and the reset is on a timer. The night you skip the reset is the morning you lose twenty-five minutes.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">5:50</div><div class="tk"><b>Dinner</b><span>Sunday-prepped, or thirty minutes and no more. Nobody leaves the table until their plate is in the sink — same rule as breakfast, so it only has to be learned once.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">6:30</div><div class="tk"><b>The 15-minute reset</b><span>Set a timer. Backpacks re-packed and hung. Bottles rinsed. Folders signed and back in the bag. Homework happens here, not later. Timer ends — the day is closed.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">7:00</div><div class="tk"><b>Girls' hair — at night, never morning</b><span>Jaliyah and Jazelli back to back, fifteen minutes each on the couch while the boys read. Whatever you do now, you do not do at 6:50 a.m.</span><span class="who">Mom</span></div></div>
+      <div class="tick"><div class="tm">7:30</div><div class="tk"><b>Jazelli and Jeovane shower</b><span>The ones who need you go while you still have energy. Six-minute timer on the shelf.</span><span class="who">Little two</span></div></div>
+      <div class="tick"><div class="tm">7:55</div><div class="tk"><b>Juliusz and Jaliyah, unsupervised</b><span>Same timer. Everybody bathes at night — that's twenty minutes of bathroom traffic deleted from your morning.</span><span class="who">Big two</span></div></div>
+      <div class="tick"><div class="tm">8:15</div><div class="tk"><b>Uniform check, bonnets on</b><span>Tomorrow's slot has a full outfit — shirt, bottoms, socks, underwear, bow on top. If a slot is short you know now, not at 6:45 a.m.</span><span class="who">Mom</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-winddown">
+  <div class="card">
+    <p class="eyebrow">8:00 to 8:30</p>
+    <h2>The wind-down</h2>
+    <p class="lead">Getting four kids <em>into</em> bed is logistics. Getting them to <em>fall asleep</em> is a wind-down. Same trick, same order, every night — a tired brain follows a track it already knows.</p>
+    <div class="clock">
+      <div class="tick"><div class="tm">8:00</div><div class="tk"><b>Screens off, lights low</b><span>iPads go on the kitchen charger, not in bedrooms. Bright light tells a little brain it's daytime.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">8:10</div><div class="tk"><b>Jazelli and Jeovane down first</b><span>They need more sleep and less runway. One short book, tuck, done. Staggering means each kid gets a sliver of you alone.</span><span class="who">Little two</span></div></div>
+      <div class="tick"><div class="tm">8:20</div><div class="tk"><b>Juliusz and Jaliyah read</b><span>Ten minutes of a real book in bed. Calmest possible off-ramp, and it doubles as reading practice.</span><span class="who">Big two</span></div></div>
+      <div class="tick"><div class="tm">8:25</div><div class="tk"><b>Two minutes each — the part that matters</b><span>Sit on the edge of each bed. "What was the best part of today?" Two minutes that saves you twenty of "I need water."</span><span class="who">Mom</span></div></div>
+      <div class="tick"><div class="tm">8:30</div><div class="tk"><b>Lights out</b><span>Table set, bottles dry, bags in cubes, clothes laid out, hair done. Nothing left to do in the morning but move.</span></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">The stall-killer</p>
+    <p class="note">Head off the "I need water / one more hug" parade <strong>before</strong> it starts. Water cup already by the bed. Bathroom trip is part of teeth-brushing, not a bedtime negotiation. Two-minute connection already given. When the needs are pre-met, goodnight actually means goodnight.</p>
+    <p class="note"><strong>For the worrier:</strong> keep a notepad by the bed. "Tell me the worry, I'll write it down, we'll handle it in the morning." Naming it and parking it on paper lets a kid put it down for the night. It's the little-kid version of your own brain dump.</p>
+    <p class="note">A routine only calms a child once it's <strong>boring</strong> — the predictability is the medicine. Six weeks of identical nights and bedtime runs itself.</p>
+  </div>
+</section>
+
+<!-- ============ THE WEEK ============ -->
+<section class="panel" id="p-football">
+  <div class="card">
+    <p class="eyebrow">Monday · Tuesday · Thursday</p>
+    <h2>Football nights</h2>
+    <p class="lead">On the field by <strong>5:45</strong>, practice at <strong>6:00</strong>. Work backward from there and the whole night is decided by one thing: the early pickup.</p>
+    <div class="clock">
+      <div class="tick hot"><div class="tm">4:15</div><div class="tk"><b>Early pickup — all four</b><span>An hour ahead of normal. This one move buys the entire evening.</span></div></div>
+      <div class="tick"><div class="tm">4:30</div><div class="tk"><b>Home · the 90-second drop</b><span>Wall first, always. Same as any day.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">4:35</div><div class="tk"><b>Juliusz eats first, alone if he has to</b><span>He is not playing two hours of football on a granola bar. The other three snack from the bins.</span><span class="who">Juliusz</span></div></div>
+      <div class="tick"><div class="tm">4:50</div><div class="tk"><b>Gear on · pump check</b><span>He dresses at home. You check the inhaler yourself — this is the one item that isn't his job.</span><span class="who">Mom</span></div></div>
+      <div class="tick"><div class="tm">5:00</div><div class="tk"><b>The 15-minute reset — BEFORE you leave</b><span>Bags packed, bottles rinsed, outfits pulled for tomorrow. This is the change that makes the whole night work.</span><span class="who">All</span></div></div>
+      <div class="tick"><div class="tm">5:15</div><div class="tk"><b>Girls' hair — or skip and double tomorrow</b><span>Never at 9 p.m.</span><span class="who">Girls</span></div></div>
+      <div class="tick hot"><div class="tm">5:20</div><div class="tk"><b>You and Juliusz leave</b><span>Dinner in the fridge with a note on it. iPads charged.</span></div></div>
+      <div class="tick hot"><div class="tm">5:45</div><div class="tk"><b>On the field</b><span>Fifteen minutes of buffer before practice starts.</span></div></div>
+      <div class="tick"><div class="tm">6:00</div><div class="tk"><b>Practice</b></div></div>
+      <div class="tick"><div class="tm">6:00</div><div class="tk"><b>Jaylani serves dinner at home</b><span>Little three at the table.</span><span class="who">Jaylani</span></div></div>
+      <div class="tick"><div class="tm">6:45</div><div class="tk"><b>Jaylani starts baths</b><span>Little two first, six-minute timer, same as any night.</span><span class="who">Jaylani</span></div></div>
+      <div class="tick"><div class="tm">7:30</div><div class="tk"><b>Teeth, bonnets, lights out for Jeovane and Jazelli</b><span class="who">Jaylani</span></div></div>
+      <div class="tick"><div class="tm">8:00</div><div class="tk"><b>You and Juliusz walk in</b><span>He showers, you check the wall. The night is already closed.</span></div></div>
+    </div>
+  </div>
+  <div class="flag warn"><strong>The 4:15 pickup is load-bearing, not a nice-to-have.</strong> On a normal 5:15 arrival you'd walk in and leave five minutes later — no dinner for Juliusz, no reset, no gear check. The hour is the whole thing. If you can protect only one item on a football day, protect the pickup time.</div>
+  <div class="card">
+    <p class="eyebrow">Check this number</p>
+    <p class="note">The 5:20 departure assumes roughly <strong>25 minutes</strong> to the field including parking and walking. Time it once on a Saturday with no pressure and correct this page. Everything upstream shifts with it.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-normalnight">
+  <div class="card">
+    <p class="eyebrow">Wednesday · Friday</p>
+    <h2>Non-football nights</h2>
+    <p class="lead">The nights nothing is chasing you. Two of them a week, and they're where the system gets rebuilt rather than just survived.</p>
+    <p class="note">Normal 5:15 pickup, full evening run, everyone home. Use the extra hour for one of these — not all of them, one:</p>
+    <ul class="tips">
+      <li><strong>Wednesday</strong> — the midweek catch-up. Whatever got skipped Monday and Tuesday. Usually hair, usually the reset.</li>
+      <li><strong>Friday</strong> — the football pull (see the next tab) plus uniform laundry so Saturday isn't a scramble.</li>
+      <li><strong>Either night</strong> — a real dinner at the table with no clock on it. Two nights a week is enough for that to matter.</li>
+      <li><strong>Either night</strong> — the movie or the team reward if they beat the timer three days running.</li>
+    </ul>
+    <p class="note" style="margin-top:11px">Do not fill both nights. An empty evening is a feature — it's the margin that absorbs the week when something goes wrong on a Tuesday.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-friday">
+  <div class="card">
+    <p class="eyebrow">Friday night · 20 minutes</p>
+    <h2>The Saturday pull</h2>
+    <p class="lead">Everything that has to be in the van for a Saturday game gets pulled on Friday night. Not Saturday morning. A game-day morning with a gear hunt in it is a game-day morning you lose.</p>
+    <div class="step"><div class="num">1</div><p><strong>Juliusz runs his own list out loud</strong>, touching each item as he says it. Helmet, shoulder pads, padded pants, cleats, socks, mouthguard, jersey. The laminated copy lives inside his bag.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>You check the pump.</strong> Every time, no exceptions, even though he packs the rest. This is the one item that is not delegated.</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Jersey out of the wash and into the bag.</strong> Washed in the Sunday reset, so it should already be clean — this is the confirmation, not the laundry.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Your sideline kit into the van.</strong> Chair, fan, sunscreen, hat, water, snack, battery pack. Load it Friday and Saturday is just driving.</p></div>
+    <div class="step"><div class="num">5</div><p><strong>Cooler in the fridge overnight</strong> if you're bringing one, packed except for ice. Ice goes in at the last second.</p></div>
+    <div class="step"><div class="num">6</div><p><strong>Sunscreen on the counter by the keys</strong>, so it goes on <em>before</em> you leave rather than at the field.</p></div>
+  </div>
+  <div class="flag gold"><strong>The one-bag rule.</strong> Every activity gets a bag that lives packed and only comes inside to swap laundry. Dirty clothes out, clean clothes back in, bag returns to the van. It never gets emptied onto a bedroom floor. Grab one bag and walk out.</div>
+</section>
+
+<section class="panel" id="p-gameday">
+  <div class="card">
+    <p class="eyebrow">Saturday morning</p>
+    <h2>Game day</h2>
+    <p class="lead">Tap to check. Resets whenever you want — this list is meant to be run every single week.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Juliusz's gear · every practice and game</p>
+    <div class="pack" data-list="gear"></div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">His game-day morning</p>
+    <ul class="tips">
+      <li><strong>Real breakfast</strong> — protein, not a bar. Eggs or a quesadilla.</li>
+      <li><strong>Hydrate early</strong>, not just at the field</li>
+      <li><strong>Pump before you leave</strong></li>
+      <li><strong>He carries his own bag to the van</strong> — his gear, his job</li>
+      <li><strong>Sunscreen at home</strong>, not at the field</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Mom's sideline kit</p>
+    <div class="pack" data-list="mom"></div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">If the little ones come</p>
+    <div class="pack" data-list="littles"></div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Two things that catch people out</p>
+    <p class="note"><strong>Team snack duty.</strong> If your league rotates it, put your week on the calendar the second you're told. Keep it peanut-free for the whole team.</p>
+    <p class="note"><strong>End of season.</strong> Most leagues want the helmet and pads returned. The day the season ends, put "return football gear" on the calendar and keep the kit in its bag until you do. Ask about the deposit.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-activities">
+  <div class="card">
+    <p class="eyebrow">One day a week each</p>
+    <h2>Gymnastics and karate</h2>
+    <p class="lead">Days still to be locked in. When you set them, check both against Monday, Tuesday and Thursday — a collision with football is the thing that undoes the week.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Gymnastics · Jaliyah and Jazelli</p>
+    <p class="note">Two girls, so two kits — color-coded inside one bag. Jaliyah's in a berry pouch, Jazelli's in violet. Nobody grabs the wrong leotard and each girl checks her own pouch off the same list.</p>
+    <div class="pack" data-list="gym"></div>
+    <p class="note" style="margin-top:11px"><strong>Class-day flow:</strong> hair done tight before you leave, leotard on under regular clothes so it's one less change, bag grabbed from the door already packed, snack and water for the car after.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Karate · Jeovane</p>
+    <div class="pack" data-list="karate"></div>
+    <p class="note" style="margin-top:11px"><strong>Class-day flow:</strong> gi on before you leave or packed on top for a fast change, light snack about an hour before rather than right before, bathroom trip before it starts — he's four.</p>
+    <p class="note"><strong>Karate is gold for a four-year-old.</strong> It builds listening, focus and following directions — the exact skills that make your mornings easier. Watch for belt-testing fees and cheer loud when he earns a stripe.</p>
+  </div>
+  <div class="flag warn"><strong>Do the real math before you sign anything.</strong> Not the class hour — drive plus wait plus drive. Best case, two kids share a day or a location so it's one trip. Watch for monthly fees, competition season, and gear that gets required as they level up.</div>
+</section>
+
+<section class="panel" id="p-sunday">
+  <div class="card">
+    <p class="eyebrow">One hour</p>
+    <h2>The Sunday reset</h2>
+    <p class="lead">Everything in this system leans on one block. If you keep one habit from this entire file, keep this one. Skip it and you'll feel it by Tuesday.</p>
+    <div class="step"><div class="num">1</div><p><strong>Uniforms</strong> — five full outfits per kid into the closet slots. Shirt, bottoms, socks, underwear together, bow on top.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>Breakfast bake</strong> — pancake muffins and egg muffins, same oven back to back. Quesadillas built and wrapped. A dozen eggs boiled.</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Lunch assembly line</strong> — snacks portioned, sandwiches built, the grab-and-pack zone stocked.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Hair</strong> — wash and set both girls in a five-day style. This one hour buys back about two hours across the week. Wash day is never a school night.</p></div>
+    <div class="step"><div class="num">5</div><p><strong>Bottles</strong> — all through the dishwasher, back in the counter tray. Brita refilled.</p></div>
+    <div class="step"><div class="num">6</div><p><strong>Bathroom</strong> — thirty-second check. Toothpaste, soap, toilet paper, clean towels on four hooks.</p></div>
+    <div class="step"><div class="num">7</div><p><strong>Three reheatable dinners</strong> for Monday, Tuesday and Thursday. Football nights eat what's already cooked, never what has to be made.</p></div>
+    <div class="step"><div class="num">8</div><p><strong>The van reset</strong> — see the van tab. Ten minutes, and it's the difference between a car kit and a landfill.</p></div>
+    <div class="step"><div class="num">9</div><p><strong>Football jersey washed</strong> and back in the gear bag.</p></div>
+    <div class="step"><div class="num">10</div><p><strong>Glance at the week</strong> — early releases, anything you sign, activity days, whether it's your team snack week. Note it now.</p></div>
+    <div class="step"><div class="num">11</div><p><strong>Dump the paper tray.</strong></p></div>
+  </div>
+  <div class="flag gold">Put on music, grab your drink, let the kids do their own piece. An hour of prep with a good playlist beats five weekday mornings of chaos. <strong>This is the highest-value hour of your whole week — protect it like an appointment.</strong></div>
+</section>
+
+<!-- ============ THE HOUSE ============ -->
+<section class="panel" id="p-dropzone">
+  <div class="card">
+    <p class="eyebrow">The front door</p>
+    <h2>The drop zone</h2>
+    <p class="lead">The single biggest fix in the apartment, and it needs zero holes in the wall. Nothing school-related goes past the front door, because whatever goes into a bedroom has to be hunted for at 6:40 a.m.</p>
+    <p class="note"><strong>One cube shelf</strong> — a 4-cube or 8-cube unit standing by the door. Each kid gets a cube: backpack in, water bottle beside it. A shoe bin on the floor underneath. Freestanding, no drilling, no lost deposit, and it doubles as a bench.</p>
+    <p class="note"><strong>On top:</strong> one shallow tray, the Paper Catch. Everything already handled lands here and nothing else.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Setup notes</p>
+    <ul class="tips">
+      <li><strong>Reach test</strong> — Jeovane must get his own backpack and shoes without calling you. Little two on the bottom cubes, big two up top.</li>
+      <li><strong>No lids on the shoe bins.</strong> A lid is one extra step, and one extra step is the difference between a four-year-old doing it himself and calling for you.</li>
+      <li><strong>Bottles ride in the cube</strong>, never to bedrooms.</li>
+      <li><strong>Anchor it if it's tall.</strong> An 8-cube near climbing little ones gets a furniture strap — a tiny screw, landlord-approved safety.</li>
+      <li><strong>Adhesive hooks are for light things only</strong> — jackets, lanyards, an empty tote. Not a loaded backpack. That beats their weight rating and takes paint with it when it peels.</li>
+      <li><strong>Practice the drill three times</strong> the week before school, like a fire drill. Shoes, backpack, bottle, papers.</li>
+    </ul>
+  </div>
+  <div class="flag">Families lose roughly <strong>twelve minutes every morning</strong> hunting for misplaced things. The cube shelf isn't decoration — it's twelve minutes back.</div>
+</section>
+
+<section class="panel" id="p-closet">
+  <div class="card">
+    <p class="eyebrow">Vertical space, not floor space</p>
+    <h2>The uniform closet</h2>
+    <p class="note"><strong>Hanging fabric cubbies</strong> — one column per kid, five shelves each, hung from the rod. Monday through Friday, visible at a glance.</p>
+    <p class="note"><strong>Or an over-door shoe organizer</strong> — twenty pockets, four rows of five. Cheaper, and the little ones can reach the bottom rows.</p>
+    <p class="note">Each slot holds the <strong>complete outfit</strong>: shirt, bottoms, socks and underwear folded inside the shirt. One grab, fully dressed.</p>
+    <ul class="tips">
+      <li>Label columns with the kid's <strong>color, not their name</strong> — faster to find at 6:45 a.m.</li>
+      <li>Bow or accessory goes on top of the slot the night before</li>
+      <li>Keep a floor bin for the <strong>"almost too small"</strong> pile. When it's full, it goes.</li>
+      <li>Load all five slots per kid during the Sunday reset — a short slot is something you discover Sunday, not Thursday morning</li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" id="p-bathroom">
+  <div class="card">
+    <p class="eyebrow">One bathroom, four kids</p>
+    <h2>The shared bathroom</h2>
+    <p class="lead">Communal on the big stuff, personal on the small stuff. That's the whole rule.</p>
+    <p class="note"><strong>Shared</strong> — body wash, shampoo, conditioner in a three-chamber wall dispenser so nothing gets knocked over or dumped out. One hand soap pump. One toothpaste standing in a cup. Refill from a bulk bottle monthly, not weekly.</p>
+    <p class="note"><strong>Personal, one per color</strong> — toothbrush, rinse cup, towel, washcloth, hairbrush. One caddy each on a shelf.</p>
+    <ul class="tips">
+      <li><strong>Adhesive hooks, not a towel rod.</strong> Four kids and one rod means four wet towels in one lump by Tuesday. Four peel-and-stick hooks at kid height — towels are light enough that these hold fine.</li>
+      <li><strong>Step stool lives permanently under the sink</strong> for Jeovane</li>
+      <li><strong>Six-minute shower timer</strong> on the shelf. When it beeps, water off.</li>
+      <li><strong>Everybody bathes at night.</strong> Twenty minutes of bathroom traffic deleted from your morning — the single most common fix in one-bathroom houses.</li>
+      <li><strong>Order never changes:</strong> little two, then big two</li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" id="p-hair">
+  <div class="card">
+    <p class="eyebrow">Two girls, one comb</p>
+    <h2>The hair station</h2>
+    <p class="lead">Two girls, one exhausted mother, six minutes to the door. That is how mornings die. Hair is an <strong>evening</strong> job, every single time.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Sunday wash</p>
+    <ul class="tips">
+      <li>Wash and deep condition both girls on Sunday, one after the other, same hour</li>
+      <li>Detangle with conditioner still in, from the ends up — never dry, never from the roots</li>
+      <li>Set a style that lasts <strong>five days</strong>. Braids, twists, two-strand — whatever holds without being redone.</li>
+    </ul>
+    <p class="note" style="margin-top:10px"><strong>One hour Sunday buys back about two hours across the week.</strong></p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">School nights · 15 minutes each</p>
+    <ul class="tips">
+      <li>Light spritz of water and leave-in, smooth, re-tie anything that slipped</li>
+      <li>Braid or bun for the night so tomorrow's style is already halfway there</li>
+      <li>Bonnet on. Satin pillowcase as backup for the night it comes off.</li>
+      <li>Tomorrow's accessories laid on top of tomorrow's uniform slot</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Morning · 5 minutes, both girls</p>
+    <ul class="tips">
+      <li>Bonnet off, spritz, smooth edges, clip in the accessory. Done.</li>
+      <li>Same style, same order, every school day. Wednesday is not a negotiation.</li>
+      <li>Elaborate styles are for Saturday, when there's no clock.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">The caddy</p>
+    <p class="note">One lidded caddy per girl in her color, on a shelf she can reach. Her brush, her comb, her ties, her clips, her edge brush. <strong>Nobody borrows</strong> — shared hair tools are how a five-minute morning becomes fifteen.</p>
+    <p class="note">A hanging pouch or over-door organizer for bows and headbands, sorted by color so they grab their own. Everything lives in the bathroom or the closet. Not a bedroom, not a kitchen drawer, not the van.</p>
+    <p class="note"><strong>Buy triple.</strong> Elastics, ballies and bonnets vanish. Always buy a spare bonnet — the spare is the one you'll actually be using by October.</p>
+    <p class="note"><strong>Let Jaliyah start doing her own.</strong> At her age she can spritz, part and put in her own ponytail. Teach it once in September and by October she's doing Jazelli's clips too.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-homework">
+  <div class="card">
+    <p class="eyebrow">One spot, one time</p>
+    <h2>The homework spot</h2>
+    <p class="lead">Homework that happens "wherever" happens nowhere. One surface, folded into the 6:30 reset so it's never a separate battle at 8 p.m.</p>
+    <ul class="tips">
+      <li>One cleared surface — a corner of the kitchen table. Good light, your eyeline, away from the TV.</li>
+      <li>A single caddy with pencils, sharpener, erasers, crayons. Lives on the shelf, comes out for homework only.</li>
+      <li>Happens <strong>during the 6:30 reset window</strong>, same time every day, right after dinner.</li>
+      <li>Finished work goes into the folder, into the backpack, into the cube. <strong>Done means packed</strong>, not "on the counter."</li>
+      <li>Jazelli and Jeovane get a <strong>quiet busy bin</strong> — coloring, stickers, a puzzle — at the same table for the same fifteen minutes. Everyone's doing "school work" together, so nobody feels punished and you're not pulled four directions.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" id="p-van">
+  <div class="card">
+    <p class="eyebrow">The Pacifica</p>
+    <h2>The van</h2>
+    <p class="lead">It's not a car, it's a room — and it's the room your family cycles through more than any other. It needs a drop zone and a Sunday reset for exactly the same reasons the front door does.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Zone it</p>
+    <div class="zone"><div class="zl">Middle console + driver door</div><h3>Yours only</h3>
+      <p class="note">Phone charger, sunglasses, hand sanitizer, a pen, cash for concessions, wipes. Kids don't reach it, so it stays stocked.</p></div>
+    <div class="zone"><div class="zl">Seat-back organizers</div><h3>One per kid, in their color</h3>
+      <p class="note">Their water bottle, a book or small toy, the sideline activity stuff. Color-coded like everything else — the same rule that kills "that's not mine" at the breakfast table kills it in the third row.</p></div>
+    <div class="zone"><div class="zl">Floor bin, second row</div><h3>The car kit</h3>
+      <p class="note">Peanut-free snacks, waters, wipes, tissues, a spare bag for wet or dirty clothes, a small first aid kit. This is what makes a pickup nobody cries through.</p></div>
+    <div class="zone"><div class="zl">Trunk</div><h3>Activity bags, packed</h3>
+      <p class="note">Football bag lives here all season. Gymnastics and karate bags too, once those days lock in. They only come inside to swap laundry. Folding chairs and the pop-up shade stay in during football season.</p></div>
+    <div class="zone"><div class="zl">Trunk, small bin</div><h3>The just-in-case</h3>
+      <p class="note">A change of clothes per little kid, a towel, a light blanket, an umbrella or poncho, a trash bag. You will use every one of these before Christmas.</p></div>
+  </div>
+  <div class="flag warn"><strong>The backup inhaler should not live in the van.</strong> Albuterol has a storage temperature range — typically up to about 86°F — and a closed car in Florida blows past that by mid-morning. Heat can affect the propellant and the dose. Keep the backup in your purse or the diaper-bag-style tote that comes in and out with you, and check with the pharmacist about what's safe. A pump that's been cooking in the van all week is not a backup you want to find out about at a game.</div>
+  <div class="card">
+    <p class="eyebrow">Sunday · 10 minutes</p>
+    <h2>The van reset</h2>
+    <div class="step"><div class="num">1</div><p><strong>Trash bag through</strong> — every wrapper, cup and receipt. Two minutes, and it's the whole difference.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>Restock the car kit</strong> — snacks and waters back to full from the Sam's stock. This is why it's on the pantry Running Low list.</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Bottles out</strong> — any water bottle that's been in there since Wednesday comes in and goes through the dishwasher.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Wipe the car seats and cupholders.</strong> Crumbs compound. Ten seconds now, or a real job in November.</p></div>
+    <div class="step"><div class="num">5</div><p><strong>Check the charging cables</strong> still work and the iPads are actually charged for the drive.</p></div>
+    <div class="step"><div class="num">6</div><p><strong>Confirm the activity bags are in the trunk</strong> and repacked from last week's laundry.</p></div>
+    <div class="step"><div class="num">7</div><p><strong>Gas up Sunday, not Monday morning.</strong> A fuel stop at 7:40 on a Track B morning is how you miss the 8:07 bell.</p></div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">What not to keep in there</p>
+    <ul class="tips">
+      <li><strong>Medication of any kind</strong> — heat degrades it</li>
+      <li><strong>Anything that melts</strong> — chocolate snacks, crayons, lip balm</li>
+      <li><strong>Paperwork</strong> — school forms live in the Paper Catch, not the passenger seat</li>
+      <li><strong>Loose toys.</strong> If it doesn't live in a seat-back organizer, it doesn't live in the van.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ THE KIDS ============ -->
+<section class="panel" id="p-color">
+  <div class="card">
+    <p class="eyebrow">Before any routine works</p>
+    <h2>The color rule</h2>
+    <p class="lead">Every kid needs a color. Not a label — a color. Jeovane can't read his name yet, but he knows orange is his.</p>
+    <p class="note">One color per child, applied to:</p>
+    <ul class="tips">
+      <li>Water bottle — same model, different colors</li>
+      <li>Cube and shoe bin at the door</li>
+      <li>Bath towel, toothbrush, rinse cup</li>
+      <li>Breakfast bowl, cup and cereal container</li>
+      <li>Placemat, which doubles as the assigned seat</li>
+      <li>Seat-back organizer in the van</li>
+      <li>A strip of colored tape on the backpack tag</li>
+      <li>The label on their uniform closet column</li>
+    </ul>
+    <p class="note" style="margin-top:11px"><strong>Let them pick their own at the family meeting, oldest first.</strong> Kids follow rules they helped invent. A color someone chose is a color they defend.</p>
+  </div>
+  <div class="flag gold">Color kills the two biggest morning time-thieves — <strong>"where is mine"</strong> and <strong>"that's not mine."</strong> Nobody has to ask you. They can see it from across the room.</div>
+</section>
+
+<section class="panel" id="p-jobs">
+  <div class="card">
+    <p class="eyebrow">A team, not four guests</p>
+    <h2>The job chart</h2>
+    <p class="lead">Every child gets real jobs matched to their age — not as punishment, but because belonging means contributing. Tie each job to their color and they own it.</p>
+  </div>
+  <div class="kidcard"><div class="age">Age 4</div><h3>Jeovane</h3>
+    <ul class="tips"><li>Shoes into his bin, backpack into his cube</li><li>Dirty clothes into the hamper, not the floor</li><li>His own bowl into the sink after breakfast</li><li>Toys away before bed — he can do this with a song on</li></ul></div>
+  <div class="kidcard"><div class="age">Age 6</div><h3>Jazelli</h3>
+    <ul class="tips"><li>Set the four placemats and napkins the night before</li><li>Wipe the breakfast table after everyone clears</li><li>Put her folded clothes into her uniform slot</li><li>One small daily "someone counts on me" job</li></ul></div>
+  <div class="kidcard"><div class="age">Age 7</div><h3>Jaliyah</h3>
+    <ul class="tips"><li>Fill and cap the four water bottles at night</li><li>Help Jeovane pour cereal and get his shoes</li><li>Wipe the bathroom counter after teeth</li><li>Lay out her own hair accessory on tomorrow's slot</li></ul></div>
+  <div class="kidcard"><div class="age">Age 9</div><h3>Juliusz</h3>
+    <ul class="tips"><li><strong>Wall Checker</strong> — walks the launch pad morning and night, reports what's missing</li><li>Carries the bottle bin to the sink</li><li>Takes the small trash out</li><li>Reads one short book to a little one at wind-down</li></ul></div>
+  <div class="card">
+    <p class="note"><strong>Rotate the least-loved jobs weekly</strong> so nobody's stuck with the trash forever — but keep the core ones fixed. Juliusz is always the Wall Checker. Kids do a job better when it's <em>theirs</em>, not a random draw.</p>
+    <p class="note">Post it where they see it, in their colors, with a picture next to each job for Jeovane. Check it off <strong>together</strong>, not for them. The goal isn't a clean house — it's four kids who know the home only works when everyone carries a piece.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-ladder">
+  <div class="card">
+    <p class="eyebrow">The long game</p>
+    <h2>Jeovane's independence ladder</h2>
+    <p class="lead">A four-year-old you dress becomes a five-year-old who dresses himself — but only if you teach the rungs. Add one every few weeks.</p>
+    <div class="step"><div class="num">1</div><p>He carries his own clothes from the slot to get dressed</p></div>
+    <div class="step"><div class="num">2</div><p>He does the easy pieces — socks, underwear, pull-on pants</p></div>
+    <div class="step"><div class="num">3</div><p>He does the shirt — lay it face-down, tag up, the "flip trick"</p></div>
+    <div class="step"><div class="num">4</div><p>Shoes on the right feet — a sticker split across both insoles helps</p></div>
+    <div class="step"><div class="num">5</div><p>The whole outfit, start to finish, while you drink your water</p></div>
+  </div>
+  <div class="flag">Teaching him to dress himself takes longer <em>this</em> month and saves you every morning after. Start on a weekend when there's no clock. By spring he's one less pair of hands you have to be.</div>
+</section>
+
+<section class="panel" id="p-timer">
+  <div class="card">
+    <p class="eyebrow">The game</p>
+    <h2>Beat the timer</h2>
+    <p class="lead">Little kids don't respond to "hurry up" — they respond to a game. Turn the two spots that always jam into a race against a clock instead of a race against your voice.</p>
+    <ul class="tips">
+      <li>Set a <strong>visible</strong> timer — a phone on the counter, or a sand timer they can watch</li>
+      <li><strong>The morning wall:</strong> "Can all four of you get dressed, fed and at the door before it beeps?"</li>
+      <li><strong>The after-school drop:</strong> "Ninety seconds — shoes, backpack, bottle, papers. Go." Beat yesterday.</li>
+      <li>Everyone wins together or nobody does — it builds a team, not four rivals</li>
+    </ul>
+    <p class="note" style="margin-top:11px"><strong>Why it works:</strong> a child's brain treats a timer as a challenge, not a command. "Hurry up" creates a power struggle with you. A beeping timer is nobody's enemy. You stop being the villain.</p>
+    <p class="note"><strong>Keep the stakes tiny and shared.</strong> Three days in a row → Friday movie pick, or pancakes shaped like something. The reward is small; the streak is the fun. Don't punish a lost race — punishment turns the game back into pressure and you're right back to nagging.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-rewards">
+  <div class="card">
+    <p class="eyebrow">About a month</p>
+    <h2>The reward system</h2>
+    <p class="lead">New habits need reinforcement before they stick. The trick is rewarding the <strong>routine</strong>, not bribing away bad behavior — then fading it out as the habit takes hold.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Month one — the color chart</p>
+    <ul class="tips">
+      <li>A simple chart on the fridge, one row per kid in their color</li>
+      <li>A sticker for each piece done <strong>without a reminder</strong> — dressed on time, wall done, bowl in sink, teeth, bed without stalling</li>
+      <li>Five checks = a small reward. <strong>Not money, not toys</strong> — choose the movie, pick Saturday breakfast, stay up fifteen minutes, one-on-one time with you</li>
+      <li>Little ones get a lower bar. Fair means age-appropriate, not identical.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Month two and beyond</p>
+    <ul class="tips">
+      <li>Once a habit is automatic, stop rewarding it and move the chart to whatever's still shaky</li>
+      <li>Replace stickers with words: "You packed your own bag without me asking — that's growing up." Named praise outlasts any sticker.</li>
+      <li>Keep one weekly team reward so the whole crew still pulls together</li>
+    </ul>
+    <p class="note" style="margin-top:11px"><strong>Reward the habit, never the mood.</strong> "Thanks for getting dressed on time" builds a routine. "Stop crying and I'll give you a treat" teaches that a meltdown is a vending machine.</p>
+    <p class="note">The real reward is your attention. A sticker is just a placeholder for "I saw that you did the right thing." Once they feel seen, the stickers become optional.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-jaylani">
+  <div class="card">
+    <p class="eyebrow">High school · manages herself</p>
+    <h2>Jaylani's job</h2>
+    <p class="lead">She has no morning routine here and no job chart, because she runs her own day. She appears in this system in exactly one place: the three football nights, and that's a <strong>job</strong>, not a favor.</p>
+    <p class="note"><strong>Name the scope out loud before the season starts.</strong> Three nights. Dinner served, baths, teeth, bed. Nothing more. Mornings are entirely off her plate — she has her own school day.</p>
+    <p class="note"><strong>Pay her, or trade her something she actually wants.</strong> A defined job with an end time is something a fourteen-year-old can be proud of. Being the unpaid backup parent whenever you're not home is something she'll come to resent — and she'd be right to.</p>
+    <p class="note"><strong>Write it on the calendar with an end date</strong> — the last day of football season. A job that ends is a job worth doing. An open-ended one is a burden.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">What makes her night easy</p>
+    <ul class="tips">
+      <li>Dinner already cooked and in the fridge with a note on it</li>
+      <li>Bags already packed, outfits already pulled</li>
+      <li>iPads already charged</li>
+      <li>Bath order written on the wall</li>
+      <li>The emergency info card where she can see it</li>
+    </ul>
+    <p class="note" style="margin-top:11px">If she has to make a decision, you didn't prep enough — she's babysitting, not running your household.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-ipad">
+  <div class="card">
+    <p class="eyebrow">The honest version</p>
+    <h2>The iPad agreement</h2>
+    <p class="lead">The iPads do real work — they keep the little ones settled for Jaylani on football nights. That's a feature, not a failure. The trap is letting the thing that saves a Tuesday quietly become every night's default.</p>
+    <ul class="tips">
+      <li><strong>Off 30 minutes before lights-out.</strong> They charge in the kitchen, not in bedrooms. Biggest one for sleep.</li>
+      <li><strong>Routine first</strong> — dressed, fed, homework, jobs done, <em>then</em> screen if there's time</li>
+      <li><strong>Football and activity nights they're fair game</strong> for the ones home with Jaylani. That's the job that night.</li>
+      <li><strong>Meals are screen-free.</strong> The table is for people.</li>
+      <li><strong>One warning, then it's off.</strong> No negotiating round two.</li>
+    </ul>
+    <p class="note" style="margin-top:11px">Write these <strong>with</strong> the kids at the family meeting, not at them. A rule a nine-year-old helped make is one he'll follow — and he'll enforce it on the little ones for you.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-meeting">
+  <div class="card">
+    <p class="eyebrow">One or two nights before day one</p>
+    <h2>The family meeting</h2>
+    <p class="lead">Twenty minutes at the kitchen table. This is not you announcing rules — it's the four of them helping build the system, because kids follow rules they helped invent.</p>
+    <div class="step"><div class="num">1</div><p><strong>Pick your color.</strong> Oldest first. This is the fun part and it's also the buy-in. Once Jeovane has picked orange, orange is his forever and nobody argues about the towel.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>Ask "what makes our mornings crazy?" — then be quiet.</strong> Write down what they say. They will name things you stopped noticing years ago.</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Walk the launch pad together.</strong> Show them the cubes, the shoe bins, the tray. Let them decide who gets which cube.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Name the jobs.</strong> Who fills the bottles? Who checks the wall? Let them volunteer before you assign.</p></div>
+    <div class="step"><div class="num">5</div><p><strong>Agree on bathroom order out loud.</strong> Little two, then big two. Six-minute timer. Say it so nobody can claim later they didn't know.</p></div>
+    <div class="step"><div class="num">6</div><p><strong>Set the two house rules together.</strong> Nobody eats until they're dressed. Nobody leaves the table until their bowl is in the sink.</p></div>
+    <div class="step"><div class="num">7</div><p><strong>Write it on one page</strong> and tape it above the cubes. Draw pictures next to each step so Jeovane can follow it without reading.</p></div>
+  </div>
+  <div class="flag gold"><strong>Do it again in October.</strong> A ten-minute check-in once the year is real. Ask what's not working, change one thing. A system that never gets revised is a system everyone quietly abandons.</div>
+</section>
+
+<section class="panel" id="p-twoweeks">
+  <div class="card">
+    <p class="eyebrow">Handing it over</p>
+    <h2>The first two weeks</h2>
+    <p class="lead">Systems fail in week one because everyone is tired and you're the only one who knows the plan. Here's how to stop being the plan.</p>
+    <div class="step"><div class="num">0</div><p><strong>Week before school</strong> — build the wall. Walk them through the drop drill three times. Make it a game with a timer.</p></div>
+    <div class="step"><div class="num">1</div><p><strong>Days 1–3</strong> — you narrate every step out loud. "Bottle in the cube. Backpack in." Don't do it for them.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>Days 4–7</strong> — you only name the step they missed. One word. "Bottle."</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Week two</strong> — you say nothing. Juliusz becomes the checker. He walks the wall and reports what's missing.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Ongoing</strong> — Sunday is the reset. One hour, and the week runs itself.</p></div>
+  </div>
+  <div class="flag warn"><strong>It will fall apart around week three.</strong> Don't rebuild everything. Pick the one step that broke and fix only that. Usually it's the fifteen-minute evening reset. Usually it's because nobody set the timer.</div>
+</section>
+
+<!-- ============ WHEN IT BREAKS ============ -->
+<section class="panel" id="p-bailout">
+  <div class="card">
+    <p class="eyebrow">90 seconds</p>
+    <h2>The bailout</h2>
+    <p class="lead">For the morning that goes sideways — a fever, a lost shoe, a four-year-old on the floor. Do not try to run the whole clock. Run this.</p>
+    <ul class="tips">
+      <li><strong>Dressed. Shoes on. That's it.</strong> Hair goes in a scrunchie in the van.</li>
+      <li><strong>Grab bars from the breakfast bin.</strong> They eat in the car. Nobody died from this.</li>
+      <li><strong>Bottles and backpacks are already at the wall</strong> — you lose no time here. This is exactly what the wall is for.</li>
+      <li><strong>Switch to Track B</strong> — elementary first, Jeovane second. You built the extra option for a reason.</li>
+    </ul>
+  </div>
+  <div class="flag">One broken morning is not a broken system. Get through today on the bailout and pick the routine back up tomorrow. The families who succeed aren't the ones who never have a bad morning — they're the ones who <strong>start clean the next day</strong>.</div>
+</section>
+
+<section class="panel" id="p-sick">
+  <div class="card">
+    <p class="eyebrow">It will happen</p>
+    <h2>The sick day</h2>
+    <p class="lead">Know your line in advance so you're not negotiating it half-asleep.</p>
+    <ul class="tips">
+      <li><strong>Fever, throwing up, or can't-stop crying = home.</strong> A sniffle = school. Decide the rule now.</li>
+      <li><strong>One sick kid doesn't sink the others.</strong> The well ones run the full routine and go. Don't let one fever derail four schedules.</li>
+      <li><strong>Keep a sick basket ready</strong> — thermometer, children's meds, a favorite blanket, electrolyte pops, a quiet activity.</li>
+      <li><strong>Know who you'd call</strong> before you need to. Which neighbor, which family member, which coworker owes you a favor.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Set it up now, not later</p>
+    <p class="note">Line up your backups <strong>before</strong> you need them: who can grab a kid if you're stuck, who's on the pickup authorization list at each school, the aftercare late-pickup number. A five-minute list today is a saved morning later.</p>
+  </div>
+</section>
+
+<section class="panel" id="p-emergency">
+  <div class="card">
+    <p class="eyebrow">Fill it in once</p>
+    <h2>The emergency card</h2>
+    <p class="lead">Everything a babysitter, a school or a family member would need if they had your kids and couldn't reach you. One copy on the fridge, one in each activity bag, a photo of it in your phone.</p>
+    <ul class="tips">
+      <li>Your name and cell</li>
+      <li>Two emergency backups with numbers</li>
+      <li>Pediatrician, name and number</li>
+      <li>Preferred hospital or urgent care</li>
+      <li>Insurance and policy number</li>
+      <li>Every adult authorized for pickup</li>
+      <li>Each child's teacher, room, school, start and dismissal times</li>
+      <li>Aftercare and daycare numbers, including the late-pickup line</li>
+    </ul>
+  </div>
+  <div class="flag warn"><strong>The asthma action plan is the part that matters most.</strong> Which kids have inhalers, where the pumps are, the trigger signs, how many puffs, and when it becomes a 911 situation. A copy to the school nurse, every coach, the karate instructor, and Jaylani. Written down, not remembered.</div>
+  <div class="card">
+    <p class="eyebrow">Also flag</p>
+    <p class="note"><strong>The peanut allergy</strong> — for every school, coach and instructor, with a peanut-safe table on file where it applies. Check every granola bar for "may contain." Classroom snack donations are where peanuts slip through, so send in a box of safe snacks for the class stash yourself.</p>
+    <p class="note">Snap a photo of the finished card and text it to your backups. Then it's with everyone who might need it even if the paper walks off. Update it every August.</p>
+  </div>
+</section>
+
+<!-- ============ YOU ============ -->
+<section class="panel" id="p-mom">
+  <div class="card">
+    <p class="eyebrow">This one's yours</p>
+    <h2>Mom's reset</h2>
+    <p class="lead">Every other page here pours you out — prep this, drive there, pack that. This one pours back in. You're the engine that runs all of it, and nobody checks the engine's oil but you.</p>
+    <p class="note">A system that runs you into the ground isn't a good system, however organized. A rested, steady you makes every other page work. A depleted you makes all of them collapse at once. <strong>Protecting yourself is protecting them.</strong></p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Daily</p>
+    <ul class="tips">
+      <li>Your twenty minutes before they wake — already built in. Guard it.</li>
+      <li>One thing after lights-out that's for you, not chores</li>
+      <li>Your drink, sitting down, not standing at the counter</li>
+      <li>Phone off the pillow. The day doesn't need you the second you wake.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Weekly</p>
+    <ul class="tips">
+      <li>One thing a week that's yours alone, even thirty minutes — nails, a drive, a friend</li>
+      <li>Trade Jaylani a <em>defined</em> babysit for a defined break, not open-ended</li>
+      <li>Move your body once. A walk counts. It's for your head, not a workout.</li>
+      <li>Say no to one thing this week that isn't essential</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Your floor</p>
+    <h2>The empty-tank plan</h2>
+    <p class="lead">For the days you're sick, wiped, or just done. Decide the bare minimum <strong>now</strong>, on a good day, so you're never making the call while depleted.</p>
+    <ul class="tips">
+      <li>Everyone fed — cereal, toast or drive-thru all count. No cooking.</li>
+      <li>Everyone dressed and where they need to be. That's the win. Nothing else is mandatory.</li>
+      <li>Skip the reset, skip hair beyond a ponytail, skip baths one night. The world keeps turning.</li>
+      <li>iPads and a movie are fine tonight. Guilt off.</li>
+      <li>Bedtime early — for them and for you.</li>
+      <li>Tomorrow you start clean.</li>
+    </ul>
+  </div>
+  <div class="flag gold">A "good enough" day is a good day. The house doesn't have to be perfect. Cereal for dinner is dinner. You are <strong>one person doing the work of several</strong>, and you're doing it. Lower the bar on the small stuff so you have something left for the kids and for yourself.</div>
+  <div class="card">
+    <p class="note" style="font-size:calc(15px * var(--fs))"><strong>Ask for help before you're drowning, not after.</strong> Line up your people now — who you can call, who can grab a kid, who can hold the little ones for an hour. Needing help isn't failing. Doing all of this alone with no backup is the thing that actually breaks. Build the net before you need to fall into it.</p>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<footer>♛ J Empire</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const NAV=[
+ ['The Day',[['p-decide','Which morning?'],['p-you20','Your 20 minutes'],['p-morning-a','Track A · normal'],
+   ['p-morning-b','Track B · late'],['p-morning-c','Track C · work early'],['p-breakfast','Breakfast'],
+   ['p-afterschool','After school'],['p-evening','Evening'],['p-winddown','Wind-down']]],
+ ['The Week',[['p-football','Football nights'],['p-normalnight','Non-football nights'],['p-friday','Friday pull'],
+   ['p-gameday','Saturday game day'],['p-activities','Gymnastics & karate'],['p-sunday','Sunday reset']]],
+ ['The House',[['p-dropzone','Drop zone'],['p-closet','Uniform closet'],['p-bathroom','Bathroom'],
+   ['p-hair','Hair station'],['p-homework','Homework spot'],['p-van','The van']]],
+ ['The Kids',[['p-color','The color rule'],['p-jobs','Job chart'],['p-ladder','Independence ladder'],
+   ['p-timer','Beat the timer'],['p-rewards','Rewards'],['p-jaylani','Jaylani\u2019s job'],
+   ['p-ipad','iPad agreement'],['p-meeting','Family meeting'],['p-twoweeks','First two weeks']]],
+ ['When It Breaks',[['p-bailout','The bailout'],['p-sick','Sick day'],['p-emergency','Emergency card']]],
+ ['You',[['p-mom','Mom\u2019s reset']]]
+];
+
+const PACK={
+ gear:[['Helmet',0],['Shoulder pads',0],['Padded pants',0],['Cleats',0],['Football socks',0],
+  ['Mouthguard',0],['Practice / game jersey',0],['Asthma pump — Mom checks',1],['Water bottle, filled',0],['Weather layer',0]],
+ mom:[['Folding chair',0],['Portable fan',0],['Sunscreen — reapply',0],['Sunglasses',0],['Hat or visor',0],
+  ['Your water',0],['Your snack',0],['Phone battery pack',0],['Bug spray',0],['Cash or card for concessions',0],
+  ['Light blanket or poncho',0],['Cooler with ice',0],['Pop-up shade',0],['Trash bag',0]],
+ littles:[['Snacks + waters for three',0],['Sideline activity bag',0],['Sunscreen on all of them',0],
+  ['Wagon or stroller for Jeovane',0],['Wipes',0],['Spare change of clothes',0],['Their own pumps if they have them',1]],
+ gym:[['Leotard',0],['Hair up tight + extra ties',0],['Grips or wristbands',0],['Water bottle',0],
+  ['Small towel',0],['Leggings or shorts for over',0],['Peanut-free snack',0]],
+ karate:[['Gi — clean',0],['Belt',0],['Water bottle',0],['Slip-on shoes',0],['Peanut-free snack',0],['Pump, if he has one',1]]
+};
+
+const KP='jempire_routine_packs_v1',KF='jempire_routine_fs_v1';
+let checks={};
+try{checks=JSON.parse(localStorage.getItem(KP)||'{}')}catch(e){checks={}}
+function savePacks(){try{localStorage.setItem(KP,JSON.stringify(checks))}catch(e){}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+
+/* nav */
+let topHTML='',railHTML='';
+NAV.forEach(([g,items])=>{
+  topHTML+='<div class="grp"><span class="glbl">'+g+'</span>';
+  railHTML+='<div class="rgrp"><span class="rlbl">'+g+'</span>';
+  items.forEach(([id,label])=>{
+    const on=id==='p-decide';
+    topHTML+=`<button class="tab" role="tab" data-t="${id}" aria-selected="${on}">${label}</button>`;
+    railHTML+=`<button class="rtab" role="tab" data-t="${id}" aria-selected="${on}">${label}</button>`;
+  });
+  topHTML+='</div>';railHTML+='</div>';
+});
+document.getElementById('topnav').innerHTML=topHTML;
+document.getElementById('rail').innerHTML=railHTML;
+
+function go(id,silent){
+  if(!document.getElementById(id))return;
+  document.querySelectorAll('[data-t]').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===id));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===id));
+  const act=document.querySelector('nav [data-t="'+id+'"]');
+  if(act)act.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(!silent){
+    try{history.replaceState(null,'','#'+id)}catch(e){location.hash=id}
+  }
+}
+window.addEventListener('hashchange',()=>{
+  const id=location.hash.replace('#','');
+  if(id&&document.getElementById(id))go(id,true);
+});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-t]');
+  if(t){go(t.dataset.t);return}
+  const g=e.target.closest('[data-go]');
+  if(g){go(g.dataset.go);return}
+  const p=e.target.closest('.pk');
+  if(p){const k=p.dataset.k;checks[k]=!checks[k];p.classList.toggle('on',!!checks[k]);
+    p.querySelector('.bx').textContent=checks[k]?'✓':'';savePacks();return}
+  const f=e.target.closest('.fsbtn');
+  if(f){
+    document.querySelectorAll('.fsbtn').forEach(b=>b.setAttribute('aria-pressed','false'));
+    f.setAttribute('aria-pressed','true');
+    document.documentElement.style.setProperty('--fs',f.dataset.fs);
+    try{localStorage.setItem(KF,f.dataset.fs)}catch(e){}
+  }
+});
+
+/* packing lists */
+Object.keys(PACK).forEach(k=>{
+  const el=document.querySelector('[data-list="'+k+'"]');if(!el)return;
+  el.innerHTML=PACK[k].map((it,i)=>{
+    const key=k+i,on=!!checks[key];
+    return `<button class="pk${it[1]?' crit':''}${on?' on':''}" data-k="${key}">
+      <span class="bx">${on?'✓':''}</span><span>${it[0]}</span></button>`;
+  }).join('');
+});
+
+/* restore text size */
+try{
+  const v=localStorage.getItem(KF)||'1.15';
+  document.documentElement.style.setProperty('--fs',v);
+  document.querySelectorAll('.fsbtn').forEach(b=>b.setAttribute('aria-pressed',b.dataset.fs===v));
+}catch(e){}
+
+/* open the panel named in the URL, e.g. routine.html#p-football */
+(function(){
+  const id=location.hash.replace('#','');
+  if(id&&document.getElementById(id))go(id,true);
+})();
+
+/* ---- shared chrome: text size + deep mode ---- */
+(function(){
+  var SK='jempire_hub_size',DK='jempire_hub_deep';
+  function setSize(c){
+    document.body.classList.remove('fsA','fsB','fsC');
+    document.body.classList.add(c);
+    document.querySelectorAll('[data-fsize]').forEach(function(b){
+      b.setAttribute('aria-pressed',b.dataset.fsize===c);});
+    try{localStorage.setItem(SK,c)}catch(e){}
+  }
+  function setDeep(on){
+    document.body.classList.toggle('deep',on);
+    var b=document.getElementById('modeBtn');
+    if(b)b.innerHTML=on?'\u2600 Light':'\u263D Deep';
+    try{localStorage.setItem(DK,on?'1':'0')}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var s=e.target.closest('[data-fsize]');
+    if(s){setSize(s.dataset.fsize);return}
+    var m=e.target.closest('#modeBtn');
+    if(m){setDeep(!document.body.classList.contains('deep'))}
+  });
+  var dp=false;
+  try{dp=localStorage.getItem(DK)==='1'}catch(e){}
+  setDeep(dp);
+})();
+
+</script>
+</body>
+</html>

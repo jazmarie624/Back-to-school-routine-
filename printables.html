@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Printables — Back to School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#FFF2F7;--petal:#F7C3DC;--rose:#E8639E;
+  --plum:#3F1C30;--plum-soft:#6E4059;
+  --gold:#B8901C;--gold-lt:#EBD08A;--cream:#FFFBF6;
+  --warn:#C4384F;
+  --shadow:0 10px 30px rgba(115,40,80,.13);--radius:20px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--plum);font-size:17px;
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#FFE7F3 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#F3E6FF 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#FFF0E2 0%,transparent 60%),
+    var(--blush);
+  min-height:100vh;padding-bottom:70px}
+a{text-decoration:none;color:inherit}
+@keyframes sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){header::before{animation:none}.sparkle{display:none}}
+
+header{position:relative;overflow:hidden;padding:26px 20px 20px;text-align:center;border-bottom:1px solid rgba(184,144,28,.3)}
+header::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(255,212,233,.85),rgba(245,217,255,.7),rgba(255,233,207,.8),rgba(255,212,233,.85));
+  background-size:200% 100%;animation:sweep 12s linear infinite}
+header>*{position:relative;z-index:1}
+.sparkle{position:absolute;z-index:1;font-size:11px;color:#fff;text-shadow:0 0 8px #F7C3DC;animation:twinkle 3.4s ease-in-out infinite}
+.crown{font-size:24px;letter-spacing:.14em;color:var(--gold)}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,8vw,42px);margin:2px 0 4px;letter-spacing:-.02em;line-height:1.05}
+.tag{font-family:'Pinyon Script',cursive;font-size:21px;color:var(--rose);margin:0}
+
+nav{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:10px 12px;
+  background:rgba(255,247,251,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(184,144,28,.25);overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;min-width:88px;font-weight:600;font-size:13px;padding:10px 15px;font-family:'Inter';
+  border:1px solid rgba(232,99,158,.32);border-radius:999px;background:#fff;color:var(--plum-soft);cursor:pointer;transition:.18s;white-space:nowrap}
+.tab[aria-selected="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(232,99,158,.35)}
+.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+main{padding:18px 16px 0;max-width:940px;margin:0 auto}
+.panel{display:none}
+.panel.on{display:block}
+
+.card{background:var(--cream);border:1px solid rgba(184,144,28,.32);border-radius:var(--radius);
+  padding:17px;margin-bottom:16px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+h2{font-family:'Fraunces',serif;font-size:22px;margin:0 0 7px;font-weight:700}
+p.note{font-size:14px;line-height:1.6;color:var(--plum-soft);margin:0 0 10px}
+p.note strong{color:var(--plum)}
+.flag{background:linear-gradient(135deg,#FFF0F5,#FFE6EF);border:1.5px solid var(--rose);
+  border-radius:14px;padding:13px 15px;font-size:13.5px;line-height:1.55;margin-bottom:16px;font-weight:500}
+
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-family:'Inter';
+  font-size:14.5px;font-weight:700;background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;
+  cursor:pointer;box-shadow:0 6px 18px rgba(232,99,158,.36)}
+.btn.ghost{background:#fff;color:var(--plum-soft);border:1.5px solid var(--petal);box-shadow:none;font-weight:600}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btnrow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btnrow .btn{flex:1 1 160px}
+
+/* ---- the printable card ---- */
+.sheet{background:#fff;border:2px solid var(--gold);border-radius:18px;padding:18px;margin-bottom:16px;
+  box-shadow:var(--shadow);position:relative}
+.sheet.pick{border-color:var(--rose)}
+.shead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:4px}
+.sname{font-family:'Fraunces',serif;font-size:24px;font-weight:700;line-height:1.1;
+  border:none;background:transparent;color:var(--plum);width:100%;padding:2px 5px;border-radius:8px;
+  outline:none;border-bottom:1.5px dashed transparent}
+.sname:hover,.sname:focus{background:#FFF6FA;border-bottom-color:var(--petal)}
+.ssub{font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--rose);padding-left:5px}
+.select{border:1.5px solid var(--petal);background:#fff;border-radius:11px;padding:8px 11px;
+  font-family:'Inter';font-size:12.5px;font-weight:700;color:var(--plum-soft);cursor:pointer;white-space:nowrap}
+
+.rows{margin-top:12px}
+.prow{display:flex;align-items:center;gap:11px;padding:9px 4px;border-bottom:1px solid rgba(232,99,158,.16)}
+.prow:last-child{border-bottom:none}
+.tick{width:26px;height:26px;flex:0 0 26px;border:2.5px solid var(--petal);border-radius:7px;background:#fff}
+.emo{flex:0 0 auto;font-size:22px;line-height:1;width:30px;text-align:center}
+.ptxt{flex:1;border:none;background:transparent;font-family:'Inter';font-size:15.5px;font-weight:600;
+  color:var(--plum);padding:5px 6px;border-radius:8px;outline:none;border-bottom:1.5px dashed transparent;width:100%}
+.ptxt:hover,.ptxt:focus{background:#FFF6FA;border-bottom-color:var(--petal)}
+.del{flex:0 0 auto;width:38px;height:38px;border:1.5px solid var(--petal);background:#fff;
+  border-radius:11px;cursor:pointer;font-size:15px;color:var(--plum-soft);
+  display:flex;align-items:center;justify-content:center}
+.del:active{background:#FFEFF6}
+.addrow{width:100%;margin-top:9px;border:1.5px dashed rgba(184,144,28,.6);background:transparent;color:var(--gold);
+  font-family:'Inter';font-weight:700;font-size:13px;padding:11px;border-radius:12px;cursor:pointer}
+
+/* fill-in fields */
+.fields{display:grid;grid-template-columns:1fr;gap:9px;margin-top:11px}
+.fld{border:1.5px solid var(--petal);border-radius:12px;padding:9px 12px;background:#fff}
+.fld label{display:block;font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.fld input,.fld textarea{border:none;outline:none;background:transparent;width:100%;
+  font-family:'Inter';font-size:15px;font-weight:600;color:var(--plum);resize:vertical}
+.fld input::placeholder,.fld textarea::placeholder{color:#CFB2C1;font-weight:400;font-style:italic}
+.fld.wide{grid-column:1/-1}
+.fld.crit{border-color:var(--warn);background:#FFF6F8}
+.fld.crit label{color:var(--warn)}
+.grp{font-family:'Fraunces',serif;font-size:16px;font-weight:700;margin:16px 0 2px;color:var(--plum)}
+
+.jobkid{border-left:5px solid var(--rose);padding-left:13px;margin-bottom:14px}
+.jobkid:nth-of-type(2){border-left-color:var(--gold)}
+.jobkid:nth-of-type(3){border-left-color:#8B6BB1}
+.jobkid:nth-of-type(4){border-left-color:#4E9E77}
+
+.linkrow{display:grid;grid-template-columns:1fr;gap:9px;margin-top:4px}
+.lnk{display:block;border:1.5px solid rgba(232,99,158,.28);border-radius:14px;padding:14px 15px;background:#fff;transition:.16s}
+.lnk:hover{border-color:var(--gold);background:#FFF8FB}
+.lnk b{display:block;font-family:'Fraunces',serif;font-size:16.5px;font-weight:700}
+.lnk span{display:block;font-size:12.5px;color:var(--plum-soft);margin-top:2px;line-height:1.45}
+
+footer{text-align:center;padding:24px 16px 12px;font-family:'Pinyon Script',cursive;font-size:20px;color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--plum);color:#FFE9F3;
+  padding:12px 22px;border-radius:999px;font-size:13px;font-weight:600;z-index:60;opacity:0;transition:.3s;
+  pointer-events:none;box-shadow:0 8px 24px rgba(63,28,48,.35)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+@media (min-width:760px){
+  .fields{grid-template-columns:1fr 1fr}
+  .linkrow{grid-template-columns:1fr 1fr}
+}
+@media (min-width:900px){
+  body{font-size:19px}
+  main{padding:26px 28px 0}
+  .card,.sheet{padding:24px;border-radius:24px}
+  h1{font-size:52px}h2{font-size:26px}
+  .sname{font-size:29px}
+  .ptxt{font-size:17px}
+  .emo{font-size:26px;width:36px}
+  .tick{width:30px;height:30px;flex-basis:30px}
+  .tab{font-size:15px;padding:13px 22px}
+}
+
+/* ================= PRINT ================= */
+@media print{
+  .chrome,nav,.flag,.noprint,.del,.addrow,.btn,.btnrow,footer,.selectwrap{display:none!important}
+  body,body.deep{background:#fff!important;color:#1F0E17!important;padding:0;zoom:1;font-size:12pt}
+  body.deep{--plum:#1F0E17;--plum-soft:#4A3140;--cream:#fff;--gold:#7E6112;--petal:#C4A8B7;--rose:#A8386B}
+  header{padding:0;border:none;display:none}
+  main{padding:0;max-width:100%}
+  .panel{display:none!important}
+  .panel.printme{display:block!important}
+  .card{display:none!important}
+  .card.printme{display:block!important;box-shadow:none;border:none;padding:0;margin:0}
+  .sheet{break-inside:avoid;page-break-inside:avoid;box-shadow:none;border:2.5px solid #7E6112;
+    border-radius:10px;padding:16px 18px;margin:0 0 10mm;background:#fff}
+  .sheet.hideprint{display:none!important}
+  .sname{font-size:24pt;color:#1F0E17;border:none;background:none}
+  .ssub{font-size:9pt;color:#A8386B}
+  .prow{padding:7px 2px;border-bottom:1px solid #DDD0D8}
+  .tick{width:24px;height:24px;flex-basis:24px;border:2px solid #6E4059}
+  .emo{font-size:19pt}
+  .ptxt{font-size:13pt;color:#1F0E17;border:none;background:none}
+  .fld{border:1px solid #C4A8B7;padding:7px 10px;break-inside:avoid}
+  .fld label{font-size:7.5pt;color:#7E6112}
+  .fld input,.fld textarea{font-size:11.5pt;color:#1F0E17}
+  .fields{gap:6px}
+  .grp{font-size:13pt;margin:10px 0 2px}
+  .jobkid{break-inside:avoid;border-left:4px solid #A8386B}
+  @page{margin:14mm}
+}
+
+/* ---------- Deep mode ---------- */
+body.deep{
+  --blush:#2C1A24;--petal:#613E4F;--rose:#EE7BAE;
+  --plum:#FBE9F2;--plum-soft:#D8B7C7;
+  --gold:#E3C273;--gold-lt:#8E7238;--cream:#392631;
+  --win:#63C093;--win-lt:#2C4239;
+  --good:#63C093;--low:#E3C273;--out:#F0708C;
+  --need:#C98BA8;--ordered:#E3C273;--have:#63C093;
+  --warn:#F58098;--ok:#63C093;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#402334 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#33254A 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#40302A 0%,transparent 60%),
+    #2C1A24;
+}
+body.deep header::before{background:linear-gradient(100deg,rgba(92,46,70,.92),rgba(72,52,92,.82),rgba(97,72,46,.86),rgba(92,46,70,.92));background-size:200% 100%}
+body.deep nav,body.deep .fsbar{background:rgba(44,26,36,.95)}
+body.deep .block,body.deep .kid,body.deep .tab,body.deep .fsbtn,body.deep .btn.ghost,
+body.deep .sz,body.deep .zone,body.deep .shelf,body.deep .rot,body.deep .clock,
+body.deep .track,body.deep .kidcard,body.deep .jlink,body.deep .pitem,body.deep .pk,
+body.deep .cell,body.deep select,body.deep td,body.deep .itools button,body.deep .tools button,
+body.deep .box,body.deep .bx,body.deep .add{background:#3D2833}
+body.deep .tick:nth-child(odd){background:#412C38}
+body.deep .cell.win{background:#2C4239}
+body.deep .pk.on{background:#2C4239}
+body.deep .item.done .box,body.deep .pk.on .bx,body.deep .itm.done .box{background:var(--rose);border-color:var(--rose)}
+body.deep .slot,body.deep .recipe,body.deep .jump,body.deep .hero,body.deep .countdown,
+body.deep .tray,body.deep .buy,body.deep .win-row{background:var(--cream)}
+body.deep .flag{background:linear-gradient(135deg,#40272F,#4C2C3C)}
+body.deep .flag.gold{background:linear-gradient(135deg,#3C3222,#4A3D26)}
+body.deep .flag.warn{background:linear-gradient(135deg,#432630,#522E3A)}
+body.deep .tab[aria-selected="true"],body.deep .rtab[aria-selected="true"],
+body.deep .kid[aria-pressed="true"],body.deep .fsbtn[aria-pressed="true"],
+body.deep .track[aria-pressed="true"]{color:#2C1A24}
+body.deep .kid[aria-pressed="true"]{background:var(--rose)}
+body.deep .block[aria-pressed="true"],body.deep .block[aria-pressed="true"] span{color:#2C1A24}
+body.deep .toast{background:#150C11;color:#FBE9F2}
+body.deep .empty-state,body.deep .na{color:var(--plum-soft)}
+
+/* ---------- Text size (retrofit) ---------- */
+body.fsA,body.fsB,body.fsC{zoom:1}
+
+/* ---------- Toolbar ---------- */
+.chrome{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;
+  padding:11px 12px;background:rgba(255,247,251,.9);border-bottom:1px solid rgba(184,144,28,.22)}
+.chrome .lb{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--plum-soft)}
+.cbtn{border:1.5px solid var(--petal);background:#fff;color:var(--plum);font-family:'Fraunces',serif;
+  font-weight:700;border-radius:11px;cursor:pointer;padding:7px 15px;line-height:1}
+.cbtn.mode{font-family:'Inter';font-size:12.5px;font-weight:700;padding:8px 15px}
+.cbtn[aria-pressed="true"]{background:var(--plum);color:var(--cream);border-color:var(--plum)}
+.cbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.cA{font-size:13px}.cB{font-size:16px}.cC{font-size:20px}
+@media print{.chrome,nav,.fsbar,aside{display:none!important}}
+
+
+/* deep mode — catch the remaining light panels */
+body.deep .unknown,body.deep .sz.colr,body.deep .fld.crit,body.deep .shelf.star,
+body.deep td.filled,body.deep td.locked,body.deep .slot.full,body.deep .recipe,
+body.deep .track[aria-pressed="true"],body.deep .pk.crit,body.deep .note,
+body.deep .win-lt,body.deep .lnk,body.deep .jlink,body.deep .tile,
+body.deep .tick.hot,body.deep .who,body.deep .qin,body.deep .pin input,
+body.deep .fld,body.deep .fld input,body.deep .fld textarea,
+body.deep .sname,body.deep .ptxt,body.deep .iname,body.deep .sz input{
+  background-color:#3D2833;color:var(--plum)}
+body.deep .pk.crit.on,body.deep .cell.win{background-color:#2C4239}
+body.deep .bar{background:#4A3140}
+body.deep .tile,body.deep .lnk,body.deep .jlink,body.deep .note{border-color:#61404F}
+body.deep .who{border-color:#6E4A5C}
+body.deep .tick.hot .tm{color:#F58098}
+body.deep .fld.crit{border-color:#F58098}
+body.deep .fld.crit label{color:#F58098}
+body.deep .pk.crit{border-color:#F58098}
+body.deep input::placeholder,body.deep textarea::placeholder{color:#9A7788}
+body.deep .empty-state,body.deep .na,body.deep .hint,body.deep .iunit{color:#C9A6B7}
+body.deep .stamp.est{color:#E3C273}
+body.deep .prow{border-bottom-color:#543746}
+body.deep .tick{border-color:#7E5A6C}
+
+
+.picker{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.pk2{flex:1 1 auto;min-width:80px;font-family:'Inter';font-weight:600;font-size:13.5px;
+  padding:11px 14px;border:1.5px solid var(--petal);border-radius:999px;background:#fff;
+  color:var(--plum-soft);cursor:pointer;transition:.18s}
+.pk2[aria-pressed="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;
+  border-color:transparent;box-shadow:0 4px 14px rgba(232,99,158,.32)}
+.pk2:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+body.deep .pk2{background:#3D2833;color:var(--plum)}
+body.deep .pk2[aria-pressed="true"]{color:#2C1A24}
+.sprint{width:100%;margin-top:11px;border:1.5px solid var(--gold);background:#FFFBF0;color:var(--gold);
+  font-family:'Inter';font-weight:700;font-size:13.5px;padding:12px;border-radius:12px;cursor:pointer}
+.sprint:active{background:#FFF4DC}
+.sprint:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+body.deep .sprint{background:#3C3222;color:#E3C273}
+@media print{.picker,.sprint{display:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="sparkle" style="top:14px;left:9%">✦</span>
+  <span class="sparkle" style="top:52px;left:22%;animation-delay:.7s">✧</span>
+  <span class="sparkle" style="top:22px;right:14%;animation-delay:1.3s">✦</span>
+  <span class="sparkle" style="top:66px;right:26%;animation-delay:2.1s">✧</span>
+  <div class="crown">♛</div>
+  <h1>Printables</h1>
+  <p class="tag">tape it where they can see it</p>
+</header>
+<div class="chrome">
+  <button class="cbtn mode" id="modeBtn">&#9789; Deep</button>
+</div>
+
+<nav role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="morning">Morning</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="bedtime">Bedtime</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="school">School Facts</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="emergency">Emergency</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="jobs">Job Chart</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="more">More</button>
+</nav>
+
+<main>
+
+<section class="panel on" id="morning">
+  <div class="flag">Tap a name to see one card at a time. Every line is editable — tap the words and type. Each card has its own print button at the bottom.</div>
+  <div class="card noprint">
+    <p class="eyebrow">Print</p>
+    <button class="btn" data-print="morning">🖨 Print all four morning cards</button>
+    <p class="note" style="margin:10px 0 0;font-size:12.5px">Or use the button at the bottom of any one card to print just that child.</p>
+  </div>
+  <div class="picker" id="morningPick"></div>
+  <div id="morningBody"></div>
+</section>
+
+<section class="panel" id="bedtime">
+  <div class="flag">Same idea, wound down. Younger kids get fewer steps and bigger pictures — <strong>a four-year-old's card should be five lines, not ten.</strong></div>
+  <div class="card noprint">
+    <p class="eyebrow">Print</p>
+    <button class="btn" data-print="bedtime">🖨 Print all four bedtime cards</button>
+    <p class="note" style="margin:10px 0 0;font-size:12.5px">Or use the button at the bottom of any one card to print just that child.</p>
+  </div>
+  <div class="picker" id="bedtimePick"></div>
+  <div id="bedtimeBody"></div>
+</section>
+
+<section class="panel" id="school">
+  <div class="flag">Four kids, three or four buildings, four sets of times. <strong>Fill it once</strong> — then print for the fridge, the van, and anyone who might pick them up.</div>
+  <div class="card noprint">
+    <p class="eyebrow">Print</p>
+    <button class="btn" data-print="school">🖨 Print the school card</button>
+  </div>
+  <div class="card printme" id="schoolBody"></div>
+</section>
+
+<section class="panel" id="emergency">
+  <div class="flag warn">The <strong>asthma action plan</strong> is the part that matters most. Print four: fridge, football bag, Jaylani, your purse. Give a copy to the school nurse and every coach.</div>
+  <div class="card noprint">
+    <p class="eyebrow">Print</p>
+    <button class="btn" data-print="emergency">🖨 Print the emergency card</button>
+  </div>
+  <div class="card printme" id="emergBody"></div>
+</section>
+
+<section class="panel" id="jobs">
+  <div class="flag">In their colors, for the fridge. <strong>Check it off together</strong>, not for them.</div>
+  <div class="card noprint">
+    <p class="eyebrow">Print</p>
+    <button class="btn" data-print="jobs">🖨 Print the job chart</button>
+  </div>
+  <div class="card printme" id="jobsBody"></div>
+</section>
+
+<section class="panel" id="more">
+  <div class="card">
+    <p class="eyebrow">Printable, but they live elsewhere</p>
+    <h2>The other two</h2>
+    <p class="note">These are already built into The Checklist — open it and use the print buttons at the bottom of the page.</p>
+    <div class="linkrow">
+      <a class="lnk" href="checklist.html"><b>Uniform checklist →</b><span>Five kids, sizes and colors filled in. Print it and shop from paper.</span></a>
+      <a class="lnk" href="checklist.html"><b>Supply run →</b><span>Every grade tallied into one trip. Print it and check off in the cart.</span></a>
+    </div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Printing from an iPhone or iPad</p>
+    <h2>How it works</h2>
+    <p class="note">Tap a print button, then pick your portable printer in the share sheet. If nothing shows up, make sure the printer is on the same wifi — AirPrint won't find it otherwise.</p>
+    <p class="note"><strong>No printer nearby?</strong> Choose <strong>Save to Files</strong> or <strong>Save as PDF</strong> in the same sheet and print it later from anywhere.</p>
+    <p class="note">The cards are sized so <strong>two fit on a page</strong> — cut them apart and tape them at each kid's height. Backs of bedroom doors and the side of the fridge work better than walls.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">A suggestion</p>
+    <h2>Laminate the routine cards</h2>
+    <p class="note">Print each kid's morning and bedtime card back to back and slide them into a cheap sheet protector. A dry-erase marker turns a weekly print into a card that lasts the year — and kids love wiping their own boxes clean.</p>
+    <p class="note">Reprint in January anyway. By then Jeovane will have outgrown half his steps, and that's the point.</p>
+  </div>
+  <div class="card noprint">
+    <p class="eyebrow">Careful</p>
+    <button class="btn ghost" id="resetAll">Reset every card to the original</button>
+  </div>
+</section>
+
+</main>
+<footer>♛ J Empire</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const K='jempire_printables_v1';
+let uid=0;const nid=()=>'x'+Date.now().toString(36)+(uid++);
+
+function seed(){
+  const r=(e,t)=>({id:nid(),e,t});
+  return {
+    kids:[
+      {id:'k1',name:'Juliusz',age:'9 · 5th grade',
+       morning:[r('👕','Get dressed — uniform slot'),r('🍳','Breakfast, and pour for Jeovane'),
+         r('🥣','Bowl in the sink'),r('🪥','Brush teeth, wash face'),r('🎒','Backpack + water bottle from my cube'),
+         r('👟','Shoes from my bin'),r('👀','Wall Check — is anything missing?'),r('🚪','At the door, ready')],
+       bedtime:[r('🍽️','Plate in the sink'),r('🎒','Re-pack my bag, hang it up'),r('📝','Homework done and packed'),
+         r('🚿','Shower — 6 minute timer'),r('🪥','Teeth'),r('👕','Check tomorrow\u2019s uniform slot'),
+         r('📖','Read to a little one'),r('📕','Read in bed'),r('🌙','Lights out')]},
+      {id:'k2',name:'Jaliyah',age:'7 · 2nd grade',
+       morning:[r('👕','Get dressed — uniform slot'),r('🍳','Breakfast'),r('🥣','Bowl in the sink'),
+         r('🪥','Brush teeth, wash face'),r('🎀','Bonnet off, hair smoothed'),r('🎒','Backpack + bottle from my cube'),
+         r('👟','Shoes from my bin'),r('🚪','At the door, ready')],
+       bedtime:[r('🍽️','Plate in the sink'),r('💧','Fill the four water bottles'),r('🎒','Re-pack my bag'),
+         r('📝','Homework done and packed'),r('🚿','Shower — 6 minute timer'),r('🪥','Teeth'),
+         r('🎀','Hair braided, bonnet on'),r('👗','Tomorrow\u2019s bow on my slot'),r('📕','Read in bed'),r('🌙','Lights out')]},
+      {id:'k3',name:'Jazelli',age:'6 · 1st grade',
+       morning:[r('👕','Get dressed'),r('🍳','Breakfast'),r('🥣','Bowl in the sink'),r('🪥','Brush teeth'),
+         r('🎀','Bonnet off, hair smoothed'),r('🎒','Backpack + bottle'),r('👟','Shoes on'),r('🚪','At the door')],
+       bedtime:[r('🍽️','Plate in the sink'),r('🍽️','Set the placemats for tomorrow'),r('🧽','Wipe the table'),
+         r('🚿','Bath — 6 minute timer'),r('🪥','Teeth'),r('🎀','Hair, bonnet on'),r('🧸','Toys away'),
+         r('📖','One story'),r('🌙','Lights out')]},
+      {id:'k4',name:'Jeovane',age:'4 · VPK',
+       morning:[r('👕','Get dressed'),r('🥣','Eat breakfast'),r('🥣','Bowl in the sink'),r('🪥','Brush teeth'),
+         r('🎒','Backpack on'),r('👟','Shoes on')],
+       bedtime:[r('🍽️','Plate in the sink'),r('🧺','Clothes in the hamper'),r('🛁','Bath'),r('🪥','Teeth'),
+         r('🧸','Toys away'),r('📖','One story'),r('🌙','Lights out')]}
+    ],
+    school:{},
+    emerg:{}
+  };
+}
+
+let S;
+try{const r=localStorage.getItem(K);S=r?JSON.parse(r):seed()}catch(e){S=seed()}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast("Couldn't save — storage is off")}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function sheet(kid,mode){
+  const rows=kid[mode];
+  return `<div class="sheet" data-kid="${kid.id}">
+    <div class="shead">
+      <div style="flex:1;min-width:0">
+        <input class="sname" value="${esc(kid.name)}" data-kname="${kid.id}" aria-label="Name">
+        <div class="ssub">${esc(kid.age)} · ${mode==='morning'?'Morning':'Bedtime'}</div>
+      </div>
+    </div>
+    <div class="rows">
+      ${rows.map(r=>`<div class="prow">
+        <span class="tick"></span>
+        <span class="emo">${r.e}</span>
+        <input class="ptxt" value="${esc(r.t)}" data-row="${r.id}" data-k="${kid.id}" data-m="${mode}" aria-label="Step">
+        <button class="del" data-del="${r.id}" data-k="${kid.id}" data-m="${mode}" aria-label="Delete">🗑</button>
+      </div>`).join('')}
+    </div>
+    <button class="addrow noprint" data-add="${kid.id}" data-m="${mode}">+ Add a step</button>
+    <button class="sprint" data-solo="${kid.id}" data-panel="${mode}">🖨 Print ${esc(kid.name)}'s ${mode} card</button>
+  </div>`;
+}
+function drawCards(){
+  document.getElementById('morningBody').innerHTML=S.kids.map(k=>sheet(k,'morning')).join('');
+  document.getElementById('bedtimeBody').innerHTML=S.kids.map(k=>sheet(k,'bedtime')).join('');
+  if(document.getElementById('morningPick')){drawPicker('morning');drawPicker('bedtime')}
+}
+
+function F(key,label,ph,cls,area){
+  const v=esc((S.school[key]!==undefined?S.school[key]:S.emerg[key])||'');
+  const tag=area?`<textarea rows="3" data-f="${key}" placeholder="${ph}">${v}</textarea>`
+                :`<input data-f="${key}" value="${v}" placeholder="${ph}">`;
+  return `<div class="fld${cls?' '+cls:''}${area?' wide':''}"><label>${label}</label>${tag}</div>`;
+}
+
+function drawSchool(){
+  const kidBlock=(n,g)=>`<div class="grp">${n} · ${g}</div><div class="fields">
+    ${F('s_'+n+'_school','School','')}
+    ${F('s_'+n+'_teacher','Teacher','')}
+    ${F('s_'+n+'_room','Room','')}
+    ${F('s_'+n+'_start','Start time','')}
+    ${F('s_'+n+'_bell','In the building by','')}
+    ${F('s_'+n+'_out','Dismissal','')}
+  </div>`;
+  document.getElementById('schoolBody').innerHTML=`
+    <div class="sheet">
+      <div class="shead"><div><div class="sname" style="border:none">School Facts</div>
+      <div class="ssub">2026–2027 · keep on the fridge</div></div></div>
+      ${kidBlock('Jaylani','High school')}
+      ${kidBlock('Juliusz','5th grade')}
+      ${kidBlock('Jaliyah','2nd grade')}
+      ${kidBlock('Jazelli','1st grade')}
+      ${kidBlock('Jeovane','VPK · Hansel & Gretel')}
+      <div class="grp">Daycare &amp; aftercare</div>
+      <div class="fields">
+        ${F('s_dc_name','Daycare','')}
+        ${F('s_dc_phone','Phone','')}
+        ${F('s_dc_cut','Morning transport cutoff','the 7:30 question')}
+        ${F('s_dc_late','Late pickup number','')}
+      </div>
+      <div class="grp">Portals &amp; logins</div>
+      <div class="fields">
+        ${F('s_portal_el','Elementary portal','where it lives — not the password')}
+        ${F('s_portal_hs','High school portal','')}
+      </div>
+      <div class="grp">Bus, if used</div>
+      <div class="fields">
+        ${F('s_bus_stop','Stop location','')}
+        ${F('s_bus_time','Pickup time','')}
+      </div>
+    </div>`;
+}
+
+function drawEmerg(){
+  document.getElementById('emergBody').innerHTML=`
+    <div class="sheet pick">
+      <div class="shead"><div><div class="sname" style="border:none">Emergency Card</div>
+      <div class="ssub">Fridge · football bag · Jaylani · your purse</div></div></div>
+      <div class="fields">
+        ${F('e_mom','Mom — name & cell','')}
+        ${F('e_b1','Backup 1 — name & number','')}
+        ${F('e_b2','Backup 2 — name & number','')}
+        ${F('e_ped','Pediatrician','name & number')}
+        ${F('e_hosp','Preferred hospital / urgent care','')}
+        ${F('e_ins','Insurance & policy number','')}
+        ${F('e_pickup','Authorized for pickup','everyone, at every school','','area')}
+      </div>
+      <div class="grp" style="color:var(--warn)">⚠️ Asthma action plan</div>
+      <div class="fields">
+        ${F('e_who','Who has an inhaler','','crit')}
+        ${F('e_where','Where the pumps are','clinic / self-carry / bag','crit')}
+        ${F('e_med','Medication & dose','how many puffs','crit')}
+        ${F('e_trig','Trigger signs','what to watch for','crit')}
+        ${F('e_911','When it becomes 911','write this out plainly','crit','area')}
+      </div>
+      <div class="grp">Allergies</div>
+      <div class="fields">
+        ${F('e_allergy','Allergies on file','who, what, and at which school','','area')}
+      </div>
+      <div class="grp">Notes for whoever has them</div>
+      <div class="fields">
+        ${F('e_notes','Anything else','bath order, bedtimes, what calms who','','area')}
+      </div>
+    </div>`;
+}
+
+function drawJobs(){
+  const J=[['Juliusz','4','Wall Checker — walk the launch pad morning and night','Carry the bottle bin to the sink','Take the small trash out','Read one short book to a little one'],
+   ['Jaliyah','3','Fill and cap the four water bottles at night','Help Jeovane pour cereal and get his shoes','Wipe the bathroom counter after teeth','Lay out my hair accessory on tomorrow\u2019s slot'],
+   ['Jazelli','2','Set the four placemats and napkins','Wipe the breakfast table','Put my folded clothes in my slot'],
+   ['Jeovane','1','Shoes in my bin, backpack in my cube','Dirty clothes in the hamper','My bowl in the sink','Toys away before bed']];
+  document.getElementById('jobsBody').innerHTML=`
+    <div class="sheet">
+      <div class="shead"><div><div class="sname" style="border:none">Our Jobs</div>
+      <div class="ssub">The house only works when everyone carries a piece</div></div></div>
+      ${J.map(k=>`<div class="jobkid"><div class="grp" style="margin-top:6px">${k[0]}</div>
+        ${k.slice(2).map(j=>`<div class="prow"><span class="tick"></span><span class="ptxt" style="border:none">${j}</span></div>`).join('')}
+      </div>`).join('')}
+    </div>`;
+}
+
+/* ---- printing ----
+   Classes below only affect @media print, so leaving them on screen is harmless.
+   We clear them on the next tap instead of a timer — iOS opens the print sheet
+   asynchronously and a timer strips them before the preview renders. */
+let printArmed=false;
+function printPanel(id,onlyKid){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('printme',p.id===id));
+  document.querySelectorAll('.sheet').forEach(sh=>{
+    sh.classList.toggle('hideprint', !!onlyKid && sh.dataset.kid!==onlyKid);
+  });
+  printArmed=true;
+  setTimeout(()=>window.print(),60);
+}
+function clearPrint(){
+  if(!printArmed)return;
+  printArmed=false;
+  document.querySelectorAll('.printme').forEach(p=>{if(p.classList.contains('panel'))p.classList.remove('printme')});
+  document.querySelectorAll('.hideprint').forEach(p=>p.classList.remove('hideprint'));
+}
+window.addEventListener('afterprint',clearPrint);
+document.addEventListener('click',()=>setTimeout(clearPrint,0),true);
+
+/* ---- kid picker ---- */
+let showing={morning:'all',bedtime:'all'};
+function drawPicker(mode){
+  const w=document.getElementById(mode+'Pick');
+  w.innerHTML='<button class="pk2" data-show="all" data-m="'+mode+'" aria-pressed="'+(showing[mode]==='all')+'">All four</button>'
+    +S.kids.map(k=>'<button class="pk2" data-show="'+k.id+'" data-m="'+mode+'" aria-pressed="'+(showing[mode]===k.id)+'">'+esc(k.name)+'</button>').join('');
+  document.querySelectorAll('#'+mode+'Body .sheet').forEach(sh=>{
+    sh.style.display=(showing[mode]==='all'||sh.dataset.kid===showing[mode])?'':'none';
+  });
+}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+
+  if(t.dataset.print){printPanel(t.dataset.print);return}
+  if(t.dataset.solo){printPanel(t.dataset.panel,t.dataset.solo);return}
+  if(t.dataset.show){
+    showing[t.dataset.m]=t.dataset.show;
+    drawPicker(t.dataset.m);return;
+  }
+  if(t.dataset.del){
+    const k=S.kids.find(x=>x.id===t.dataset.k);
+    k[t.dataset.m]=k[t.dataset.m].filter(r=>r.id!==t.dataset.del);
+    save();drawCards();return;
+  }
+  if(t.dataset.add){
+    const k=S.kids.find(x=>x.id===t.dataset.add);
+    const v=prompt('New step:');if(!v||!v.trim())return;
+    const e2=prompt('An emoji for it (leave blank for a dot):')||'•';
+    k[t.dataset.m].push({id:nid(),e:e2.trim()||'•',t:v.trim()});
+    save();drawCards();toast('Added');return;
+  }
+  if(t.id==='resetAll'){
+    if(confirm('This wipes every edit and fill-in. Sure?')){
+      S=seed();save();drawCards();drawSchool();drawEmerg();toast('Back to the original')}
+  }
+});
+
+document.addEventListener('input',e=>{
+  const el=e.target;
+  if(el.dataset.row){
+    const k=S.kids.find(x=>x.id===el.dataset.k);
+    const r=k[el.dataset.m].find(x=>x.id===el.dataset.row);
+    if(r){r.t=el.value;save()}return;
+  }
+  if(el.dataset.kname){
+    const k=S.kids.find(x=>x.id===el.dataset.kname);
+    if(k){k.name=el.value;save()}return;
+  }
+  if(el.dataset.f){
+    const key=el.dataset.f;
+    if(key.indexOf('s_')===0)S.school[key]=el.value; else S.emerg[key]=el.value;
+    save();return;
+  }
+});
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+drawCards();drawSchool();drawEmerg();drawJobs();
+
+/* ---- shared chrome: text size + deep mode ---- */
+(function(){
+  var SK='jempire_hub_size',DK='jempire_hub_deep';
+  function setSize(c){
+    document.body.classList.remove('fsA','fsB','fsC');
+    document.body.classList.add(c);
+    document.querySelectorAll('[data-fsize]').forEach(function(b){
+      b.setAttribute('aria-pressed',b.dataset.fsize===c);});
+    try{localStorage.setItem(SK,c)}catch(e){}
+  }
+  function setDeep(on){
+    document.body.classList.toggle('deep',on);
+    var b=document.getElementById('modeBtn');
+    if(b)b.innerHTML=on?'\\u2600 Light':'\\u263D Deep';
+    try{localStorage.setItem(DK,on?'1':'0')}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var s=e.target.closest('[data-fsize]');
+    if(s){setSize(s.dataset.fsize);return}
+    var m=e.target.closest('#modeBtn');
+    if(m){setDeep(!document.body.classList.contains('deep'))}
+  });
+  var sz='fsB',dp=false;
+  try{sz=localStorage.getItem(SK)||'fsB';dp=localStorage.getItem(DK)==='1'}catch(e){}
+  setSize(sz);setDeep(dp);
+})();
+</script>
+</body>
+</html>
