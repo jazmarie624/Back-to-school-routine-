@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lunchbox Lab — Back to School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#FFF2F7;--petal:#F7C3DC;--rose:#E8639E;
+  --plum:#4A2338;--plum-soft:#7A4C63;
+  --gold:#C9A227;--gold-lt:#EBD08A;--cream:#FFFBF6;
+  --shadow:0 10px 30px rgba(115,40,80,.13);--radius:20px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--plum);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#FFE7F3 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#F3E6FF 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#FFF0E2 0%,transparent 60%),
+    var(--blush);
+  min-height:100vh;padding-bottom:80px;
+}
+@keyframes sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){header::before,.block[aria-pressed="true"]::before{animation:none}.sparkle{display:none}*{transition:none!important}}
+
+header{position:relative;overflow:hidden;padding:26px 20px 20px;text-align:center;border-bottom:1px solid rgba(201,162,39,.28)}
+header::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(255,212,233,.85),rgba(245,217,255,.7),rgba(255,233,207,.8),rgba(255,212,233,.85));
+  background-size:200% 100%;animation:sweep 12s linear infinite}
+header>*{position:relative;z-index:1}
+.sparkle{position:absolute;z-index:1;font-size:11px;color:#fff;text-shadow:0 0 8px #F7C3DC;animation:twinkle 3.4s ease-in-out infinite}
+.crown{font-size:24px;letter-spacing:.14em;color:var(--gold)}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,8vw,42px);margin:2px 0 4px;letter-spacing:-.02em;line-height:1.05}
+.tag{font-family:'Pinyon Script',cursive;font-size:20px;color:var(--rose);margin:0}
+
+nav{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:10px 12px;
+  background:rgba(255,247,251,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,162,39,.25);overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;min-width:84px;font-weight:600;font-size:13px;padding:10px 14px;font-family:'Inter';
+  border:1px solid rgba(232,99,158,.3);border-radius:999px;background:#fff;color:var(--plum-soft);
+  cursor:pointer;transition:.18s;white-space:nowrap}
+.tab[aria-selected="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(232,99,158,.35)}
+.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+main{padding:18px 16px 0;max-width:900px;margin:0 auto}
+.panel{display:none}
+.panel.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{background:var(--cream);border:1px solid rgba(201,162,39,.3);border-radius:var(--radius);
+  padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+h2{font-family:'Fraunces',serif;font-size:21px;margin:0 0 6px;font-weight:600}
+h3{font-family:'Fraunces',serif;font-size:16px;margin:0 0 8px;font-weight:600}
+p.note{font-size:13.5px;line-height:1.55;color:var(--plum-soft);margin:0 0 10px}
+.flag{background:linear-gradient(135deg,#FFF0F5,#FFE6EF);border:1.5px solid var(--rose);
+  border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:16px;font-weight:500}
+
+.kids{display:flex;flex-wrap:wrap;gap:8px}
+.kid{font-weight:600;font-size:13px;padding:9px 15px;border-radius:999px;font-family:'Inter';
+  border:1.5px solid var(--petal);background:#fff;color:var(--plum-soft);cursor:pointer;transition:.18s}
+.kid[aria-pressed="true"]{background:var(--plum);color:#FFE9F3;border-color:var(--plum)}
+.kid:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.row{margin-bottom:18px}
+.rowhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;gap:10px}
+.rowhead .lbl{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.rowhead .hint{font-size:11px;color:var(--plum-soft)}
+.blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.block{position:relative;overflow:hidden;border:1.5px solid rgba(232,99,158,.28);border-radius:14px;
+  background:#fff;padding:12px 8px;min-height:64px;font-family:'Inter';
+  font-size:12px;font-weight:500;line-height:1.3;color:var(--plum);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  cursor:pointer;transition:transform .15s,box-shadow .18s,border-color .18s}
+.block:active{transform:scale(.95)}
+.block:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.block[aria-pressed="true"]{border-color:var(--gold);font-weight:700;box-shadow:0 6px 18px rgba(232,99,158,.28)}
+.block[aria-pressed="true"]::before{content:"";position:absolute;inset:0;z-index:0;opacity:.85;
+  background:linear-gradient(100deg,#FFD4E9,#F5D9FF,#FFE9CF,#D9F0FF,#FFD4E9);
+  background-size:200% 100%;animation:sweep 6s linear infinite}
+.block span{position:relative;z-index:1}
+.block .x{position:absolute;top:2px;right:4px;z-index:2;font-size:14px;line-height:1;
+  color:var(--plum-soft);opacity:.45;padding:2px 4px;border-radius:6px}
+.addblock{border:1.5px dashed rgba(201,162,39,.6);background:transparent;color:var(--gold);font-weight:700;font-size:19px}
+
+.tray{border:2px solid var(--gold);border-radius:var(--radius);background:linear-gradient(#fff,#FFF6FA);
+  padding:14px;box-shadow:0 12px 34px rgba(115,40,80,.16)}
+.traygrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px}
+.slot{border:1.5px dashed rgba(232,99,158,.4);border-radius:12px;padding:10px;min-height:58px;background:#fff}
+.slot.full{border-style:solid;border-color:var(--gold-lt);background:linear-gradient(135deg,#FFF9FC,#FFF3F8)}
+.slot .k{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.slot .v{font-size:13px;font-weight:600;margin-top:3px;line-height:1.25}
+.slot .v.empty{color:#C8A9B8;font-weight:400;font-style:italic}
+.slot.wide{grid-column:1/-1}
+
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:13px;font-family:'Inter';
+  font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;
+  cursor:pointer;box-shadow:0 6px 18px rgba(232,99,158,.36)}
+.btn.ghost{background:#fff;color:var(--plum-soft);border:1.5px solid var(--petal);box-shadow:none;font-weight:600}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btnrow{display:flex;gap:8px;margin-top:10px}
+.btnrow .btn{flex:1}
+select{width:100%;padding:12px;border-radius:12px;border:1.5px solid var(--petal);background:#fff;
+  font-family:'Inter';font-size:14px;font-weight:600;color:var(--plum);margin-top:8px}
+
+.weekwrap{overflow-x:auto;scrollbar-width:none}
+.weekwrap::-webkit-scrollbar{display:none}
+table{border-collapse:separate;border-spacing:6px;width:100%;min-width:540px}
+th{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;padding:4px;text-align:center}
+th.rowlbl,td.rowlbl{text-align:left;font-family:'Fraunces',serif;font-size:13.5px;font-weight:600;
+  color:var(--plum);white-space:nowrap;padding-right:6px;letter-spacing:0;text-transform:none}
+td{background:#fff;border:1.5px solid rgba(232,99,158,.22);border-radius:12px;padding:8px;
+  font-size:11.5px;line-height:1.35;vertical-align:top;min-width:96px;cursor:pointer;transition:.15s}
+td.filled{border-color:var(--gold-lt);background:linear-gradient(135deg,#FFF9FC,#FFF2F8);font-weight:600}
+td.empty{color:#CFAFC0;font-style:italic}
+td.locked{background:#FBF3F7;cursor:default;color:var(--plum-soft);font-style:normal;font-size:12px}
+
+.rot{border:1.5px solid rgba(232,99,158,.25);border-radius:14px;background:#fff;padding:12px;margin-bottom:8px}
+.rot .d{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.rot .m{font-family:'Fraunces',serif;font-size:15px;font-weight:600;margin:3px 0 4px}
+.rot .rest{font-size:12.5px;color:var(--plum-soft);line-height:1.5}
+.rot button{margin-top:9px;border:1.5px solid var(--petal);background:#FFF6FA;color:var(--plum-soft);
+  font-family:'Inter';font-weight:700;font-size:12px;padding:8px 14px;border-radius:999px;cursor:pointer}
+.rot button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.store{margin-bottom:16px}
+.pill{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#fff}
+.pill.sams{background:#2B6CB0}.pill.aldi{background:#4A8C5F}.pill.wm{background:#D08A2E}
+.itm{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid rgba(232,99,158,.16);font-size:13.5px;cursor:pointer}
+.itm:last-child{border-bottom:none}
+.box{width:20px;height:20px;flex:0 0 20px;border-radius:6px;border:1.8px solid var(--petal);
+  background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+.itm.done .box{background:var(--rose);border-color:var(--rose)}
+.itm.done .txt{text-decoration:line-through;color:#C8A9B8}
+.empty-state{text-align:center;padding:26px 16px;color:var(--plum-soft);font-size:13.5px;line-height:1.6}
+ul.rules{margin:6px 0 0;padding-left:18px}
+ul.rules li{font-size:13px;line-height:1.65;color:var(--plum-soft)}
+footer{text-align:center;padding:22px 16px 10px;font-family:'Pinyon Script',cursive;font-size:19px;color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--plum);color:#FFE9F3;
+  padding:12px 22px;border-radius:999px;font-size:13px;font-weight:600;z-index:60;opacity:0;transition:.3s;
+  pointer-events:none;box-shadow:0 8px 24px rgba(74,35,56,.35)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- iPad ---------- */
+@media (min-width:820px){
+  body{font-size:17px}
+  main{max-width:1040px;padding:26px 28px 0}
+  header{padding:38px 24px 30px}
+  h1{font-size:56px}
+  .tag{font-size:26px}
+  .crown{font-size:32px}
+  nav{padding:14px 24px;gap:9px}
+  .tab{font-size:15px;padding:13px 22px;min-width:auto}
+  .card{padding:24px;border-radius:26px;margin-bottom:20px}
+  h2{font-size:26px}
+  h3{font-size:19px}
+  p.note{font-size:15px;line-height:1.6}
+  .eyebrow{font-size:12px}
+  .flag{font-size:14.5px;padding:16px 18px}
+  ul.tips li{font-size:14.5px}
+  footer{font-size:24px}
+}
+@media (min-width:1024px){
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+}
+
+@media (min-width:820px){
+  .blocks{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:11px}
+  .block{font-size:14px;min-height:78px;padding:15px 10px;border-radius:17px}
+  .kid{font-size:15px;padding:12px 20px}
+  .traygrid{grid-template-columns:repeat(3,1fr);gap:11px}
+  .slot{padding:14px;min-height:74px}
+  .slot .v{font-size:15px}
+  .slot.wide{grid-column:span 3}
+  .btn{font-size:16px;padding:16px}
+  select{font-size:16px;padding:15px}
+  td,th{font-size:13.5px}
+  .rot{padding:16px;border-radius:17px}
+  .rot .m{font-size:18px}
+  .rot .rest{font-size:14px}
+  .rot button{font-size:14px;padding:11px 20px}
+  .itm{font-size:15px;padding:13px 6px}
+  .box{width:24px;height:24px;flex-basis:24px}
+}
+
+
+
+
+
+
+
+/* deep mode — softened dusk palette */
+body.deep{
+  --blush:#493242;--petal:#7C5D6D;--rose:#F492BF;
+  --plum:#FDF1F7;--plum-soft:#E7D2DE;
+  --gold:#EFD08E;--gold-lt:#A98A4E;--cream:#57404E;
+  --win:#7FD3A9;--win-lt:#3E5C4E;
+  --good:#7FD3A9;--low:#EFD08E;--out:#FF93A8;
+  --need:#DDA6BF;--ordered:#EFD08E;--have:#7FD3A9;
+  --warn:#FF9AAE;--ok:#7FD3A9;
+  --shadow:0 10px 30px rgba(28,12,20,.34);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#5E3D53 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#4C3E66 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#5C4840 0%,transparent 60%),
+    #493242;
+}
+body.deep header::before{background:linear-gradient(100deg,rgba(122,72,100,.9),rgba(100,78,126,.82),rgba(128,101,70,.86),rgba(122,72,100,.9));background-size:200% 100%}
+body.deep nav,body.deep .fsbar,body.deep .chrome{background:rgba(73,50,66,.95)}
+body.deep .block,body.deep .kid,body.deep .tab,body.deep .fsbtn,body.deep .cbtn,body.deep .btn.ghost,
+body.deep .sz,body.deep .zone,body.deep .shelf,body.deep .rot,body.deep .clock,
+body.deep .track,body.deep .kidcard,body.deep .jlink,body.deep .pitem,body.deep .pk,body.deep .pk2,
+body.deep .cell,body.deep select,body.deep td,body.deep .itools button,body.deep .tools button,
+body.deep .box,body.deep .bx,body.deep .add,body.deep .del,body.deep .addrow,
+body.deep .unknown,body.deep .sz.colr,body.deep .fld,body.deep .fld.crit,body.deep .shelf.star,
+body.deep td.filled,body.deep td.locked,body.deep .slot,body.deep .slot.full,body.deep .recipe,
+body.deep .track[aria-pressed="true"],body.deep .pk.crit,body.deep .note,body.deep .lnk,
+body.deep .tile,body.deep .tick.hot,body.deep .who,body.deep .sheet,body.deep .sprint,
+body.deep .qin,body.deep .pin input,body.deep .fld input,body.deep .fld textarea,
+body.deep .sname,body.deep .ptxt,body.deep .iname,body.deep .sz input,body.deep .dt,
+body.deep .tray,body.deep .buy,body.deep .win-row,body.deep .jump,body.deep .hero,body.deep .countdown,
+body.deep .select,body.deep .rtab{background-color:#5C4453;color:var(--plum)}
+body.deep .tick:nth-child(odd){background-color:#614859}
+body.deep .cell.win,body.deep .pk.on,body.deep .pk.crit.on{background-color:#3E5C4E}
+body.deep .item.done .box,body.deep .pk.on .bx,body.deep .itm.done .box{background-color:var(--rose);border-color:var(--rose)}
+body.deep .flag{background:linear-gradient(135deg,#5E3E4E,#6B4459)}
+body.deep .flag.gold{background:linear-gradient(135deg,#5A4B33,#67573B)}
+body.deep .flag.warn{background:linear-gradient(135deg,#63404B,#734857)}
+body.deep .card{background-color:var(--cream)}
+body.deep .bar{background:#6B5062}
+body.deep .tile,body.deep .lnk,body.deep .jlink,body.deep .note,body.deep .sheet{border-color:#836374}
+body.deep .who{border-color:#8E6B7E}
+body.deep .tick.hot .tm{color:#FF9AAE}
+body.deep .fld.crit,body.deep .pk.crit{border-color:#FF9AAE}
+body.deep .fld.crit label{color:#FF9AAE}
+body.deep .tab[aria-selected="true"],body.deep .rtab[aria-selected="true"],
+body.deep .kid[aria-pressed="true"],body.deep .fsbtn[aria-pressed="true"],
+body.deep .cbtn[aria-pressed="true"],body.deep .pk2[aria-pressed="true"]{
+  background:linear-gradient(135deg,var(--rose),#D67AA4);color:#3A2431}
+body.deep .kid[aria-pressed="true"]{background:var(--rose)}
+body.deep .block[aria-pressed="true"],body.deep .block[aria-pressed="true"] span{color:#3A2431}
+body.deep .toast{background:#2E1E29;color:#FDF1F7}
+body.deep input::placeholder,body.deep textarea::placeholder{color:#B396A6}
+body.deep .empty-state,body.deep .na,body.deep .hint,body.deep .iunit{color:#D8BECD}
+body.deep .stamp.est{color:#EFD08E}
+body.deep .prow{border-bottom-color:#6E5364}
+body.deep .tick{border-color:#9B7488}
+body.deep .sprint{background-color:#5A4B33;color:#EFD08E}
+
+@media print{.chrome,nav,.fsbar,aside{display:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="sparkle" style="top:14px;left:9%">✦</span>
+  <span class="sparkle" style="top:52px;left:22%;animation-delay:.7s">✧</span>
+  <span class="sparkle" style="top:22px;right:14%;animation-delay:1.3s">✦</span>
+  <span class="sparkle" style="top:66px;right:26%;animation-delay:2.1s">✧</span>
+  <div class="crown">♛</div>
+  <h1>Lunchbox Lab</h1>
+  <p class="tag">pack it once, pack it right</p>
+</header>
+<div class="chrome">
+  <span class="lb">Text</span>
+  <button class="cbtn cA" data-fsize="fsA" aria-pressed="false">A</button>
+  <button class="cbtn cB" data-fsize="fsB" aria-pressed="true">A</button>
+  <button class="cbtn cC" data-fsize="fsC" aria-pressed="false">A</button>
+  <button class="cbtn mode" id="modeBtn">☽ Deep</button>
+</div>
+
+
+<nav role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="build">Build</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="week">Week</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="rotation">Rotation</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="line">Assembly Line</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="shop">Shop</button>
+</nav>
+
+<main>
+
+<section class="panel on" id="build">
+  <div class="flag">🥜 <strong>No peanut butter, ever.</strong> Read wrappers for "may contain peanuts" — granola bars and baked goods are the sneaky ones.</div>
+
+  <div class="card">
+    <p class="eyebrow">Step 1 — whose box</p>
+    <div class="kids" id="kids"></div>
+    <p class="note" style="margin:10px 0 0">Jaylani and Jeovane don't pack. Jeovane needs a filled water bottle every day — that lives in the routine, not here.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Step 2 — tap to fill it</p>
+    <p class="note">One pick per row, tap again to clear. Hit <strong>+</strong> to add anything the kids actually eat that I missed.</p>
+    <div id="rows"></div>
+  </div>
+
+  <div class="card tray">
+    <p class="eyebrow">The box</p>
+    <div class="traygrid" id="tray"></div>
+    <select id="day">
+      <option value="Mon">Monday</option><option value="Tue">Tuesday</option>
+      <option value="Wed">Wednesday</option><option value="Thu">Thursday</option><option value="Fri">Friday</option>
+    </select>
+    <div class="btnrow">
+      <button class="btn ghost" id="clear">Clear picks</button>
+      <button class="btn" id="save">Save to day</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">The anti-soggy rules</p>
+    <ul class="rules">
+      <li>Sauces and dips in their own container — never on the sandwich</li>
+      <li>Wet things (tomato, lettuce) go between the meat and cheese, never touching bread</li>
+      <li>Condiments between the meat layers, not spread on the bread</li>
+      <li>Crackers packed separately from anything soft</li>
+      <li>Ice pack every day — keeps it fresh and stops warmth sogginess</li>
+      <li>Build sandwiches the night before, they hold better than morning assembly</li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" id="week">
+  <div class="card">
+    <p class="eyebrow">This week</p>
+    <h2>Who's packing what</h2>
+    <p class="note">Tap a filled cell to clear it. Build a box on the first tab to fill one in.</p>
+    <div class="weekwrap"><table id="weektable"></table></div>
+    <div class="btnrow"><button class="btn ghost" id="wipe">Clear the whole week</button></div>
+  </div>
+</section>
+
+<section class="panel" id="rotation">
+  <div class="card">
+    <p class="eyebrow">Two weeks, no repeats</p>
+    <h2>The rotation</h2>
+    <p class="note">Your original rotation. Tap <strong>Load</strong> and it drops straight into the builder for whoever's selected — then save it to a day.</p>
+    <div id="rotBody"></div>
+  </div>
+</section>
+
+
+<section class="panel" id="line">
+  <div class="card">
+    <p class="eyebrow">Sunday · 30 minutes · three boxes × five days</p>
+    <h2>The assembly line</h2>
+    <p class="note">Fifteen lunches is not fifteen jobs — it's five stations you walk once. You are not making a lunch. You are running a line, and the difference is about forty minutes a week.</p>
+    <p class="note" style="color:var(--rose);font-weight:600">Never pack three complete boxes one at a time. Do all the sandwiches, then all the fruit, then all the crunch. One task, fifteen times.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Set the line up first</p>
+    <h2>Five stations, left to right</h2>
+    <ul class="rules">
+      <li><strong>1 · Bread and protein</strong> — loaf, deli meat, cheese, condiments, cutting board</li>
+      <li><strong>2 · Fruit</strong> — colander, knife, the lemon-water bowl for apples</li>
+      <li><strong>3 · Crunch and veg</strong> — crackers, snack bags, carrots, cucumbers</li>
+      <li><strong>4 · Treats and school snacks</strong> — straight from the pantry bins, already single-serve</li>
+      <li><strong>5 · Containers</strong> — every lidded container and snack bag, open and waiting</li>
+    </ul>
+    <p class="note" style="margin-top:10px">Empty containers get laid out <em>before</em> anything is made. An open container is a target; a stack of closed ones is another job.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Then walk it</p>
+    <h2>The run</h2>
+    <div class="rot"><div class="d">Step 1 · 8 minutes</div><div class="m">All fifteen sandwiches</div>
+      <div class="rest">Lay out fifteen slices of bread in rows. Meat down the whole row, then cheese down the whole row, then the top slice. Condiments <strong>between the meat layers</strong>, never on the bread. Wrap and stack.</div></div>
+    <div class="rot"><div class="d">Step 2 · 6 minutes</div><div class="m">All the fruit at once</div>
+      <div class="rest">Wash everything in one go. Grapes into fifteen bags. Apples sliced into lemon water, then bagged. Berries into containers. This is the step people skip and then buy pre-cut for triple the price.</div></div>
+    <div class="rot"><div class="d">Step 3 · 5 minutes</div><div class="m">Crunch and veg</div>
+      <div class="rest">Carrots and cucumbers cut once, portioned fifteen times. Crackers into snack bags — or straight from a single-serve pack if you bought them that way.</div></div>
+    <div class="rot"><div class="d">Step 4 · 3 minutes</div><div class="m">Treats and school snacks</div>
+      <div class="rest">Straight from the pantry bins. No portioning needed if you bought single-serve. Fifteen treats, fifteen school snacks, into the grab bin.</div></div>
+    <div class="rot"><div class="d">Step 5 · 5 minutes</div><div class="m">Load the grab-and-pack zone</div>
+      <div class="rest">Everything into one clear fridge bin, sorted by component — not by kid, not by day. Monday morning is a thirty-second grab.</div></div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">The point of all of it</p>
+    <h2>The grab-and-pack zone</h2>
+    <p class="note">One clear bin on the fridge shelf holding every component, plus the ice packs. In the morning each kid opens their lunchbox, takes <strong>one thing from each pile</strong>, and closes it.</p>
+    <p class="note"><strong>The kids pack their own boxes.</strong> That's the whole design. A seven-year-old can absolutely do this — she just can't build a sandwich at 7 a.m. You did the hard part on Sunday so they can do the easy part on Tuesday.</p>
+    <ul class="rules">
+      <li>Ice pack in every box, every day — non-negotiable in Florida</li>
+      <li>Sandwiches only hold two to three days. Build Monday–Wednesday on Sunday, Thursday and Friday on Wednesday night.</li>
+      <li>Anything from a thermos gets heated in the morning, not prepped Sunday</li>
+      <li>Fill the thermos with boiling water for two minutes first, dump it, <em>then</em> add the food — it holds heat until lunch</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">If Sunday gets away from you</p>
+    <h2>The ten-minute version</h2>
+    <p class="note">Sandwiches only. Everything else is already single-serve from the pantry bins, so the kids can build the rest of the box themselves in the morning. Ten minutes protects the week even when the full hour doesn't happen.</p>
+  </div>
+</section>
+
+<section class="panel" id="shop">
+  <div class="card">
+    <p class="eyebrow">Where to buy what</p>
+    <h2>Quick version</h2>
+    <p class="note"><strong>Sam's Club</strong> — anything individually packaged. Goldfish, Cheez-Its, fruit snacks, juice boxes, Capri Sun, pudding cups, deli turkey, cheese, tortillas.</p>
+    <p class="note"><strong>Aldi</strong> — fresh. Produce, bread, lunch meat, dairy. Cheapest weekly run.</p>
+    <p class="note"><strong>Walmart</strong> — Hawaiian rolls, specific brands, whatever the other two didn't have.</p>
+    <p class="note" style="color:var(--rose);font-weight:600">Full price comparison lives on the Store Compare page.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Your list</p>
+    <h2>Built from this week</h2>
+    <div id="list"></div>
+  </div>
+</section>
+
+</main>
+<footer>♛ J Empire</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const K='jempire_lunchbox_v2';
+const KIDS=['Juliusz','Jaliyah','Jazelli'];
+const DAYS=['Mon','Tue','Wed','Thu','Fri'];
+
+const DEFAULTS={
+ main:['Turkey on Hawaiian roll','Turkey on sliced bread','Turkey & cheese pinwheels','Turkey & provolone croissant','Ham & muenster roll-up','Ham & cheese sliders','DIY Lunchable (crackers/turkey/cheese)','Cold cheese quesadilla strips','Chicken quesadilla strips','Cold chicken strips','Chicken nuggets (thermos)','Mac & cheese (thermos)','Mozzarella sticks (thermos)','Pasta salad cup','Buttered noodles (thermos)','Bagel & cream cheese','Mini pizza bagels','Turkey & cheese kabobs','Cheese & cracker stackers','Egg salad on a roll','Grilled cheese (cut in strips)','Hot dog in a thermos'],
+ protein:['Mozzarella cheese stick','Provolone slices','Muenster cubes','Shredded mozzarella cup','Hard-boiled egg','Rolled turkey slices','Deli ham roll','Turkey & cheese roll bites','Ham & cheese cubes','Sunflower seeds','Edamame cup','Cottage-free cheese cubes','Babybel round','String cheese × 2','Leftover chicken bites'],
+ fruit:['Green apple slices','Grapes','Strawberries','Blueberries','Raspberries','Blackberries','Mandarin cup','Clementine','Watermelon cubes','Cantaloupe cubes','Honeydew cubes','Banana','Peach cup','Pear slices','Mixed berry cup','Mango chunks','Applesauce pouch','Fruit cup in juice','Raisins','Dried cranberries','Freeze-dried strawberries','Grape & cheese skewer'],
+ crunch:['Goldfish','Ritz crackers','Pretzels','Cheez-Its','Wheat Thins','Townhouse crackers','Club crackers','Saltines','Popcorn bag','Skinny Pop','Pirate\u2019s Booty','Veggie straws','Sun Chips','Baked Lays','Doritos snack bag','Cheetos snack bag','Bunny crackers','Graham crackers','Baby carrots + ranch','Cucumber rounds','Celery + cream cheese','Cherry tomatoes','Snap pea crisps','Bell pepper strips','Pickle spears','Sugar snap peas'],
+ sweet:['Rice Krispies treat','Welch\u2019s fruit snacks','Gummy bears','Fruit roll-up','Fruit by the Foot','Mini Oreos','Chips Ahoy pack','Teddy Grahams','Animal crackers','Nutter-free granola bar','Nutri-Grain bar','Zbar','Brownie bite','Mini muffin pack','Pudding cup','Jello cup','Cosmic brownie','Little Debbie cake','Marshmallow treat','Chocolate chip cookies','Mini vanilla wafers','Yogurt-free fruit strip'],
+ drink:['Capri Sun','Juice box (100% juice)','Mini water bottle','Water in their color bottle','Gatorade bottle','Mini Gatorade','Powerade','Chocolate milk box','Horizon milk box','Vanilla milk box','Lemonade pouch','Fruit punch pouch','Sparkling water','Propel','Apple juice box','Orange juice box'],
+ snack:['Goldfish pack','Cheez-It pack','Pretzel bag','Ritz pack','Bunny crackers','Graham crackers','Animal crackers','Popcorn bag','Skinny Pop','Pirate\u2019s Booty','Veggie straws','Sun Chips','Baked Lays','Doritos snack bag','Cheetos snack bag','Welch\u2019s fruit snacks','Gummy pack','Fruit roll-up','Nutri-Grain bar','Zbar','Granola bar','Rice Krispies treat','Teddy Grahams','Mini muffin pack','Applesauce pouch','Fruit cup in juice','Mandarin cup','Green apple','Banana','Clementine','Grapes cup','Mozzarella cheese stick','String cheese','Babybel round','Crackers & cheese kit','Raisin box','Trail mix (peanut-free)','Pudding cup','Jello cup','Mini vanilla wafers']
+};
+const LABELS={main:'Main',protein:'Protein / cheese',fruit:'Fruit',crunch:'Crunch / veggie',sweet:'Treat',drink:'Drink',snack:'School snack'};
+const CATS=Object.keys(DEFAULTS);
+
+const ROTATION=[
+ {d:'Mon · Week 1',main:'Turkey on Hawaiian roll',fruit:'Grapes',crunch:'Baby carrots + ranch',sweet:'Welch\u2019s fruit snacks',drink:'Juice box (100% juice)',snack:'Goldfish pack'},
+ {d:'Tue · Week 1',main:'Turkey & cheese pinwheels',fruit:'Strawberries',crunch:'Pretzels',sweet:'Pudding cup',drink:'Capri Sun',snack:'Welch’s fruit snacks'},
+ {d:'Wed · Week 1',main:'DIY Lunchable (crackers/turkey/cheese)',fruit:'Green apple slices',crunch:'Goldfish',sweet:'Mini Oreos',drink:'Juice box (100% juice)',snack:'Pretzel bag'},
+ {d:'Thu · Week 1',main:'Turkey & provolone croissant',fruit:'Blueberries',crunch:'Cucumber rounds',sweet:'Fruit roll-up',drink:'Chocolate milk box',snack:'Mozzarella cheese stick'},
+ {d:'Fri · Week 1',main:'Ham & muenster roll-up',fruit:'Mandarin cup',crunch:'Veggie straws',sweet:'Gummy bears',drink:'Juice box (100% juice)',snack:'Cheez-It pack'},
+ {d:'Mon · Week 2',main:'Cold cheese quesadilla strips',fruit:'Watermelon cubes',crunch:'Snap pea crisps',sweet:'Rice Krispies treat',drink:'Capri Sun',snack:'Granola bar'},
+ {d:'Tue · Week 2',main:'Turkey on sliced bread',fruit:'Grapes',crunch:'Cheez-Its',sweet:'Welch\u2019s fruit snacks',drink:'Juice box (100% juice)',snack:'Applesauce pouch'},
+ {d:'Wed · Week 2',main:'Cold chicken strips',fruit:'Strawberries',crunch:'Baby carrots + ranch',sweet:'Brownie bite',drink:'Horizon milk box',snack:'Popcorn bag'},
+ {d:'Thu · Week 2',main:'DIY Lunchable (crackers/turkey/cheese)',fruit:'Green apple slices',crunch:'Pretzels',sweet:'Pudding cup',drink:'Juice box (100% juice)',snack:'Bunny crackers'},
+ {d:'Fri · Week 2',main:'Turkey & cheese pinwheels',fruit:'Blueberries',crunch:'Goldfish',sweet:'Gummy bears',drink:'Capri Sun',snack:'Mandarin cup'}
+];
+
+const SAMS=['Goldfish','Cheez-Its','Welch\u2019s fruit snacks','Capri Sun','Juice box (100% juice)','Pretzels','Popcorn bag','Skinny Pop','Pirate\u2019s Booty','Veggie straws','Pudding cup','Rice Krispies treat','Mini Oreos','Teddy Grahams','Animal crackers','Nutri-Grain bar','Zbar','Gummy bears','Fruit roll-up','Fruit by the Foot','Mozzarella cheese stick','String cheese \u00d7 2','Babybel round','Mini water bottle','Gatorade bottle','Mini Gatorade','Chocolate milk box','Horizon milk box','Vanilla milk box','Apple juice box','Orange juice box','Chicken nuggets (thermos)','Bunny crackers','Graham crackers','Chips Ahoy pack','Applesauce pouch','Fruit cup in juice','Raisins','Sun Chips','Baked Lays','Doritos snack bag','Cheetos snack bag','Little Debbie cake','Cosmic brownie','Mini muffin pack','Jello cup','Turkey & cheese pinwheels','DIY Lunchable (crackers/turkey/cheese)','Ritz crackers','Wheat Thins','Townhouse crackers','Club crackers','Goldfish pack','Cheez-It pack','Pretzel bag','Ritz pack','Granola bar','Gummy pack','String cheese','Crackers & cheese kit','Raisin box','Trail mix (peanut-free)','Grapes cup'];
+const ALDI=['Green apple slices','Grapes','Strawberries','Blueberries','Raspberries','Blackberries','Mandarin cup','Clementine','Watermelon cubes','Cantaloupe cubes','Honeydew cubes','Banana','Peach cup','Pear slices','Mixed berry cup','Mango chunks','Baby carrots + ranch','Cucumber rounds','Celery + cream cheese','Cherry tomatoes','Bell pepper strips','Pickle spears','Sugar snap peas','Snap pea crisps','Rolled turkey slices','Deli ham roll','Provolone slices','Muenster cubes','Shredded mozzarella cup','Hard-boiled egg','Turkey on sliced bread','Ham & muenster roll-up','Cold cheese quesadilla strips','Chicken quesadilla strips','Cold chicken strips','Egg salad on a roll','Grilled cheese (cut in strips)','Buttered noodles (thermos)','Pasta salad cup','Mac & cheese (thermos)','Bagel & cream cheese','Ham & cheese cubes','Turkey & cheese roll bites','Leftover chicken bites','Saltines','Chocolate chip cookies','Mini vanilla wafers','Edamame cup','Lemonade pouch','Sparkling water','Green apple','Banana','Clementine'];
+const STORENAME={sams:"Sam's Club",aldi:'Aldi',wm:'Walmart'};
+function storeOf(f){return SAMS.includes(f)?'sams':ALDI.includes(f)?'aldi':'wm'}
+
+let S=load();
+function load(){try{const r=localStorage.getItem(K);if(r)return JSON.parse(r)}catch(e){}
+  return{kid:KIDS[0],picks:{},week:{},custom:{},checked:{}}}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast("Couldn't save — storage is off")}}
+function opts(c){return DEFAULTS[c].concat(S.custom[c]||[])}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById(b.dataset.p).classList.add('on');
+  if(b.dataset.p==='shop')drawList();
+  if(b.dataset.p==='week')drawWeek();
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+function drawKids(){
+  const w=document.getElementById('kids');w.innerHTML='';
+  KIDS.forEach(n=>{
+    const b=document.createElement('button');
+    b.className='kid';b.textContent=n;b.setAttribute('aria-pressed',S.kid===n);
+    b.onclick=()=>{S.kid=n;S.picks={};save();drawKids();drawRows();drawTray()};
+    w.appendChild(b);
+  });
+}
+function drawRows(){
+  const w=document.getElementById('rows');w.innerHTML='';
+  CATS.forEach(c=>{
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML=`<div class="rowhead"><span class="lbl">${LABELS[c]}</span><span class="hint">pick 1</span></div>`;
+    const g=document.createElement('div');g.className='blocks';
+    opts(c).forEach(f=>{
+      const b=document.createElement('button');
+      b.className='block';b.setAttribute('aria-pressed',S.picks[c]===f);
+      b.innerHTML=`<span>${esc(f)}</span>`;
+      b.onclick=e=>{if(e.target.classList.contains('x'))return;
+        S.picks[c]=(S.picks[c]===f)?null:f;save();drawRows();drawTray()};
+      if((S.custom[c]||[]).includes(f)){
+        const x=document.createElement('span');x.className='x';x.textContent='×';
+        x.onclick=ev=>{ev.stopPropagation();S.custom[c]=S.custom[c].filter(v=>v!==f);
+          if(S.picks[c]===f)S.picks[c]=null;save();drawRows();drawTray()};
+        b.appendChild(x);
+      }
+      g.appendChild(b);
+    });
+    const add=document.createElement('button');
+    add.className='block addblock';add.innerHTML='<span>+</span>';
+    add.setAttribute('aria-label','Add a '+LABELS[c]+' option');
+    add.onclick=()=>{const v=prompt('Add a '+LABELS[c].toLowerCase()+' option:');
+      if(v&&v.trim()){(S.custom[c]=S.custom[c]||[]).push(v.trim());save();drawRows();toast('Added')}};
+    g.appendChild(add);row.appendChild(g);w.appendChild(row);
+  });
+}
+function drawTray(){
+  const w=document.getElementById('tray');w.innerHTML='';
+  CATS.forEach(c=>{
+    const v=S.picks[c];
+    const d=document.createElement('div');
+    d.className='slot'+(v?' full':'')+(c==='main'||c==='snack'?' wide':'');
+    d.innerHTML=`<div class="k">${LABELS[c]}</div><div class="v${v?'':' empty'}">${v?esc(v):'—'}</div>`;
+    w.appendChild(d);
+  });
+}
+document.getElementById('save').onclick=()=>{
+  if(!Object.values(S.picks).some(Boolean))return toast('Pick something first');
+  const d=document.getElementById('day').value;
+  S.week[S.kid+'|'+d]={...S.picks};save();toast(S.kid+' — '+d+' is set');
+};
+document.getElementById('clear').onclick=()=>{S.picks={};save();drawRows();drawTray()};
+document.getElementById('wipe').onclick=()=>{
+  if(confirm('Clear every box for the week?')){S.week={};S.checked={};save();drawWeek();toast('Week cleared')}};
+
+function drawWeek(){
+  const t=document.getElementById('weektable');
+  let h='<tr><th class="rowlbl"></th>'+DAYS.map(d=>`<th>${d}</th>`).join('')+'</tr>';
+  KIDS.forEach(n=>{
+    h+=`<tr><td class="rowlbl">${n}</td>`;
+    DAYS.forEach(d=>{
+      const b=S.week[n+'|'+d];
+      if(b){const txt=CATS.map(c=>b[c]).filter(Boolean).map(esc).join(' · ');
+        h+=`<td class="filled" data-k="${n}|${d}">${txt}</td>`}
+      else h+='<td class="empty">empty</td>';
+    });
+    h+='</tr>';
+  });
+  h+='<tr><td class="rowlbl">Jeovane</td><td class="locked" colspan="5">School lunch — water bottle only</td></tr>';
+  h+='<tr><td class="rowlbl">Jaylani</td><td class="locked" colspan="5">Handles her own</td></tr>';
+  t.innerHTML=h;
+  t.querySelectorAll('td[data-k]').forEach(td=>td.onclick=()=>{
+    if(confirm('Clear this box?')){delete S.week[td.dataset.k];save();drawWeek()}});
+}
+
+function drawRotation(){
+  document.getElementById('rotBody').innerHTML=ROTATION.map((r,i)=>`
+    <div class="rot">
+      <div class="d">${r.d}</div>
+      <div class="m">${esc(r.main)}</div>
+      <div class="rest">${esc(r.fruit)} · ${esc(r.crunch)} · ${esc(r.sweet)} · ${esc(r.drink)}<br><span style="color:var(--rose);font-weight:600">snack: ${esc(r.snack)}</span></div>
+      <button data-load="${i}">Load into builder</button>
+    </div>`).join('');
+  document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{
+    const r=ROTATION[b.dataset.load];
+    S.picks={main:r.main,protein:null,fruit:r.fruit,crunch:r.crunch,sweet:r.sweet,drink:r.drink,snack:r.snack};
+    save();drawRows();drawTray();
+    document.querySelector('.tab[data-p="build"]').click();
+    toast('Loaded for '+S.kid);
+  });
+}
+
+function drawList(){
+  const w=document.getElementById('list');
+  const count={};
+  Object.values(S.week).forEach(b=>CATS.forEach(c=>{const f=b[c];if(f)count[f]=(count[f]||0)+1}));
+  const items=Object.keys(count);
+  if(!items.length){w.innerHTML='<div class="empty-state">Nothing here yet.<br>Build a few boxes and save them to days — the list fills itself in.</div>';return}
+  const groups={sams:[],aldi:[],wm:[]};
+  items.forEach(f=>groups[storeOf(f)].push(f));
+  let h='';
+  ['sams','aldi','wm'].forEach(g=>{
+    if(!groups[g].length)return;
+    h+=`<div class="store"><div style="margin-bottom:4px"><span class="pill ${g}">${STORENAME[g]}</span></div>`;
+    groups[g].sort().forEach(f=>{
+      const on=S.checked[f];
+      h+=`<div class="itm${on?' done':''}" data-f="${esc(f)}"><div class="box">${on?'✓':''}</div>
+        <div class="txt">${esc(f)} <span style="color:var(--gold);font-weight:700">×${count[f]}</span></div></div>`;
+    });
+    h+='</div>';
+  });
+  w.innerHTML=h;
+  w.querySelectorAll('.itm').forEach(el=>el.onclick=()=>{
+    const f=el.dataset.f;S.checked[f]=!S.checked[f];save();drawList()});
+}
+
+drawKids();drawRows();drawTray();drawWeek();drawRotation();
+
+/* ---- shared chrome: text size + deep mode ---- */
+(function(){
+  var SK='jempire_hub_size',DK='jempire_hub_deep';
+  function setSize(c){
+    document.body.classList.remove('fsA','fsB','fsC');
+    document.body.classList.add(c);
+    document.querySelectorAll('[data-fsize]').forEach(function(b){
+      b.setAttribute('aria-pressed',b.dataset.fsize===c);});
+    try{localStorage.setItem(SK,c)}catch(e){}
+  }
+  function setDeep(on){
+    document.body.classList.toggle('deep',on);
+    var b=document.getElementById('modeBtn');
+    if(b)b.innerHTML=on?'\u2600 Light':'\u263D Deep';
+    try{localStorage.setItem(DK,on?'1':'0')}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var s=e.target.closest('[data-fsize]');
+    if(s){setSize(s.dataset.fsize);return}
+    var m=e.target.closest('#modeBtn');
+    if(m){setDeep(!document.body.classList.contains('deep'))}
+  });
+  var sz='fsB',dp=false;
+  try{sz=localStorage.getItem(SK)||'fsB';dp=localStorage.getItem(DK)==='1'}catch(e){}
+  setSize(sz);setDeep(dp);
+})();
+
+</script>
+</body>
+</html>

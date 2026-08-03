@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Store Compare — Back to School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#FFF2F7;--petal:#F7C3DC;--rose:#E8639E;
+  --plum:#4A2338;--plum-soft:#7A4C63;
+  --gold:#C9A227;--gold-lt:#EBD08A;--cream:#FFFBF6;
+  --win:#4E9E77;--win-lt:#DFF3E9;
+  --shadow:0 10px 30px rgba(115,40,80,.13);--radius:20px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--plum);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#FFE7F3 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#F3E6FF 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#FFF0E2 0%,transparent 60%),
+    var(--blush);
+  min-height:100vh;padding-bottom:80px}
+@keyframes sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@media (prefers-reduced-motion:reduce){header::before,.cell.win::before{animation:none}.sparkle,.cell.win .spk{display:none}*{transition:none!important}}
+
+header{position:relative;overflow:hidden;padding:26px 20px 20px;text-align:center;border-bottom:1px solid rgba(201,162,39,.28)}
+header::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(255,212,233,.85),rgba(245,217,255,.7),rgba(255,233,207,.8),rgba(255,212,233,.85));
+  background-size:200% 100%;animation:sweep 12s linear infinite}
+header>*{position:relative;z-index:1}
+.sparkle{position:absolute;z-index:1;font-size:11px;color:#fff;text-shadow:0 0 8px #F7C3DC;animation:twinkle 3.4s ease-in-out infinite}
+.crown{font-size:24px;letter-spacing:.14em;color:var(--gold)}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,8vw,42px);margin:2px 0 4px;letter-spacing:-.02em;line-height:1.05}
+.tag{font-family:'Pinyon Script',cursive;font-size:20px;color:var(--rose);margin:0}
+
+nav{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:10px 12px;
+  background:rgba(255,247,251,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,162,39,.25);overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;min-width:88px;font-weight:600;font-size:13px;padding:10px 14px;font-family:'Inter';
+  border:1px solid rgba(232,99,158,.3);border-radius:999px;background:#fff;color:var(--plum-soft);cursor:pointer;transition:.18s;white-space:nowrap}
+.tab[aria-selected="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(232,99,158,.35)}
+.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+main{padding:18px 16px 0;max-width:900px;margin:0 auto}
+.panel{display:none}
+.panel.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{background:var(--cream);border:1px solid rgba(201,162,39,.3);border-radius:var(--radius);
+  padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+h2{font-family:'Fraunces',serif;font-size:21px;margin:0 0 6px;font-weight:600}
+h3{font-family:'Fraunces',serif;font-size:16px;margin:0 0 6px;font-weight:600}
+p.note{font-size:13.5px;line-height:1.55;color:var(--plum-soft);margin:0 0 10px}
+p.note strong{color:var(--plum)}
+.flag{background:linear-gradient(135deg,#FFF0F5,#FFE6EF);border:1.5px solid var(--rose);
+  border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:16px;font-weight:500}
+
+/* item block */
+.pitem{background:#fff;border:1.5px solid rgba(232,99,158,.22);border-radius:16px;padding:13px;margin-bottom:11px}
+.ihead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:3px}
+.iname{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;line-height:1.25;
+  border:none;background:transparent;color:var(--plum);width:100%;padding:3px 6px;
+  border-radius:8px;outline:none;border-bottom:1.5px dashed transparent}
+.iname:hover,.iname:focus{background:#FFF6FA;border-bottom-color:var(--petal)}
+.iunit{font-size:11px;color:var(--plum-soft);margin-top:1px;display:flex;align-items:center;gap:4px;padding-left:6px;flex-wrap:wrap}
+.iunit input{border:none;background:transparent;font-family:'Inter';font-size:11px;color:var(--rose);
+  font-weight:700;width:52px;padding:3px 5px;border-radius:6px;outline:none;border-bottom:1.5px dashed var(--petal)}
+.iunit input:focus{background:#FFF6FA}
+.itools{flex:0 0 auto;display:flex;gap:4px}
+.itools button{border:1.5px solid var(--petal);background:#fff;cursor:pointer;font-size:16px;
+  width:44px;height:44px;border-radius:12px;color:var(--plum-soft);line-height:1;
+  display:flex;align-items:center;justify-content:center}
+.itools button:active{background:#FFEFF6}
+.itools button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.cells{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}
+.cell{position:relative;overflow:hidden;border:1.5px solid rgba(232,99,158,.22);border-radius:13px;padding:9px 7px;background:#FFFDFE;text-align:center}
+.cell.win{border-color:var(--win);background:var(--win-lt)}
+.cell.win::before{content:"";position:absolute;inset:0;z-index:0;opacity:.45;
+  background:linear-gradient(100deg,#DFF3E9,#FFF3D9,#E4F7EE,#FFE9F3,#DFF3E9);
+  background-size:200% 100%;animation:shimmer 5s linear infinite}
+.cell>*{position:relative;z-index:1}
+.cell .spk{position:absolute;z-index:2;font-size:9px;color:#fff;text-shadow:0 0 6px var(--win);animation:twinkle 2.6s ease-in-out infinite}
+.cell .sn{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--plum-soft);margin-bottom:4px}
+.cell.win .sn{color:var(--win)}
+.pin{display:flex;align-items:center;justify-content:center;gap:1px}
+.pin span{font-size:12px;color:var(--plum-soft);font-weight:600}
+.pin input{width:56px;border:none;outline:none;background:transparent;text-align:center;
+  font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--plum);padding:1px 0}
+.pin input::placeholder{color:#CFB6C4;font-weight:400;font-size:13px;font-family:'Inter'}
+.qin{width:100%;border:none;outline:none;background:transparent;text-align:center;margin-top:3px;
+  font-family:'Inter';font-size:10.5px;color:var(--plum-soft);font-weight:600}
+.qin::placeholder{color:#D6BECB;font-weight:400}
+.per{font-size:10px;font-weight:700;color:var(--win);margin-top:4px;min-height:12px}
+.cell:not(.win) .per{color:var(--plum-soft);opacity:.7}
+.na{font-size:10px;color:#C0A5B2;font-style:italic;margin-top:4px}
+
+.verdict{display:flex;align-items:center;gap:7px;margin-top:9px;padding-top:9px;border-top:1px dashed rgba(232,99,158,.25)}
+.verdict .v{font-size:12.5px;font-weight:700;color:var(--win);flex:1}
+.verdict .v.none{color:var(--plum-soft);font-weight:500;font-style:italic}
+.stamp{font-size:10px;color:var(--plum-soft);opacity:.75;white-space:nowrap}
+.stamp.est{color:var(--gold);font-weight:700}
+
+.add{width:100%;margin-top:8px;border:1.5px dashed rgba(201,162,39,.6);background:transparent;color:var(--gold);
+  font-family:'Inter';font-weight:700;font-size:13px;padding:11px;border-radius:12px;cursor:pointer}
+.add:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:13px;font-family:'Inter';font-size:14px;font-weight:700;
+  background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;cursor:pointer;box-shadow:0 6px 18px rgba(232,99,158,.36)}
+.btn.ghost{background:#fff;color:var(--plum-soft);border:1.5px solid var(--petal);box-shadow:none;font-weight:600}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.win-row{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid rgba(232,99,158,.14)}
+.win-row:last-child{border-bottom:none}
+.win-row .c{flex:1;font-size:13.5px;font-weight:600}
+.win-row .s{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#fff;white-space:nowrap}
+.s.sams{background:#2B6CB0}.s.aldi{background:#4A8C5F}.s.wm{background:#D08A2E}
+.win-row .why{display:block;font-size:11.5px;color:var(--plum-soft);font-weight:400;margin-top:2px}
+
+ul.tips{margin:6px 0 0;padding-left:18px}
+ul.tips li{font-size:13px;line-height:1.7;color:var(--plum-soft);margin-bottom:3px}
+ul.tips li strong{color:var(--plum)}
+footer{text-align:center;padding:22px 16px 10px;font-family:'Pinyon Script',cursive;font-size:19px;color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--plum);color:#FFE9F3;
+  padding:12px 22px;border-radius:999px;font-size:13px;font-weight:600;z-index:60;opacity:0;transition:.3s;
+  pointer-events:none;box-shadow:0 8px 24px rgba(74,35,56,.35)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- iPad ---------- */
+@media (min-width:820px){
+  body{font-size:17px}
+  main{max-width:1040px;padding:26px 28px 0}
+  header{padding:38px 24px 30px}
+  h1{font-size:56px}
+  .tag{font-size:26px}
+  .crown{font-size:32px}
+  nav{padding:14px 24px;gap:9px}
+  .tab{font-size:15px;padding:13px 22px;min-width:auto}
+  .card{padding:24px;border-radius:26px;margin-bottom:20px}
+  h2{font-size:26px}
+  h3{font-size:19px}
+  p.note{font-size:15px;line-height:1.6}
+  .eyebrow{font-size:12px}
+  .flag{font-size:14.5px;padding:16px 18px}
+  ul.tips li{font-size:14.5px}
+  footer{font-size:24px}
+}
+@media (min-width:1024px){
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+}
+
+@media (min-width:820px){
+  .pitem{padding:18px;border-radius:20px;margin-bottom:14px}
+  .iname{font-size:19px}
+  .iunit,.iunit input{font-size:13px}
+  .iunit input{width:64px}
+  .cells{gap:11px}
+  .cell{padding:13px 10px;border-radius:16px}
+  .cell .sn{font-size:11px;margin-bottom:6px}
+  .pin input{width:78px;font-size:21px}
+  .pin span{font-size:15px}
+  .qin{font-size:12.5px}
+  .per{font-size:12px}
+  .verdict .v{font-size:15px}
+  .stamp{font-size:12px}
+  .win-row{padding:13px 4px}
+  .win-row .c{font-size:15.5px}
+  .win-row .why{font-size:13px}
+  .win-row .s{font-size:12px;padding:6px 13px}
+  .itools button{width:48px;height:48px;font-size:18px}
+  .add,.btn{font-size:15px;padding:15px}
+}
+
+
+
+
+
+
+
+/* deep mode — softened dusk palette */
+body.deep{
+  --blush:#493242;--petal:#7C5D6D;--rose:#F492BF;
+  --plum:#FDF1F7;--plum-soft:#E7D2DE;
+  --gold:#EFD08E;--gold-lt:#A98A4E;--cream:#57404E;
+  --win:#7FD3A9;--win-lt:#3E5C4E;
+  --good:#7FD3A9;--low:#EFD08E;--out:#FF93A8;
+  --need:#DDA6BF;--ordered:#EFD08E;--have:#7FD3A9;
+  --warn:#FF9AAE;--ok:#7FD3A9;
+  --shadow:0 10px 30px rgba(28,12,20,.34);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#5E3D53 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#4C3E66 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#5C4840 0%,transparent 60%),
+    #493242;
+}
+body.deep header::before{background:linear-gradient(100deg,rgba(122,72,100,.9),rgba(100,78,126,.82),rgba(128,101,70,.86),rgba(122,72,100,.9));background-size:200% 100%}
+body.deep nav,body.deep .fsbar,body.deep .chrome{background:rgba(73,50,66,.95)}
+body.deep .block,body.deep .kid,body.deep .tab,body.deep .fsbtn,body.deep .cbtn,body.deep .btn.ghost,
+body.deep .sz,body.deep .zone,body.deep .shelf,body.deep .rot,body.deep .clock,
+body.deep .track,body.deep .kidcard,body.deep .jlink,body.deep .pitem,body.deep .pk,body.deep .pk2,
+body.deep .cell,body.deep select,body.deep td,body.deep .itools button,body.deep .tools button,
+body.deep .box,body.deep .bx,body.deep .add,body.deep .del,body.deep .addrow,
+body.deep .unknown,body.deep .sz.colr,body.deep .fld,body.deep .fld.crit,body.deep .shelf.star,
+body.deep td.filled,body.deep td.locked,body.deep .slot,body.deep .slot.full,body.deep .recipe,
+body.deep .track[aria-pressed="true"],body.deep .pk.crit,body.deep .note,body.deep .lnk,
+body.deep .tile,body.deep .tick.hot,body.deep .who,body.deep .sheet,body.deep .sprint,
+body.deep .qin,body.deep .pin input,body.deep .fld input,body.deep .fld textarea,
+body.deep .sname,body.deep .ptxt,body.deep .iname,body.deep .sz input,body.deep .dt,
+body.deep .tray,body.deep .buy,body.deep .win-row,body.deep .jump,body.deep .hero,body.deep .countdown,
+body.deep .select,body.deep .rtab{background-color:#5C4453;color:var(--plum)}
+body.deep .tick:nth-child(odd){background-color:#614859}
+body.deep .cell.win,body.deep .pk.on,body.deep .pk.crit.on{background-color:#3E5C4E}
+body.deep .item.done .box,body.deep .pk.on .bx,body.deep .itm.done .box{background-color:var(--rose);border-color:var(--rose)}
+body.deep .flag{background:linear-gradient(135deg,#5E3E4E,#6B4459)}
+body.deep .flag.gold{background:linear-gradient(135deg,#5A4B33,#67573B)}
+body.deep .flag.warn{background:linear-gradient(135deg,#63404B,#734857)}
+body.deep .card{background-color:var(--cream)}
+body.deep .bar{background:#6B5062}
+body.deep .tile,body.deep .lnk,body.deep .jlink,body.deep .note,body.deep .sheet{border-color:#836374}
+body.deep .who{border-color:#8E6B7E}
+body.deep .tick.hot .tm{color:#FF9AAE}
+body.deep .fld.crit,body.deep .pk.crit{border-color:#FF9AAE}
+body.deep .fld.crit label{color:#FF9AAE}
+body.deep .tab[aria-selected="true"],body.deep .rtab[aria-selected="true"],
+body.deep .kid[aria-pressed="true"],body.deep .fsbtn[aria-pressed="true"],
+body.deep .cbtn[aria-pressed="true"],body.deep .pk2[aria-pressed="true"]{
+  background:linear-gradient(135deg,var(--rose),#D67AA4);color:#3A2431}
+body.deep .kid[aria-pressed="true"]{background:var(--rose)}
+body.deep .block[aria-pressed="true"],body.deep .block[aria-pressed="true"] span{color:#3A2431}
+body.deep .toast{background:#2E1E29;color:#FDF1F7}
+body.deep input::placeholder,body.deep textarea::placeholder{color:#B396A6}
+body.deep .empty-state,body.deep .na,body.deep .hint,body.deep .iunit{color:#D8BECD}
+body.deep .stamp.est{color:#EFD08E}
+body.deep .prow{border-bottom-color:#6E5364}
+body.deep .tick{border-color:#9B7488}
+body.deep .sprint{background-color:#5A4B33;color:#EFD08E}
+
+@media print{.chrome,nav,.fsbar,aside{display:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="sparkle" style="top:14px;left:9%">✦</span>
+  <span class="sparkle" style="top:52px;left:22%;animation-delay:.7s">✧</span>
+  <span class="sparkle" style="top:22px;right:14%;animation-delay:1.3s">✦</span>
+  <span class="sparkle" style="top:66px;right:26%;animation-delay:2.1s">✧</span>
+  <div class="crown">♛</div>
+  <h1>Store Compare</h1>
+  <p class="tag">your prices, your winner</p>
+</header>
+<div class="chrome">
+  <span class="lb">Text</span>
+  <button class="cbtn cA" data-fsize="fsA" aria-pressed="false">A</button>
+  <button class="cbtn cB" data-fsize="fsB" aria-pressed="true">A</button>
+  <button class="cbtn cC" data-fsize="fsC" aria-pressed="false">A</button>
+  <button class="cbtn mode" id="modeBtn">☽ Deep</button>
+</div>
+
+
+<nav role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="prices">Price Book</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="winners">Winners</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="strategy">Strategy</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="bulk">Bulk Rules</button>
+</nav>
+
+<main>
+
+<section class="panel on" id="prices">
+  <div class="flag">Every price here is an <strong>estimate I filled in</strong> — marked in gold. Type over it with what you actually paid and the date turns pink. The crown moves on its own.</div>
+
+  <div class="card">
+    <p class="eyebrow">How it works</p>
+    <p class="note">Enter the <strong>price</strong> and the <strong>count</strong> — 60 eggs for $5.84, not just $5.84. The page divides and compares cost per unit, which is the only honest way to compare a warehouse pack against a dozen.</p>
+    <p class="note">Leave a box blank if that store doesn't carry it. Blank means "not sold here," never zero.</p>
+  </div>
+
+  <div id="body"></div>
+
+  <div class="card">
+    <p class="eyebrow">Careful</p>
+    <button class="btn ghost" id="resetAll">Reset every price to the original estimates</button>
+  </div>
+</section>
+
+<section class="panel" id="winners">
+  <div class="card">
+    <p class="eyebrow">Print this, keep it in your purse</p>
+    <h2>Category winners</h2>
+    <p class="note">The structural stuff — this is about how these businesses work, not about this week's shelf tag. It holds even when individual prices move.</p>
+    <div id="winBody"></div>
+  </div>
+</section>
+
+<section class="panel" id="strategy">
+  <div class="card">
+    <p class="eyebrow">The rhythm</p>
+    <h2>Three stores, one system</h2>
+    <p class="note"><strong>Aldi — weekly.</strong> Your main run. Produce, bread, fresh meat, dairy, pantry basics. Budget $80–120.</p>
+    <p class="note"><strong>Sam's Club — every 2–3 weeks.</strong> The stock-up. Anything individually packaged, bulk meat, paper goods, cereal, frozen. Budget $150–200.</p>
+    <p class="note"><strong>Walmart — fill-in only.</strong> Milk refills, personal care, Hawaiian rolls, specific brands. Don't duplicate what you already bought elsewhere. Budget $30–60.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Why bulk works for you specifically</p>
+    <h2>The family-size math</h2>
+    <p class="note">Warehouse quantities that would spoil in a household of three get eaten in a week in yours. The thing that makes bulk buying risky for most families is exactly the thing you don't have to worry about. That changes the math in your favor on almost everything shelf-stable or freezable.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Know what you're walking into</p>
+    <h3>Aldi</h3>
+    <ul class="tips">
+      <li>Mostly their own brands, not the labels you recognize</li>
+      <li>Fewer items overall, but strong on produce, dairy, eggs, bread and fresh meat</li>
+      <li>No membership, quarter for the cart, bring your own bags</li>
+    </ul>
+    <h3 style="margin-top:12px">Sam's Club</h3>
+    <ul class="tips">
+      <li>Member's Mark is the house brand and it's good</li>
+      <li>Scan &amp; Go in the app — scan as you shop, pay in the app, skip the line</li>
+      <li>Membership pays for itself on one run at your household size</li>
+    </ul>
+    <h3 style="margin-top:12px">Walmart</h3>
+    <ul class="tips">
+      <li>Widest selection, carries what the other two don't</li>
+      <li>Wins on milk and personal care specifically</li>
+      <li>Great Value is solid on pasta, rice, condiments</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Before you go</p>
+    <h2>Apps worth having</h2>
+    <ul class="tips">
+      <li><strong>Sam's Club Scan &amp; Go</strong> — the checkout line disappears</li>
+      <li><strong>Flipp</strong> — all three weekly ads in one place, plan the trip before you leave</li>
+      <li><strong>Aldi app</strong> — weekly specials</li>
+      <li><strong>Ibotta</strong> — cash back at Walmart and some Aldi</li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" id="bulk">
+  <div class="card">
+    <p class="eyebrow">The rule</p>
+    <h2>Bulk or fresh?</h2>
+    <p class="note">If it keeps more than two weeks, or you can freeze it, buy it in bulk. If it goes bad in days, buy it weekly and only what you'll use.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Always bulk</p>
+    <ul class="tips">
+      <li><strong>Chicken breast</strong> — split into 2 lb bags and freeze the night you get home</li>
+      <li><strong>Deli turkey</strong> — freeze half in zip bags, thaw the night before</li>
+      <li><strong>Ground beef</strong> — 1 lb portions, freeze same day</li>
+      <li><strong>Eggs</strong> — five weeks in the fridge, and your house goes through them faster than that</li>
+      <li><strong>Cheese</strong> — 3–4 weeks, or freeze the shredded</li>
+      <li><strong>Tortillas</strong> — 4 weeks in the fridge or freeze</li>
+      <li><strong>Juice boxes, Capri Sun, fruit snacks</strong> — shelf stable for months</li>
+      <li><strong>Granola bars, Pop Tarts, cereal</strong> — weeks to months</li>
+      <li><strong>Waffles</strong> — already frozen, buy the big box</li>
+      <li><strong>Paper goods, zip bags, detergent</strong> — never goes bad</li>
+      <li><strong>Pasta, rice, canned goods</strong> — a year or more</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Never bulk</p>
+    <ul class="tips">
+      <li><strong>Milk</strong> — two weeks max, buy 2 gallons a week</li>
+      <li><strong>Strawberries</strong> — 3–5 days</li>
+      <li><strong>Blueberries</strong> — 5–7 days, 1–2 pints a week</li>
+      <li><strong>Bananas</strong> — overripe in 4–5 days</li>
+      <li><strong>Cucumbers</strong> — one week, 2–3 for lunches</li>
+      <li><strong>Lettuce and greens</strong> — wilts fast, small bag</li>
+      <li><strong>Fresh bread</strong> — 5–7 days, 2 loaves max</li>
+      <li><strong>Cherry tomatoes</strong> — one pint a week</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">The habit that makes bulk work</p>
+    <h2>Portion the night you buy it</h2>
+    <p class="note">The bulk meat comes home and gets divided into weekly bags, labeled with the date, and frozen — that night, not tomorrow. Pull one out the night before you need it. This single habit is the difference between bulk buying saving you money and bulk buying throwing food away.</p>
+  </div>
+</section>
+
+</main>
+<footer>♛ J Empire</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const K='jempire_storecompare_v1';
+let uid=0;const nid=()=>'s'+Date.now().toString(36)+(uid++);
+const STORES=['aldi','wm','sams'];
+const SN={aldi:'Aldi',wm:'Walmart',sams:"Sam's"};
+
+/* p = price, q = count/size, u = unit label. null price = not carried */
+function seed(){
+  const I=(t,u,a,w,s,note)=>({id:nid(),t,u,note:note||'',
+    when:'',
+    aldi:a?{p:a[0],q:a[1],mine:false}:{p:'',q:'',mine:false},
+    wm:w?{p:w[0],q:w[1],mine:false}:{p:'',q:'',mine:false},
+    sams:s?{p:s[0],q:s[1],mine:false}:{p:'',q:'',mine:false}});
+  return [
+   {id:nid(),name:'Dairy & eggs',items:[
+     I('Milk','gal',['3.69','1'],['3.33','1'],['3.98','1']),
+     I('Eggs','egg',['4.35','12'],['3.94','12'],['5.84','60'],'the biggest bulk win in the whole book'),
+     I('Shredded mozzarella','oz',['3.49','16'],['4.00','16'],['8.16','48']),
+     I('Provolone slices','slice',['3.29','16'],['3.68','16'],['9.98','60']),
+     I('Muenster slices','slice',['3.29','16'],['3.78','16'],['9.98','60']),
+     I('Butter','stick',['3.89','4'],['3.98','4'],['12.98','16']),
+     I('Cream cheese','oz',['1.89','8'],['2.14','8'],['6.48','32'])
+   ]},
+   {id:nid(),name:'Meat & protein',items:[
+     I('Boneless chicken breast','lb',['2.99','1'],['2.67','1'],['13.99','6']),
+     I('Deli turkey, sliced','lb',['4.49','1'],['4.98','1'],['10.98','3']),
+     I('Ground beef','lb',['4.29','1'],['4.47','1'],['15.98','4']),
+     I('Whole chicken','lb',['1.67','1'],['1.87','1'],['2.47','1']),
+     I('Chicken thighs','lb',['1.69','1'],['1.77','1'],['8.98','5']),
+     I('Ground turkey','lb',['3.69','1'],['3.50','1'],['10.98','3'])
+   ]},
+   {id:nid(),name:'Bread & bakery',items:[
+     I('Sandwich bread','loaf',['1.49','1'],['2.28','1'],['4.98','2']),
+     I('Hawaiian rolls','roll',null,['4.28','12'],['7.98','24'],'Aldi doesn\u2019t reliably carry these'),
+     I('Flour tortillas','ea',['2.19','10'],['2.68','10'],['5.98','36']),
+     I('Croissants','ea',null,['3.98','8'],['7.98','20']),
+     I('Frozen waffles','waffle',['2.29','10'],['2.48','10'],['8.98','72']),
+     I('English muffins','ea',['1.49','6'],['2.28','6'],null)
+   ]},
+   {id:nid(),name:'Pantry staples',items:[
+     I('Pasta','lb',['0.89','1'],['1.38','1'],['6.98','8']),
+     I('Rice','lb',['1.19','2'],['1.98','5'],['9.98','20']),
+     I('Canned black beans','can',['0.79','1'],['0.92','1'],['7.98','8']),
+     I('Diced tomatoes','can',['0.85','1'],['0.98','1'],['8.98','8']),
+     I('Pasta sauce','jar',['1.49','1'],['1.68','1'],['7.48','3']),
+     I('Cooking oil','oz',['3.49','48'],['3.68','48'],['9.98','128']),
+     I('Cereal','oz',['2.29','18'],['3.48','18'],['8.98','60']),
+     I('Pancake mix','oz',['2.19','32'],['2.68','32'],['6.98','80']),
+     I('Syrup','oz',['2.49','24'],['2.98','24'],['6.98','64'])
+   ]},
+   {id:nid(),name:'Produce',items:[
+     I('Bananas','lb',['0.46','1'],['0.54','1'],['2.98','6']),
+     I('Green apples','lb',['1.49','1'],['1.58','1'],['6.98','5']),
+     I('Grapes','lb',['1.99','1'],['2.18','1'],['9.98','4']),
+     I('Strawberries','lb',['2.49','1'],['2.98','1'],['8.98','4']),
+     I('Blueberries','pint',['2.29','1'],['2.68','1'],['7.98','3']),
+     I('Baby carrots','lb',['1.19','1'],['1.28','1'],['3.99','5'],'the 5 lb bag is a standout'),
+     I('Cucumbers','ea',['0.59','1'],['0.68','1'],null),
+     I('Cherry tomatoes','pint',['2.19','1'],['2.48','1'],['5.98','2'])
+   ]},
+   {id:nid(),name:'Kids\u2019 snacks & lunchbox',items:[
+     I('Welch\u2019s fruit snacks','pouch',null,['4.98','22'],['12.98','90']),
+     I('Goldfish','pack',null,['6.98','20'],['12.98','45']),
+     I('Cheez-Its','pack',null,['7.48','20'],['13.98','45']),
+     I('Granola / Nutri-Grain bars','bar',['2.99','8'],['4.28','8'],['13.98','48']),
+     I('Juice boxes','box',['2.49','8'],['3.28','10'],['12.98','40']),
+     I('Capri Sun','pouch',null,['4.48','10'],['13.98','40']),
+     I('Pop Tarts','pack',['2.29','8'],['3.98','12'],['11.98','36']),
+     I('Pudding cups','cup',['2.19','4'],['2.98','4'],['12.98','36']),
+     I('Popcorn bags','bag',['2.49','6'],['3.48','6'],['9.98','28']),
+     I('Veggie straws','oz',null,['3.48','7'],['7.98','22']),
+     I('Horizon milk boxes','box',null,['6.98','6'],['18.98','24'])
+   ]},
+   {id:nid(),name:'Paper & household',items:[
+     I('Paper towels','roll',['5.99','6'],['12.98','12'],['21.98','30']),
+     I('Toilet paper','roll',['6.49','12'],['12.98','24'],['24.98','45']),
+     I('Sandwich zip bags','bag',['2.19','100'],['3.28','150'],['9.98','580']),
+     I('Gallon zip bags','bag',['2.49','30'],['3.48','40'],['12.98','200']),
+     I('Trash bags','bag',['6.99','40'],['10.98','60'],['18.98','110']),
+     I('Laundry detergent','load',['7.99','64'],['11.98','96'],['19.98','150']),
+     I('Dish soap','oz',['1.99','24'],['2.48','32'],['8.98','160'])
+   ]}
+  ];
+}
+
+const WINNERS=[
+ ['Milk','wm','Cheapest per gallon, usually by a real margin'],
+ ['Eggs','sams','The 60-count destroys everything on cost per egg'],
+ ['Cheese, shredded or sliced','sams','Bulk packs win clearly per ounce'],
+ ['Chicken breast','sams','Cheapest per pound for this cut'],
+ ['Whole chicken & thighs','aldi','These specific cuts go the other way'],
+ ['Deli turkey','sams','Best per pound — freeze half'],
+ ['Ground beef','aldi','Close race, check both'],
+ ['Sandwich bread','aldi','Consistently under everyone'],
+ ['Tortillas','sams','The 36-count is the cheapest per tortilla'],
+ ['Frozen waffles','sams','Cheapest per waffle by a lot'],
+ ['Pasta','aldi','Meaningfully cheaper per pound'],
+ ['Canned goods','aldi','Beans, tomatoes, sauce — reliably lowest'],
+ ['Cereal','sams','Big variety boxes, far below Walmart per ounce'],
+ ['Produce generally','aldi','Cheaper and often fresher — they turn inventory fast'],
+ ['Baby carrots','sams','The 5 lb bag is the exception to the produce rule'],
+ ['Individually packaged snacks','sams','Goldfish, Cheez-Its, fruit snacks, juice boxes — not close'],
+ ['Granola & protein bars','sams','The 48-count is the cheapest per bar'],
+ ['Paper towels & TP','sams','Cheapest per sheet in bulk'],
+ ['Laundry detergent','sams','Best cost per load'],
+ ['Dish soap','wm','Smaller sizes win here'],
+ ['Personal care','wm','Not close — Walmart by a wide margin'],
+ ['Hawaiian rolls','wm','Aldi doesn\u2019t reliably stock them']
+];
+
+let S;
+try{const r=localStorage.getItem(K);S=r?JSON.parse(r):seed()}catch(e){S=seed()}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast("Couldn't save — storage is off")}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function unitCost(c){
+  const p=parseFloat(c.p),q=parseFloat(c.q);
+  if(!isFinite(p)||p<=0||!isFinite(q)||q<=0)return null;
+  return p/q;
+}
+function fmt(v){
+  if(v==null)return '';
+  return v<0.1?'$'+v.toFixed(3):v<1?'$'+v.toFixed(2):'$'+v.toFixed(2);
+}
+function findG(id){return S.find(g=>g.id===id)}
+function findI(gid,iid){const g=findG(gid);return g&&g.items.find(x=>x.id===iid)}
+
+function itemHTML(it,gid){
+  const costs={};let best=null,bestStore=null;
+  STORES.forEach(s=>{const c=unitCost(it[s]);costs[s]=c;
+    if(c!=null&&(best==null||c<best)){best=c;bestStore=s}});
+
+  const anyMine=STORES.some(s=>it[s].mine);
+  const cells=STORES.map(s=>{
+    const c=it[s],uc=costs[s],win=(bestStore===s&&STORES.filter(x=>costs[x]!=null).length>1);
+    const spk=win?'<span class="spk" style="top:5px;left:7px">✦</span><span class="spk" style="bottom:6px;right:9px;animation-delay:1.1s">✧</span>':'';
+    const blank=(!c.p&&!c.q);
+    return `<div class="cell${win?' win':''}">
+      ${spk}<div class="sn">${SN[s]}</div>
+      <div class="pin"><span>$</span><input inputmode="decimal" placeholder="—" value="${esc(c.p)}" data-f="p" data-s="${s}" data-i="${it.id}" data-g="${gid}"></div>
+      <input class="qin" inputmode="decimal" placeholder="count" value="${esc(c.q)}" data-f="q" data-s="${s}" data-i="${it.id}" data-g="${gid}">
+      ${blank?'<div class="na">not carried</div>':`<div class="per">${uc!=null?fmt(uc)+'/'+esc(it.u):''}</div>`}
+    </div>`;
+  }).join('');
+
+  return `<div class="pitem">
+    <div class="ihead">
+      <div style="flex:1;min-width:0">
+        <input class="iname" value="${esc(it.t)}" data-meta="t" data-i="${it.id}" data-g="${gid}" aria-label="Item name">
+        <div class="iunit">compared per
+          <input value="${esc(it.u)}" data-meta="u" data-i="${it.id}" data-g="${gid}" aria-label="Unit">
+          ${it.note?'· '+esc(it.note):''}
+        </div>
+      </div>
+      <div class="itools">
+        <button data-del="${it.id}" data-g="${gid}" aria-label="Delete ${esc(it.t)}">🗑</button>
+      </div>
+    </div>
+    <div class="cells">${cells}</div>
+    <div class="verdict">
+      ${bestStore&&STORES.filter(x=>costs[x]!=null).length>1
+        ? `<div class="v">♛ ${SN[bestStore]} — ${fmt(best)} per ${esc(it.u)}</div>`
+        : `<div class="v none">Fill in two stores to compare</div>`}
+      <div class="stamp${anyMine?'':' est'}">${anyMine?('your price'+(it.when?' &middot; '+esc(it.when):'')):'my estimate'}</div>
+    </div>
+  </div>`;
+}
+
+function draw(){
+  document.getElementById('body').innerHTML=S.map(g=>`
+    <div class="card">
+      <p class="eyebrow">${esc(g.name)}</p>
+      ${g.items.map(i=>itemHTML(i,g.id)).join('')}
+      <button class="add" data-add="${g.id}">+ Add to ${esc(g.name)}</button>
+    </div>`).join('');
+}
+
+function drawWinners(){
+  document.getElementById('winBody').innerHTML=WINNERS.map(w=>
+    `<div class="win-row"><div class="c">${esc(w[0])}<span class="why">${esc(w[2])}</span></div>
+     <span class="s ${w[1]}">${SN[w[1]]}</span></div>`).join('');
+}
+
+document.addEventListener('input',e=>{
+  const el=e.target;
+
+  if(el.dataset.meta){
+    const it=findI(el.dataset.g,el.dataset.i);
+    if(it){it[el.dataset.meta]=el.value;save();
+      if(el.dataset.meta==='u'){
+        const pit=el.closest('.pitem');
+        pit.querySelectorAll('.per').forEach((p,idx)=>{
+          const s=STORES[idx],uc=unitCost(it[s]);
+          if(uc!=null)p.textContent=fmt(uc)+'/'+it.u;
+        });
+        const v=pit.querySelector('.verdict .v');
+        if(v&&!v.classList.contains('none')){
+          let best=null,bs=null;
+          STORES.forEach(s=>{const c=unitCost(it[s]);if(c!=null&&(best==null||c<best)){best=c;bs=s}});
+          if(bs)v.textContent='♛ '+SN[bs]+' — '+fmt(best)+' per '+it.u;
+        }
+      }
+    }
+    return;
+  }
+
+  if(!el.dataset.f)return;
+  const it=findI(el.dataset.g,el.dataset.i);if(!it)return;
+  const cell=it[el.dataset.s];
+  cell[el.dataset.f]=el.value.replace(/[^0-9.]/g,'');
+  cell.mine=true;
+  it.when=new Date().toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  save();
+  // live-update only the affected item to keep focus
+  const wrap=el.closest('.pitem');
+  const fresh=document.createElement('div');
+  fresh.innerHTML=itemHTML(it,el.dataset.g);
+  const newEl=fresh.firstElementChild;
+  const sel=`[data-f="${el.dataset.f}"][data-s="${el.dataset.s}"]`;
+  wrap.replaceWith(newEl);
+  const focus=newEl.querySelector(sel);
+  if(focus){focus.focus();const v=focus.value;focus.value='';focus.value=v}
+});
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.add){
+    const g=findG(t.dataset.add);if(!g)return;
+    const n=prompt('Item name:');if(!n||!n.trim())return;
+    const u=prompt('Compare per what unit? (lb, oz, ea, pack, load…)')||'ea';
+    g.items.push({id:nid(),t:n.trim(),u:u.trim(),note:'',when:'',
+      aldi:{p:'',q:'',mine:false},wm:{p:'',q:'',mine:false},sams:{p:'',q:'',mine:false}});
+    save();draw();toast('Added');return;
+  }
+  if(t.dataset.del){
+    const g=findG(t.dataset.g),i=g.items.find(x=>x.id===t.dataset.del);
+    if(confirm('Delete "'+i.t+'"?')){g.items=g.items.filter(x=>x.id!==i.id);save();draw()}return;
+  }
+  if(t.id==='resetAll'){
+    if(confirm('This wipes every price you logged and puts my estimates back. Sure?')){
+      S=seed();save();draw();toast('Back to the estimates')}
+  }
+});
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById(b.dataset.p).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+draw();drawWinners();
+
+/* ---- shared chrome: text size + deep mode ---- */
+(function(){
+  var SK='jempire_hub_size',DK='jempire_hub_deep';
+  function setSize(c){
+    document.body.classList.remove('fsA','fsB','fsC');
+    document.body.classList.add(c);
+    document.querySelectorAll('[data-fsize]').forEach(function(b){
+      b.setAttribute('aria-pressed',b.dataset.fsize===c);});
+    try{localStorage.setItem(SK,c)}catch(e){}
+  }
+  function setDeep(on){
+    document.body.classList.toggle('deep',on);
+    var b=document.getElementById('modeBtn');
+    if(b)b.innerHTML=on?'\u2600 Light':'\u263D Deep';
+    try{localStorage.setItem(DK,on?'1':'0')}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var s=e.target.closest('[data-fsize]');
+    if(s){setSize(s.dataset.fsize);return}
+    var m=e.target.closest('#modeBtn');
+    if(m){setDeep(!document.body.classList.contains('deep'))}
+  });
+  var sz='fsB',dp=false;
+  try{sz=localStorage.getItem(SK)||'fsB';dp=localStorage.getItem(DK)==='1'}catch(e){}
+  setSize(sz);setDeep(dp);
+})();
+
+</script>
+</body>
+</html>

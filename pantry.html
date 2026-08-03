@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Pantry — Back to School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#FFF2F7;--petal:#F7C3DC;--rose:#E8639E;
+  --plum:#4A2338;--plum-soft:#7A4C63;
+  --gold:#C9A227;--gold-lt:#EBD08A;--cream:#FFFBF6;
+  --good:#5FA37E;--low:#C9A227;--out:#D9536F;
+  --shadow:0 10px 30px rgba(115,40,80,.13);--radius:20px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--plum);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#FFE7F3 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#F3E6FF 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#FFF0E2 0%,transparent 60%),
+    var(--blush);
+  min-height:100vh;padding-bottom:80px}
+@keyframes sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,83,111,.4)}50%{box-shadow:0 0 0 7px rgba(217,83,111,0)}}
+@media (prefers-reduced-motion:reduce){header::before{animation:none}.sparkle{display:none}.st.s2{animation:none}*{transition:none!important}}
+
+header{position:relative;overflow:hidden;padding:26px 20px 20px;text-align:center;border-bottom:1px solid rgba(201,162,39,.28)}
+header::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(255,212,233,.85),rgba(245,217,255,.7),rgba(255,233,207,.8),rgba(255,212,233,.85));
+  background-size:200% 100%;animation:sweep 12s linear infinite}
+header>*{position:relative;z-index:1}
+.sparkle{position:absolute;z-index:1;font-size:11px;color:#fff;text-shadow:0 0 8px #F7C3DC;animation:twinkle 3.4s ease-in-out infinite}
+.crown{font-size:24px;letter-spacing:.14em;color:var(--gold)}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,8vw,42px);margin:2px 0 4px;letter-spacing:-.02em;line-height:1.05}
+.tag{font-family:'Pinyon Script',cursive;font-size:20px;color:var(--rose);margin:0}
+
+nav{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:10px 12px;
+  background:rgba(255,247,251,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,162,39,.25);overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;min-width:86px;font-weight:600;font-size:13px;padding:10px 14px;font-family:'Inter';
+  border:1px solid rgba(232,99,158,.3);border-radius:999px;background:#fff;color:var(--plum-soft);cursor:pointer;transition:.18s;white-space:nowrap}
+.tab[aria-selected="true"]{background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(232,99,158,.35)}
+.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+main{padding:18px 16px 0;max-width:900px;margin:0 auto}
+.panel{display:none}
+.panel.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{background:var(--cream);border:1px solid rgba(201,162,39,.3);border-radius:var(--radius);
+  padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+h2{font-family:'Fraunces',serif;font-size:21px;margin:0 0 6px;font-weight:600}
+h3{font-family:'Fraunces',serif;font-size:16px;margin:0 0 6px;font-weight:600}
+p.note{font-size:13.5px;line-height:1.55;color:var(--plum-soft);margin:0 0 10px}
+p.note strong{color:var(--plum)}
+.flag{background:linear-gradient(135deg,#FFF0F5,#FFE6EF);border:1.5px solid var(--rose);
+  border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:16px;font-weight:500}
+
+/* restock hero */
+.hero{border:2px solid var(--gold);background:linear-gradient(#fff,#FFF6FA);box-shadow:0 12px 34px rgba(115,40,80,.16)}
+.store{margin-bottom:14px}
+.pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#fff;margin-bottom:5px}
+.pill.sams{background:#2B6CB0}.pill.aldi{background:#4A8C5F}.pill.wm{background:#D08A2E}.pill.dt{background:#8B6BB1}
+.buy{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px solid rgba(232,99,158,.14);font-size:13.5px}
+.buy:last-child{border-bottom:none}
+.dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px}
+.dot.low{background:var(--low)}.dot.out{background:var(--out)}
+.buy .n{flex:1;font-weight:600}
+.buy .p{font-family:'Fraunces',serif;font-weight:700;color:var(--gold);font-size:13px}
+.empty-state{text-align:center;padding:24px 12px;color:var(--plum-soft);font-size:13.5px;line-height:1.6}
+
+/* items */
+.item{display:flex;align-items:center;gap:9px;padding:9px 2px;border-bottom:1px solid rgba(232,99,158,.14)}
+.item:last-of-type{border-bottom:none}
+.st{flex:0 0 auto;border:none;cursor:pointer;font-family:'Inter';font-weight:700;font-size:9.5px;
+  letter-spacing:.07em;text-transform:uppercase;padding:6px 8px;border-radius:999px;color:#fff;min-width:56px;transition:.18s}
+.st.s0{background:var(--good)}.st.s1{background:var(--low)}.st.s2{background:var(--out);animation:pulse 2s ease-in-out infinite}
+.st:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.nm{flex:1;min-width:0;font-size:13.5px;font-weight:600;line-height:1.3}
+.nm em{display:block;font-style:normal;font-size:11.5px;color:var(--plum-soft);font-weight:400;margin-top:1px}
+.par{flex:0 0 auto;font-family:'Fraunces',serif;font-size:12px;font-weight:700;color:var(--gold-lt);white-space:nowrap}
+.tools{flex:0 0 auto;display:flex;gap:1px}
+.tools button{border:1.5px solid var(--petal);background:#fff;cursor:pointer;font-size:15px;
+  width:38px;height:38px;border-radius:11px;line-height:1;color:var(--plum-soft);
+  display:flex;align-items:center;justify-content:center}
+.tools button:hover{opacity:1}
+.tools button:focus-visible{outline:2px solid var(--gold);opacity:1}
+.add{width:100%;margin-top:10px;border:1.5px dashed rgba(201,162,39,.6);background:transparent;color:var(--gold);
+  font-family:'Inter';font-weight:700;font-size:13px;padding:11px;border-radius:12px;cursor:pointer}
+.add:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:13px;font-family:'Inter';font-size:14px;font-weight:700;
+  background:linear-gradient(135deg,var(--rose),#F58FC0);color:#fff;cursor:pointer;box-shadow:0 6px 18px rgba(232,99,158,.36)}
+.btn.ghost{background:#fff;color:var(--plum-soft);border:1.5px solid var(--petal);box-shadow:none;font-weight:600}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* shelf map */
+.shelf{border-left:5px solid var(--gold);background:#fff;border-radius:0 14px 14px 0;padding:11px 14px;margin-bottom:9px}
+.shelf.star{border-left-color:var(--rose);background:linear-gradient(135deg,#FFF6FA,#FFEFF6)}
+.shelf .lv{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+.shelf.star .lv{color:var(--rose)}
+.shelf .ttl{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;margin:2px 0 3px}
+.shelf .cn{font-size:12.5px;color:var(--plum-soft);line-height:1.5}
+.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-top:10px}
+.bin{border-radius:14px;padding:12px;color:#fff}
+.bin h4{margin:0 0 5px;font-family:'Fraunces',serif;font-size:14.5px;font-weight:600}
+.bin p{margin:0;font-size:11.5px;line-height:1.5;opacity:.94}
+.b1{background:linear-gradient(135deg,#E0854A,#C96F3A)}
+.b2{background:linear-gradient(135deg,#E0648A,#C74E74)}
+.b3{background:linear-gradient(135deg,#6D9E62,#568350)}
+.b4{background:linear-gradient(135deg,#8B6BB1,#74569A)}
+
+ul.tips{margin:6px 0 0;padding-left:18px}
+ul.tips li{font-size:13px;line-height:1.7;color:var(--plum-soft);margin-bottom:3px}
+ul.tips li strong{color:var(--plum)}
+.step{display:flex;gap:11px;align-items:flex-start;margin-bottom:11px}
+.num{flex:0 0 26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#F58FC0);
+  color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.step p{margin:0;font-size:13px;line-height:1.55;color:var(--plum-soft)}
+.step p strong{color:var(--plum)}
+.recipe{background:linear-gradient(135deg,#FFF9FC,#FFF2F8);border:1.5px solid var(--gold-lt);border-radius:16px;padding:14px;margin-top:10px}
+footer{text-align:center;padding:22px 16px 10px;font-family:'Pinyon Script',cursive;font-size:19px;color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--plum);color:#FFE9F3;
+  padding:12px 22px;border-radius:999px;font-size:13px;font-weight:600;z-index:60;opacity:0;transition:.3s;
+  pointer-events:none;box-shadow:0 8px 24px rgba(74,35,56,.35)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- iPad ---------- */
+@media (min-width:820px){
+  body{font-size:17px}
+  main{max-width:1040px;padding:26px 28px 0}
+  header{padding:38px 24px 30px}
+  h1{font-size:56px}
+  .tag{font-size:26px}
+  .crown{font-size:32px}
+  nav{padding:14px 24px;gap:9px}
+  .tab{font-size:15px;padding:13px 22px;min-width:auto}
+  .card{padding:24px;border-radius:26px;margin-bottom:20px}
+  h2{font-size:26px}
+  h3{font-size:19px}
+  p.note{font-size:15px;line-height:1.6}
+  .eyebrow{font-size:12px}
+  .flag{font-size:14.5px;padding:16px 18px}
+  ul.tips li{font-size:14.5px}
+  footer{font-size:24px}
+}
+@media (min-width:1024px){
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+}
+
+@media (min-width:820px){
+  .item{padding:13px 4px;gap:13px}
+  .nm{font-size:15.5px}
+  .nm em{font-size:13px}
+  .st{font-size:11px;padding:9px 13px;min-width:76px}
+  .tools button{width:44px;height:44px;font-size:17px}
+  .par{font-size:14px}
+  .buy{font-size:15.5px;padding:11px 6px}
+  .shelf{padding:16px 20px}
+  .shelf .ttl{font-size:18px}
+  .shelf .cn{font-size:14.5px}
+  .bins{grid-template-columns:repeat(4,1fr);gap:13px}
+  .bin{padding:16px}
+  .bin h4{font-size:16.5px}
+  .bin p{font-size:13px}
+  .step p{font-size:14.5px}
+  .num{flex-basis:32px;height:32px;font-size:14px}
+  .add,.btn{font-size:15px;padding:15px}
+}
+
+
+
+
+
+
+
+/* deep mode — softened dusk palette */
+body.deep{
+  --blush:#493242;--petal:#7C5D6D;--rose:#F492BF;
+  --plum:#FDF1F7;--plum-soft:#E7D2DE;
+  --gold:#EFD08E;--gold-lt:#A98A4E;--cream:#57404E;
+  --win:#7FD3A9;--win-lt:#3E5C4E;
+  --good:#7FD3A9;--low:#EFD08E;--out:#FF93A8;
+  --need:#DDA6BF;--ordered:#EFD08E;--have:#7FD3A9;
+  --warn:#FF9AAE;--ok:#7FD3A9;
+  --shadow:0 10px 30px rgba(28,12,20,.34);
+  background:
+    radial-gradient(1200px 700px at 12% -8%,#5E3D53 0%,transparent 60%),
+    radial-gradient(900px 600px at 92% 6%,#4C3E66 0%,transparent 58%),
+    radial-gradient(800px 500px at 50% 100%,#5C4840 0%,transparent 60%),
+    #493242;
+}
+body.deep header::before{background:linear-gradient(100deg,rgba(122,72,100,.9),rgba(100,78,126,.82),rgba(128,101,70,.86),rgba(122,72,100,.9));background-size:200% 100%}
+body.deep nav,body.deep .fsbar,body.deep .chrome{background:rgba(73,50,66,.95)}
+body.deep .block,body.deep .kid,body.deep .tab,body.deep .fsbtn,body.deep .cbtn,body.deep .btn.ghost,
+body.deep .sz,body.deep .zone,body.deep .shelf,body.deep .rot,body.deep .clock,
+body.deep .track,body.deep .kidcard,body.deep .jlink,body.deep .pitem,body.deep .pk,body.deep .pk2,
+body.deep .cell,body.deep select,body.deep td,body.deep .itools button,body.deep .tools button,
+body.deep .box,body.deep .bx,body.deep .add,body.deep .del,body.deep .addrow,
+body.deep .unknown,body.deep .sz.colr,body.deep .fld,body.deep .fld.crit,body.deep .shelf.star,
+body.deep td.filled,body.deep td.locked,body.deep .slot,body.deep .slot.full,body.deep .recipe,
+body.deep .track[aria-pressed="true"],body.deep .pk.crit,body.deep .note,body.deep .lnk,
+body.deep .tile,body.deep .tick.hot,body.deep .who,body.deep .sheet,body.deep .sprint,
+body.deep .qin,body.deep .pin input,body.deep .fld input,body.deep .fld textarea,
+body.deep .sname,body.deep .ptxt,body.deep .iname,body.deep .sz input,body.deep .dt,
+body.deep .tray,body.deep .buy,body.deep .win-row,body.deep .jump,body.deep .hero,body.deep .countdown,
+body.deep .select,body.deep .rtab{background-color:#5C4453;color:var(--plum)}
+body.deep .tick:nth-child(odd){background-color:#614859}
+body.deep .cell.win,body.deep .pk.on,body.deep .pk.crit.on{background-color:#3E5C4E}
+body.deep .item.done .box,body.deep .pk.on .bx,body.deep .itm.done .box{background-color:var(--rose);border-color:var(--rose)}
+body.deep .flag{background:linear-gradient(135deg,#5E3E4E,#6B4459)}
+body.deep .flag.gold{background:linear-gradient(135deg,#5A4B33,#67573B)}
+body.deep .flag.warn{background:linear-gradient(135deg,#63404B,#734857)}
+body.deep .card{background-color:var(--cream)}
+body.deep .bar{background:#6B5062}
+body.deep .tile,body.deep .lnk,body.deep .jlink,body.deep .note,body.deep .sheet{border-color:#836374}
+body.deep .who{border-color:#8E6B7E}
+body.deep .tick.hot .tm{color:#FF9AAE}
+body.deep .fld.crit,body.deep .pk.crit{border-color:#FF9AAE}
+body.deep .fld.crit label{color:#FF9AAE}
+body.deep .tab[aria-selected="true"],body.deep .rtab[aria-selected="true"],
+body.deep .kid[aria-pressed="true"],body.deep .fsbtn[aria-pressed="true"],
+body.deep .cbtn[aria-pressed="true"],body.deep .pk2[aria-pressed="true"]{
+  background:linear-gradient(135deg,var(--rose),#D67AA4);color:#3A2431}
+body.deep .kid[aria-pressed="true"]{background:var(--rose)}
+body.deep .block[aria-pressed="true"],body.deep .block[aria-pressed="true"] span{color:#3A2431}
+body.deep .toast{background:#2E1E29;color:#FDF1F7}
+body.deep input::placeholder,body.deep textarea::placeholder{color:#B396A6}
+body.deep .empty-state,body.deep .na,body.deep .hint,body.deep .iunit{color:#D8BECD}
+body.deep .stamp.est{color:#EFD08E}
+body.deep .prow{border-bottom-color:#6E5364}
+body.deep .tick{border-color:#9B7488}
+body.deep .sprint{background-color:#5A4B33;color:#EFD08E}
+
+@media print{.chrome,nav,.fsbar,aside{display:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="sparkle" style="top:14px;left:9%">✦</span>
+  <span class="sparkle" style="top:52px;left:22%;animation-delay:.7s">✧</span>
+  <span class="sparkle" style="top:22px;right:14%;animation-delay:1.3s">✦</span>
+  <span class="sparkle" style="top:66px;right:26%;animation-delay:2.1s">✧</span>
+  <div class="crown">♛</div>
+  <h1>The Pantry</h1>
+  <p class="tag">stocked, not scrambling</p>
+</header>
+<div class="chrome">
+  <span class="lb">Text</span>
+  <button class="cbtn cA" data-fsize="fsA" aria-pressed="false">A</button>
+  <button class="cbtn cB" data-fsize="fsB" aria-pressed="true">A</button>
+  <button class="cbtn cC" data-fsize="fsC" aria-pressed="false">A</button>
+  <button class="cbtn mode" id="modeBtn">☽ Deep</button>
+</div>
+
+
+<nav role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="low">Running Low</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="zones">Zones</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="breakfast">Breakfast</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="method">Method</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="sunday">Sunday</button>
+</nav>
+
+<main>
+
+<section class="panel on" id="low">
+  <div class="flag">Use the last one? <strong>Tap it.</strong> Good → Low → Out. Anything not green lands on the list up top. No audit, no walking the shelves — just tap it when you notice.</div>
+
+  <div class="card hero">
+    <p class="eyebrow">Buy on the next run</p>
+    <div id="buyList"></div>
+  </div>
+
+  <div id="lowBody"></div>
+
+  <div class="card">
+    <p class="eyebrow">Careful</p>
+    <button class="btn ghost" id="allGood">Mark everything stocked again</button>
+    <div style="height:8px"></div>
+    <button class="btn ghost" id="resetAll">Reset to the original list</button>
+  </div>
+</section>
+
+<section class="panel" id="zones">
+  <div class="card">
+    <p class="eyebrow">Five shelves</p>
+    <h2>The pantry map</h2>
+    <p class="note">Heaviest low, kids' stuff at their eye level, least-used up top. Every category has one home and only one.</p>
+    <div class="shelf"><div class="lv">Shelf 1 · top</div><div class="ttl">Breakfast &amp; cereal</div>
+      <div class="cn">Cereal boxes standing upright, tallest at the back. Pancake mix, syrup, backup Pop Tarts.</div></div>
+    <div class="shelf"><div class="lv">Shelf 2</div><div class="ttl">Cooking &amp; sauces</div>
+      <div class="cn">Pasta, rice, sauces, oils, seasonings. Use the basket you already have.</div></div>
+    <div class="shelf star"><div class="lv">Shelf 3 · kids' eye level ⭐</div><div class="ttl">The snack zone</div>
+      <div class="cn">Four labeled bins. This is the only shelf they touch, and they never need you to reach it.</div></div>
+    <div class="shelf"><div class="lv">Shelf 4</div><div class="ttl">Canned goods &amp; extras</div>
+      <div class="cn">Beans, corn, tomatoes, soup, tuna. Backup juice boxes live here, not in the snack bins.</div></div>
+    <div class="shelf"><div class="lv">Shelf 5 · bottom</div><div class="ttl">Bulk &amp; paper goods</div>
+      <div class="cn">Paper towels, toilet paper, zip bags, foil, the Sam's Club overflow. Heavy things belong low.</div></div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Shelf 3</p>
+    <h2>The four bins</h2>
+    <p class="note">Same style, same size, labeled. One item per bin after school — that's the rule that keeps a $60 Sam's run from vanishing in four days.</p>
+    <div class="bins">
+      <div class="bin b1"><h4>Crunchy</h4><p>Goldfish, Cheez-Its, pretzels, popcorn, veggie straws, Pirate's Booty, chip bags</p></div>
+      <div class="bin b2"><h4>Fruit snacks &amp; gummies</h4><p>Welch's, gummies, fruit roll-ups, fruit strips, raisin boxes</p></div>
+      <div class="bin b3"><h4>Granola &amp; cookies</h4><p>Granola bars, Nutri-Grain, Zbars, Oreos, Teddy Grahams, animal crackers, snack cakes</p></div>
+      <div class="bin b4"><h4>Extras &amp; treats</h4><p>Pudding cups, Jello cups, applesauce pouches, fruit cups, Rice Krispies treats, special treats</p></div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <p class="eyebrow">Shelf 3 · the money part</p>
+    <h2>Buy it single-serve, or portion it yourself</h2>
+    <p class="note">Every snack is one of two kinds, and mixing them up is what makes a $60 Sam's run disappear in four days.</p>
+    <p class="note"><strong>Buy single-serve</strong> — Goldfish, Cheez-Its, fruit snacks, granola bars, chips, popcorn, pudding cups, applesauce pouches. The per-ounce price is higher, but the portion is decided for you and it goes straight into a lunchbox. Worth it.</p>
+    <p class="note"><strong>Buy big and portion</strong> — pretzels, crackers, cereal, trail mix, veggie straws, grapes, carrots, cheese blocks. Cheap per ounce and easy to bag yourself in ten minutes.</p>
+    <p class="note" style="color:var(--rose);font-weight:600">The rule: if it goes in a lunchbox, single-serve. If it's an after-school snack from the bin, buy big and portion.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Ten minutes, once a week</p>
+    <h2>How to portion</h2>
+    <ul class="tips">
+      <li><strong>Line up thirty snack bags open</strong> before you start. Same principle as the lunch assembly line — set the target first.</li>
+      <li><strong>One scoop each, walking the row.</strong> Don't fill a bag, close it, fill another. Fill all thirty, then close all thirty.</li>
+      <li><strong>Use an actual measure once</strong> — a half-cup for crackers, a cup for pretzels — then eyeball it after. Portions creep bigger every week if you never check.</li>
+      <li><strong>Reusable bags for the bins</strong>, disposable for lunchboxes. The bin ones come back; the lunch ones don't.</li>
+      <li><strong>Portioned bags go straight into the bin</strong>, not into a cabinet to be dealt with later.</li>
+      <li><strong>Grapes and carrots get portioned too.</strong> A five-pound bag of carrots is only cheap if it gets eaten, and it only gets eaten if it's already in a bag.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Sizing the run</p>
+    <h2>How much to actually buy</h2>
+    <p class="note">Three lunchboxes, five days: <strong>15 crunch + 15 treats + 15 school snacks a week.</strong> Plus after-school for four kids at one bin item each — another 20. Call it <strong>65 snack units a week</strong>.</p>
+    <p class="note">That's why the 45-count Goldfish box and the 90-count fruit snacks aren't excessive at your house — a 45-count is under three weeks of one bin. Anyone telling you warehouse quantities are too much is doing the math for a family of three.</p>
+    <p class="note"><strong>Buy roughly a month at a time</strong> on the snack side. Shelf-stable, no spoilage risk, and it takes the snack aisle out of your weekly Aldi run entirely.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Not in the pantry</p>
+    <h2>The other three zones</h2>
+    <p class="note"><strong>Console table, top</strong> — toaster left, utensils and plates center, fruit basket right. Nothing else lives up there.</p>
+    <p class="note"><strong>Console table, bottom shelf</strong> — orange bin for grab-and-go breakfast, blue bin for morning drinks. Restocked Sunday from the Sam's stock.</p>
+    <p class="note"><strong>Fridge, bottom shelf</strong> — one clear bin at the little ones' eye level. A colored container per kid loaded with their week, the small milk pitcher, boiled eggs, cheese sticks, apple slices in water, deli turkey, and the filled water bottles.</p>
+    <p class="note"><strong>Kitchen counter</strong> — Brita pitcher by the sink, six color-coded bottles in a tray beside it. They stay on the counter. Nobody's putting them away and that's fine — the tray is what makes it look intentional.</p>
+  </div>
+</section>
+
+<section class="panel" id="breakfast">
+  <div class="card">
+    <p class="eyebrow">The goal</p>
+    <h2>Two tracks, not five menus</h2>
+    <p class="note">A nine-year-old who can feed a four-year-old without asking you anything. Two choices per morning — not per kid. A four-year-old given an open question takes six minutes. Given two options, four seconds.</p>
+    <p class="note" style="color:var(--rose);font-weight:600">Nobody eats until they're dressed. Nobody leaves the table until their bowl is in the sink.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Track one</p>
+    <h2>The milk kids</h2>
+    <p class="note">Their own colored cereal container, portioned Sunday. Bowl, spoon, and the small pitcher — it holds one day's worth, so a spill costs a cup and not a gallon. They pour their own.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Track two · Juliusz and Jaliyah</p>
+    <h2>No milk, no bowl, one hand</h2>
+    <ul class="tips">
+      <li><strong>Pancake mini-muffins</strong> — the ones they love, recipe below</li>
+      <li><strong>Toaster waffles</strong> with muenster melted on top while it's hot</li>
+      <li><strong>Frozen French toast sticks</strong> — ninety seconds in the toaster</li>
+      <li><strong>Breakfast quesadilla</strong> — tortilla, egg, shredded mozzarella. Made Sunday, wrapped in foil</li>
+      <li><strong>Turkey and provolone roll-ups</strong> — three of them, cold, from their container</li>
+      <li><strong>Egg muffins</strong> — eggs, mozzarella, diced ham in a muffin tin. A dozen lasts the week</li>
+      <li><strong>Empanadas or pastelitos</strong> from the Latin market — buy a dozen, freeze, reheat</li>
+      <li><strong>Green apple slices + shredded mozzarella</strong></li>
+      <li><strong>Cinnamon-sugar toast</strong> — the toaster is already at their height</li>
+      <li><strong>Bagel with cream cheese</strong></li>
+      <li><strong>Dry cereal in a cup</strong> — a real breakfast, nobody has to be talked into it</li>
+    </ul>
+    <div class="recipe">
+      <h3>The pancake mini-muffins</h3>
+      <p class="note" style="margin-bottom:6px">Batch fifty on a Sunday, freeze in bags of five.</p>
+      <ul class="tips">
+        <li>Pancake mix, a touch thicker than for the griddle</li>
+        <li>Fold in chocolate chips and confetti sprinkles, splash of syrup in the batter</li>
+        <li>Mini liners, mini muffin tin, 350°F for 11–13 minutes</li>
+        <li>Cool completely, freeze flat in bags of five per kid</li>
+        <li>20 seconds in the microwave — or straight from the bag in the car</li>
+        <li>Savory batch: swap in shredded mozzarella and diced ham. Same tin, same Sunday</li>
+      </ul>
+      <p class="note" style="margin:8px 0 0;color:var(--rose);font-weight:600">Keep one bag in the freezer labeled <em>bad mornings</em>.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Console table, bottom shelf</p>
+    <h2>The two bins</h2>
+    <p class="note"><strong>Orange — grab &amp; go.</strong> Pop Tarts, granola and Nutri-Grain bars, individual cereal cups, mini muffin packs, bagged pancake muffins. Waffles live in the freezer.</p>
+    <p class="note"><strong>Blue — morning drinks.</strong> Juice boxes, Capri Sun, Horizon shelf-stable milk boxes.</p>
+    <p class="note">Restock both every Sunday from the Sam's stock. Full bins on Sunday means the week runs itself.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">On the granola bars</p>
+    <h2>Stop worrying about it</h2>
+    <p class="note">The problem with a chocolate bar isn't sugar, it's stickiness sitting on teeth. Your routine already handles it — they eat at 6:45 and brush at 7:15. That's the right order. Pair one with a cheese stick if you want; cheese raises the pH in the mouth and buffers the sugar.</p>
+  </div>
+</section>
+
+<section class="panel" id="method">
+  <div class="card">
+    <p class="eyebrow">Before you buy a single bin</p>
+    <h2>How to actually organize it</h2>
+    <div class="step"><div class="num">1</div><p><strong>Empty it completely.</strong> Everything out, sorted into piles by category on the floor. You can't organize around things you've forgotten you own.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>Throw out anything expired</strong> while it's all in front of you. This is the only time you'll ever see it all at once.</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Group by how you use it, not by what it is.</strong> Breakfast things together even if that means cereal next to syrup. You reach for a meal, not a food group.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Assign each shelf one category</strong> and don't let it bleed. The second a category has two homes, the system is dead.</p></div>
+    <div class="step"><div class="num">5</div><p><strong>Kids' shelf at kids' height.</strong> Anything a child needs to reach without you goes on shelf 3. Anything you don't want them in goes on shelf 1.</p></div>
+    <div class="step"><div class="num">6</div><p><strong>Label everything, even when it's obvious.</strong> Labels aren't for you — they're for the four-year-old, the babysitter, and the version of you who's exhausted on a Tuesday.</p></div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">The rules that keep it organized</p>
+    <h2>Six habits</h2>
+    <ul class="tips">
+      <li><strong>Same bins, same style.</strong> Uniform containers are the entire visual difference between "organized" and "cluttered." Mismatched bins read as mess no matter how neat the contents.</li>
+      <li><strong>New behind old.</strong> When the Sam's run comes home, the new cans go at the back and the old ones move forward. This one habit is why nothing expires.</li>
+      <li><strong>Nothing on the floor.</strong> The pantry floor is where organization goes to die. If it doesn't fit on a shelf, you have too much of it.</li>
+      <li><strong>Open the box.</strong> Snack packs come out of the cardboard and into the bin. The box is wasted space and it hides how much is left.</li>
+      <li><strong>One item per bin, per kid, per day.</strong> Say it once, enforce it for two weeks, and a bulk run lasts the month instead of the weekend.</li>
+      <li><strong>No lids on anything a kid uses.</strong> A lid is one extra step, and one extra step is the difference between a four-year-old doing it himself and calling for you.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Par levels</p>
+    <h2>The number that does the work</h2>
+    <p class="note">A par level is how many you always want on hand. Two ketchups. Three packs of paper towels. It isn't a preference — it's a trigger. Hit one below par and it goes on the list, whether or not you're out.</p>
+    <p class="note">This is what separates a stocked house from a reactive one. Without par levels you shop when you run out, which is always the worst moment. With them you shop before you run out, on your own schedule, at the store that's actually cheapest.</p>
+    <p class="note" style="color:var(--rose);font-weight:600">Every item on the Running Low tab has one. Edit them as you learn what your house actually burns through.</p>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow">Dollar Tree</p>
+    <h2>The setup list</h2>
+    <ul class="tips">
+      <li>4 rectangular bins, matching — the snack zone</li>
+      <li>2 more bins, orange and blue — the console table</li>
+      <li>1 shallow tray — the water bottle station</li>
+      <li>1 basket — the grab-and-go snack basket for the console top</li>
+      <li>Chalk labels or label stickers</li>
+      <li>A Sharpie for bottle initials</li>
+    </ul>
+    <p class="note" style="margin-top:9px">Roughly $12 for the whole setup. Get all the bins in one trip so they actually match — going back next month means a different style is on the shelf.</p>
+  </div>
+</section>
+
+<section class="panel" id="sunday">
+  <div class="card">
+    <p class="eyebrow">Thirty minutes</p>
+    <h2>The Sunday restock</h2>
+    <p class="note">This is the only reason any of the above keeps working. Music on, drink in hand, kids helping with their own piece.</p>
+    <div class="step"><div class="num">1</div><p><strong>Walk the Running Low tab.</strong> Anything that got flagged this week is already on your list — that's the shopping list done in ten seconds.</p></div>
+    <div class="step"><div class="num">2</div><p><strong>Refill the four snack bins</strong> from the Sam's stock on shelf 5.</p></div>
+    <div class="step"><div class="num">3</div><p><strong>Refill the orange and blue console bins</strong> — breakfast items and drinks.</p></div>
+    <div class="step"><div class="num">4</div><p><strong>Load each kid's colored fridge container</strong> with their week. Portion the cereal for the milk kids.</p></div>
+    <div class="step"><div class="num">5</div><p><strong>Bake.</strong> Pancake muffins and egg muffins, same oven back to back. Build the quesadillas and wrap in foil. Boil a dozen eggs.</p></div>
+    <div class="step"><div class="num">6</div><p><strong>Wash and cut</strong> carrots, cucumbers, grapes, strawberries. Apple slices into lemon water. Portion into containers.</p></div>
+    <div class="step"><div class="num">7</div><p><strong>Bottles through the dishwasher</strong>, back in the counter tray. Refill the Brita.</p></div>
+    <div class="step"><div class="num">8</div><p><strong>New stock to the back</strong>, old stock forward. Thirty seconds, saves you throwing food away.</p></div>
+  </div>
+  <div class="card">
+    <p class="eyebrow">The one that matters</p>
+    <p class="note" style="font-size:14.5px">If you only do one thing on this page, refill the bins. Full bins on Sunday night means nobody asks you for a snack all week — they just go get one. That's the whole return on the system.</p>
+  </div>
+</section>
+
+</main>
+<footer>♛ J Empire</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const K='jempire_pantry_v1';
+let uid=0;const nid=()=>'p'+Date.now().toString(36)+(uid++);
+const LB=['Stocked','Low','Out'];
+const STORENAME={sams:"Sam's Club",aldi:'Aldi',wm:'Walmart',dt:'Dollar Tree'};
+
+function seed(){
+  const it=(t,par,store,note)=>({id:nid(),t,par,store:store||'wm',note:note||'',s:0});
+  return [
+    {id:nid(),name:'Runs out constantly',items:[
+      it('Ketchup','2','wm'),it('Mayo','2','aldi'),it('Ranch dressing','2','sams'),
+      it('BBQ sauce','1','wm'),it('Syrup','2','aldi'),it('Sugar','1','aldi'),
+      it('Cooking oil','1','sams'),it('Olive oil','1','aldi'),it('Cooking spray','1','wm'),
+      it('Butter','2','aldi'),it('Bread','2 loaves','aldi'),it('Milk','2 gal','wm'),
+      it('Eggs','60 ct','sams','the biggest bulk win you have'),
+      it('Shredded mozzarella','2','sams'),it('Provolone slices','1','sams'),
+      it('Muenster slices','1','sams'),it('Deli turkey','1 lg','sams','freeze half'),
+      it('Flour tortillas','30 ct','sams'),it('Hawaiian rolls','1','wm','Aldi doesn\u2019t always carry these')
+    ]},
+    {id:nid(),name:'Pantry staples',items:[
+      it('Pancake mix','2','aldi'),it('Pasta','4','aldi'),it('Rice','1 lg','wm'),
+      it('Pasta sauce','3','aldi'),it('Canned black beans','4','aldi'),
+      it('Canned kidney beans','2','aldi'),it('Canned corn','3','aldi'),
+      it('Diced tomatoes','3','aldi'),it('Tomato sauce','3','aldi'),
+      it('Chicken broth','2','aldi'),it('Canned soup','4','aldi'),
+      it('Tuna','4','aldi'),it('Mac & cheese boxes','4','wm'),
+      it('Cereal','3 boxes','sams'),it('Soy sauce','1','wm'),
+      it('Adobo / seasoning','1','wm'),it('Garlic powder','1','wm'),
+      it('Black pepper','1','wm'),it('Cinnamon sugar','1','wm')
+    ]},
+    {id:nid(),name:'Snack bins — shelf 3',items:[
+      it('Goldfish','45 ct','sams','Crunchy bin'),
+      it('Cheez-Its','30 ct','sams','Crunchy bin'),
+      it('Pretzels','1 lg','sams','Crunchy bin'),
+      it('Popcorn bags','1 multi','sams','Crunchy bin'),
+      it('Veggie straws','1 lg','sams','Crunchy bin'),
+      it('Pirate\u2019s Booty','40 ct','sams','Crunchy bin'),
+      it('Welch\u2019s fruit snacks','90 ct','sams','Fruit snacks bin'),
+      it('Gummies','1 bag','sams','Fruit snacks bin'),
+      it('Fruit roll-ups','1 box','sams','Fruit snacks bin'),
+      it('Raisin boxes','1 multi','sams','Fruit snacks bin'),
+      it('Granola bars','48 ct','sams','Granola bin'),
+      it('Nutri-Grain bars','48 ct','sams','Granola bin'),
+      it('Zbars','18 ct','sams','Granola bin'),
+      it('Teddy Grahams','1 multi','sams','Granola bin'),
+      it('Animal crackers','1 multi','sams','Granola bin'),
+      it('Mini Oreos','1 multi','sams','Granola bin'),
+      it('Pudding cups','36 ct','sams','Extras bin'),
+      it('Jello cups','1 multi','sams','Extras bin'),
+      it('Applesauce pouches','1 multi','sams','Extras bin'),
+      it('Fruit cups','1 multi','sams','Extras bin'),
+      it('Rice Krispies treats','1 lg','sams','Extras bin')
+    ]},
+    {id:nid(),name:'Breakfast bins — console table',items:[
+      it('Pop Tarts','1 variety box','sams','orange bin'),
+      it('Individual cereal cups','1 variety','sams','orange bin'),
+      it('Mini muffin packs','1 multi','sams','orange bin'),
+      it('Eggo waffles','1 lg box','sams','freezer'),
+      it('French toast sticks','1 box','wm','freezer'),
+      it('Juice boxes','40–60 ct','sams','blue bin'),
+      it('Capri Sun','40 ct','sams','blue bin'),
+      it('Horizon milk boxes','24 ct','sams','blue bin')
+    ]},
+    {id:nid(),name:'Fresh — weekly at Aldi',items:[
+      it('Green apples','1 bag','aldi'),it('Grapes','2 bags','aldi'),
+      it('Strawberries','2','aldi'),it('Blueberries','2 pints','aldi'),
+      it('Bananas','2 bunches','aldi'),it('Cucumbers','3','aldi'),
+      it('Cherry tomatoes','1 pint','aldi'),it('Baby carrots','5 lb','sams','$3.99 for 5 lb — outstanding'),
+      it('Clementines','1 bag','aldi'),it('Lettuce','1','aldi')
+    ]},
+    {id:nid(),name:'The van car kit',items:[
+      it('Peanut-free car snacks','1 bin','sams','floor bin, second row'),
+      it('Bottled waters','1 case','sams','floor bin'),
+      it('Baby wipes','2 packs','sams','the single most useful thing in the van'),
+      it('Tissues','1 box','wm'),
+      it('Hand sanitizer','1','wm','driver door'),
+      it('Small first aid kit','1','wm','check it twice a year'),
+      it('Spare bag for wet/dirty clothes','2','wm'),
+      it('Trash bags for the van','1 roll','wm'),
+      it('Spare change of clothes per little kid','3 sets','','trunk bin — swap sizes each season'),
+      it('Beach towel','1','wm','trunk bin'),
+      it('Light blanket','1','wm','trunk bin'),
+      it('Umbrella or ponchos','2','wm'),
+      it('Phone charging cables','2','wm','check they still work'),
+      it('Sunscreen','1','sams','NOT the inhaler — heat')
+    ]},
+    {id:nid(),name:'Paper & household',items:[
+      it('Paper towels','1 bulk','sams'),it('Toilet paper','1 bulk','sams'),
+      it('Sandwich zip bags','1 box','sams'),it('Gallon zip bags','1 box','sams'),
+      it('Aluminum foil','1','wm'),it('Plastic wrap','1','wm'),
+      it('Trash bags','1 bulk','sams'),it('Dish soap','2','wm'),
+      it('Dishwasher pods','1','sams'),it('Laundry detergent','1 bulk','sams'),
+      it('Dryer sheets','1','sams'),it('Sponges','1 multi','wm'),
+      it('Hand soap refill','1','wm'),it('All-purpose cleaner','1','wm'),
+      it('Ice packs','6','wm','one per lunchbox, plus spares')
+    ]}
+  ];
+}
+
+let S;
+try{const r=localStorage.getItem(K);S=r?JSON.parse(r):seed()}catch(e){S=seed()}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast("Couldn't save — storage is off")}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function drawBuy(){
+  const need=[];
+  S.forEach(g=>g.items.forEach(i=>{if(i.s>0)need.push(i)}));
+  const w=document.getElementById('buyList');
+  if(!need.length){
+    w.innerHTML='<div class="empty-state">Nothing flagged.<br>Tap anything below the moment it gets low.</div>';return;
+  }
+  const by={};
+  need.forEach(i=>{(by[i.store]=by[i.store]||[]).push(i)});
+  let h='';
+  ['sams','aldi','wm','dt'].forEach(st=>{
+    if(!by[st])return;
+    h+=`<div class="store"><span class="pill ${st}">${STORENAME[st]}</span>`;
+    by[st].sort((a,b)=>b.s-a.s||a.t.localeCompare(b.t)).forEach(i=>{
+      h+=`<div class="buy"><span class="dot ${i.s===2?'out':'low'}"></span>
+        <span class="n">${esc(i.t)}</span><span class="p">${esc(i.par)}</span></div>`;
+    });
+    h+='</div>';
+  });
+  w.innerHTML=h;
+}
+
+function drawLow(){
+  document.getElementById('lowBody').innerHTML=S.map(g=>`
+    <div class="card">
+      <p class="eyebrow">${esc(g.name)}</p>
+      ${g.items.map(i=>`
+        <div class="item">
+          <button class="st s${i.s}" data-cyc="${i.id}" data-g="${g.id}">${LB[i.s]}</button>
+          <div class="nm">${esc(i.t)}${i.note?`<em>${esc(i.note)}</em>`:''}</div>
+          <div class="par">${esc(i.par)}</div>
+          <div class="tools">
+            <button data-edit="${i.id}" data-g="${g.id}" aria-label="Edit">✎</button>
+            <button data-del="${i.id}" data-g="${g.id}" aria-label="Delete">×</button>
+          </div>
+        </div>`).join('')}
+      <button class="add" data-add="${g.id}">+ Add to ${esc(g.name)}</button>
+    </div>`).join('');
+  drawBuy();
+}
+
+function findG(id){return S.find(g=>g.id===id)}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  const g=t.dataset.g?findG(t.dataset.g):null;
+
+  if(t.dataset.cyc&&g){const i=g.items.find(x=>x.id===t.dataset.cyc);i.s=(i.s+1)%3;save();drawLow();return}
+  if(t.dataset.del&&g){
+    const i=g.items.find(x=>x.id===t.dataset.del);
+    if(confirm('Delete "'+i.t+'"?')){g.items=g.items.filter(x=>x.id!==i.id);save();drawLow()}return;
+  }
+  if(t.dataset.edit&&g){
+    const i=g.items.find(x=>x.id===t.dataset.edit);
+    const v=prompt('Item name:',i.t);if(v===null)return;if(v.trim())i.t=v.trim();
+    const p=prompt('Par level — how many you always want on hand:',i.par);if(p!==null)i.par=p.trim();
+    const st=prompt('Store — type sams, aldi, wm or dt:',i.store);
+    if(st!==null&&STORENAME[st.trim().toLowerCase()])i.store=st.trim().toLowerCase();
+    save();drawLow();return;
+  }
+  if(t.dataset.add){
+    const gg=findG(t.dataset.add);if(!gg)return;
+    const v=prompt('New item:');if(!v||!v.trim())return;
+    const p=prompt('Par level (how many to always have):')||'1';
+    let st=(prompt('Store — sams, aldi, wm or dt:')||'wm').trim().toLowerCase();
+    if(!STORENAME[st])st='wm';
+    gg.items.push({id:nid(),t:v.trim(),par:p.trim(),store:st,note:'',s:0});
+    save();drawLow();toast('Added');return;
+  }
+  if(t.id==='allGood'){
+    if(confirm('Mark every item stocked? This clears the buy list.')){
+      S.forEach(g=>g.items.forEach(i=>i.s=0));save();drawLow();toast('All stocked')}return;
+  }
+  if(t.id==='resetAll'){
+    if(confirm('This wipes every flag, par level and edit. Sure?')){
+      S=seed();save();drawLow();toast('Back to the original list')}
+  }
+});
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById(b.dataset.p).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+drawLow();
+
+/* ---- shared chrome: text size + deep mode ---- */
+(function(){
+  var SK='jempire_hub_size',DK='jempire_hub_deep';
+  function setSize(c){
+    document.body.classList.remove('fsA','fsB','fsC');
+    document.body.classList.add(c);
+    document.querySelectorAll('[data-fsize]').forEach(function(b){
+      b.setAttribute('aria-pressed',b.dataset.fsize===c);});
+    try{localStorage.setItem(SK,c)}catch(e){}
+  }
+  function setDeep(on){
+    document.body.classList.toggle('deep',on);
+    var b=document.getElementById('modeBtn');
+    if(b)b.innerHTML=on?'\u2600 Light':'\u263D Deep';
+    try{localStorage.setItem(DK,on?'1':'0')}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var s=e.target.closest('[data-fsize]');
+    if(s){setSize(s.dataset.fsize);return}
+    var m=e.target.closest('#modeBtn');
+    if(m){setDeep(!document.body.classList.contains('deep'))}
+  });
+  var sz='fsB',dp=false;
+  try{sz=localStorage.getItem(SK)||'fsB';dp=localStorage.getItem(DK)==='1'}catch(e){}
+  setSize(sz);setDeep(dp);
+})();
+
+</script>
+</body>
+</html>
